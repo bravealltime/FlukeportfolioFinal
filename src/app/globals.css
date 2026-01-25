@@ -1,26 +1,202 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #000000;
+  --foreground: #00ff41;
+  --primary-gradient: linear-gradient(to right, #00ff41, #008f11);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-zinc-950: #0a0a0a;
+  --color-indigo-500: #00ff41;
+  --color-cyan-500: #008f11;
+  --font-mono: "Courier New", Courier, monospace;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #000000;
+    --foreground: #00ff41;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Courier New", Courier, monospace;
+  overflow-x: hidden;
+}
+
+@layer utilities {
+  .glass {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid #00ff4133;
+  }
+
+  .hacker-border {
+    border: 1px solid #00ff4166;
+    box-shadow: 0 0 15px #00ff4122;
+    background: rgba(0, 255, 65, 0.02);
+  }
+
+  .glow-sm {
+    text-shadow: 0 0 5px #00ff41;
+  }
+
+  .glow-md {
+    text-shadow: 0 0 10px #00ff41;
+  }
+
+  .hacker-vignette {
+    background: radial-gradient(circle, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+    pointer-events: none;
+  }
+}
+
+/* Custom Scrollbar for Hacker Theme */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00ff4133;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00ff41;
+  box-shadow: 0 0 10px #00ff41;
+}
+
+@keyframes pulse-slow {
+
+  0%,
+  100% {
+    opacity: 0.1;
+  }
+
+  50% {
+    opacity: 0.2;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Modes Overrides - Professional Minimalist Theme */
+.human-mode {
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+  /* Almost Black */
+  --muted: #525252;
+  color: var(--foreground) !important;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  background: var(--background) !important;
+  transition: all 0.5s ease-in-out;
+  line-height: 1.6;
+}
+
+.human-mode .hacker-border {
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+  background: #ffffff;
+  border-radius: 16px;
+}
+
+.human-mode .glass {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* Force high contrast text */
+.human-mode .text-\[\#00ff41\],
+.human-mode .text-\[\#00ff4188\],
+.human-mode .text-\[\#00ff4166\],
+.human-mode .text-\[\#00ff41bb\],
+.human-mode .text-\[\#00ff41cc\],
+.human-mode .text-\[\#008f11\] {
+  color: #171717 !important;
+  /* Neutral 900 */
+}
+
+/* Specific overrides for muted text to be readable gray */
+.human-mode .text-\[\#00ff4188\],
+.human-mode .text-\[\#00ff4166\] {
+  color: #525252 !important;
+  /* Neutral 600 */
+}
+
+/* Highlight text in human mode */
+.human-mode .text-highlight {
+  color: #000000 !important;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* Buttons in human mode */
+.human-mode button {
+  border-radius: 12px;
+  font-family: var(--font-geist-sans), sans-serif !important;
+  letter-spacing: normal !important;
+}
+
+.human-mode button:hover {
+  background-color: #f5f5f5 !important;
+  color: #000000 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Borders */
+.human-mode .border-\[\#00ff41\],
+.human-mode .border-\[\#00ff4144\],
+.human-mode .border-\[\#00ff4155\],
+.human-mode .border-\[\#00ff4188\],
+.human-mode .border-\[\#00ff4133\] {
+  border-color: #e5e5e5 !important;
+}
+
+/* Backgrounds */
+.human-mode .bg-\[\#00ff41\],
+.human-mode .bg-\[\#00ff4111\],
+.human-mode .bg-\[\#00ff4122\],
+.human-mode .bg-\[\#00ff4133\] {
+  background-color: #f5f5f5 !important;
+  color: #0a0a0a !important;
+}
+
+.human-mode .shadow-\[0_0_20px_\#00ff4122\] {
+  box-shadow: none !important;
+}
+
+.human-mode .glow-sm,
+.human-mode .glow-md {
+  text-shadow: none !important;
+}
+
+/* Specific override for bg-black utility in human mode */
+.human-mode .bg-black,
+.human-mode .bg-black\/90,
+.human-mode .bg-black\/80,
+.human-mode .bg-black\/60,
+.human-mode .bg-black\/50,
+.human-mode .bg-black\/40 {
+  background-color: #ffffff !important;
+  color: #0a0a0a !important;
+  border-color: #e5e5e5 !important;
+}
+
+/* Selection color */
+.human-mode ::selection {
+  background-color: #000000;
+  color: #ffffff;
 }

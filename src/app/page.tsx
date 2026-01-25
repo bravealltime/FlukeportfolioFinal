@@ -1,65 +1,83 @@
-import Image from "next/image";
+"use client";
+
+import Navbar from "@/components/Navbar";
+
+import Hero from "@/components/Hero";
+import Projects from "@/components/Projects";
+import Skills from "@/components/Skills";
+import Contact from "@/components/Contact";
+import MatrixRain from "@/components/MatrixRain";
+import CodeShowcase from "@/components/CodeShowcase";
+import InteractiveTerminal from "@/components/InteractiveTerminal";
+import SystemStatus from "@/components/SystemStatus";
+import { useSettings } from "@/components/SettingsProvider";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+
 
 export default function Home() {
+  const [matrixFullscreen, setMatrixFullscreen] = useState(false);
+
+  const { isHuman } = useSettings();
+
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Simple hidden command listener
+      if (e.key === "m") {
+        // Checking for "matrix" could be more complex, but this is a start
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    // Main Container: กำหนดพื้นหลังตามโหมด (Human: ขาว, Hacker: ดำ)
+    <main className={`min-h-screen ${isHuman ? "bg-white selection:bg-slate-200 selection:text-black" : "bg-black selection:bg-[#00ff41] selection:text-black"} relative overflow-x-hidden font-mono transition-colors duration-500`}>
+      {!isHuman && <MatrixRain isVisible={matrixFullscreen} isIntense={matrixFullscreen} />}
+
+      {/* Background Overlay: ใช้เฉพาะโหมด Hacker เพื่อให้ออ่านง่ายขึ้น */}
+      {!isHuman && (
+        <div className="fixed inset-0 bg-black/60 pointer-events-none z-[1] transition-colors duration-500" />
+      )}
+
+      {/* Vignette Effect - ปิดในโหมด Human (Disable in Human Mode) */}
+      {!isHuman && <div className="fixed inset-0 hacker-vignette z-[5] pointer-events-none" />}
+
+      {/* Global Scanline Overlay - ปิดในโหมด Human */}
+      {!isHuman && <div className="fixed inset-0 pointer-events-none z-[10000] opacity-[0.08] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(0,255,65,0.05),rgba(0,255,65,0.02),rgba(0,255,65,0.05))] bg-[length:100%_4px,4px_100%]" />}
+
+      {/* Animated Scanner Line - เส้นสแกนวิ่งลง (เฉพาะ Hacker) */}
+      {!isHuman && <motion.div
+        animate={{ y: ["0%", "100%", "0%"] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+        className="fixed inset-x-0 h-[2px] bg-[#00ff4111] z-[10001] pointer-events-none shadow-[0_0_15px_#00ff41]"
+      />}
+
+
+      <div className="relative z-10">
+        <Navbar />
+        <Hero />
+
+        {/* Hacker Only Components - ส่วนประกอบสำหรับโหมด Hacker เท่านั้น */}
+        {!isHuman && (
+          <>
+            <InteractiveTerminal onCommand={(cmd) => {
+              if (cmd === "matrix") {
+                setMatrixFullscreen(prev => !prev);
+              }
+            }} />
+            <CodeShowcase />
+            <SystemStatus />
+          </>
+        )}
+
+        <Projects />
+        <Skills />
+        <Contact />
+      </div>
+    </main>
   );
 }
+
