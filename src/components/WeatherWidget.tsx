@@ -19,35 +19,47 @@ const MOCK_WEATHER: WeatherData = {
 const WeatherWidget = () => {
     const { isHuman } = useSettings();
     const [weather, setWeather] = useState<WeatherData | null>(null);
+    const [location, setLocation] = useState<string>("Detecting...");
     const [loading, setLoading] = useState(true);
 
-    // KORAT Coordinates: 14.97, 102.10
     useEffect(() => {
-        const fetchWeather = async () => {
+        const fetchAll = async () => {
+            setLoading(true);
             try {
-                const res = await fetch(
-                    "https://api.open-meteo.com/v1/forecast?latitude=14.97&longitude=102.10&current_weather=true"
+                // 1. Fetch Location by IP
+                const locRes = await fetch("https://ipapi.co/json/");
+                const locData = await locRes.json();
+
+                const lat = locData.latitude || 14.97;
+                const lon = locData.longitude || 102.10;
+                const city = locData.city || "Unknown";
+                setLocation(city);
+
+                // 2. Fetch Weather using detected coordinates
+                const weatherRes = await fetch(
+                    `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`
                 );
 
-                if (!res.ok) throw new Error("Network response was not ok");
+                if (!weatherRes.ok) throw new Error("Weather API response was not ok");
 
-                const data = await res.json();
+                const weatherData = await weatherRes.json();
                 setWeather({
-                    temperature: data.current_weather.temperature,
-                    weatherCode: data.current_weather.weathercode,
-                    windSpeed: data.current_weather.windspeed,
+                    temperature: weatherData.current_weather.temperature,
+                    weatherCode: weatherData.current_weather.weathercode,
+                    windSpeed: weatherData.current_weather.windspeed,
                 });
             } catch (error) {
-                console.warn("Weather API failed, using mock data:", error);
+                console.warn("Location or Weather API failed, using fallbacks:", error);
+                setLocation("Nakhon Ratchasima");
                 setWeather(MOCK_WEATHER);
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchWeather();
+        fetchAll();
         // Refresh every 30 mins
-        const interval = setInterval(fetchWeather, 1800000);
+        const interval = setInterval(fetchAll, 1800000);
         return () => clearInterval(interval);
     }, []);
 
@@ -60,11 +72,10 @@ const WeatherWidget = () => {
 
     if (loading) return null;
 
-    // Safety check - should satisfy TS but also runtime safety if fetch fails and mock somehow fails
     const displayWeather = weather || MOCK_WEATHER;
 
     return (
-        <div className={`fixed top-4 right-4 z-40 transition-all ${isHuman
+        <div className={`fixed bottom-4 right-4 md:top-4 md:bottom-auto z-40 transition-all ${isHuman
             ? "bg-white/80 backdrop-blur-md shadow-sm border border-slate-200 rounded-full px-4 py-2 flex items-center gap-3 text-slate-700"
             : "bg-[#0a0a0a]/60 border border-[#10b981] px-2 py-1 text-[#10b981] font-mono text-xs flex flex-col items-end gap-1"
             }`}>
@@ -75,13 +86,13 @@ const WeatherWidget = () => {
                         <span className="font-bold text-sm">{displayWeather.temperature}°C</span>
                     </div>
                     <span className="text-xs text-slate-500 border-l pl-3 border-slate-300">
-                        Nakhon Ratchasima
+                        {location}
                     </span>
                 </>
             ) : (
                 <>
                     <div className="flex items-center gap-2">
-                        <span>[ SENSOR::KORAT ]</span>
+                        <span>[ SENSOR::{location.toUpperCase()} ]</span>
                         {getWeatherIcon(displayWeather.weatherCode)}
                     </div>
                     <div className="flex gap-4">
