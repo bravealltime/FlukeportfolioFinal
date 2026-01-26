@@ -9,6 +9,14 @@ import SecretProjectModal from "./SecretProjectModal";
 import ProjectCaseStudy from "./ProjectCaseStudy";
 import { Lock, BookOpen } from "lucide-react";
 
+interface Project {
+    title: string;
+    description: string;
+    tech: string[];
+    link: string;
+    github: string;
+}
+
 const projects = [
     {
         title: "TeeRao - ระบบจัดการหอพัก",
@@ -45,7 +53,7 @@ const Projects = () => {
     const { isHuman } = useSettings();
     const [isVaultOpen, setIsVaultOpen] = React.useState(false);
     const [isProjectUnlocked, setIsProjectUnlocked] = React.useState(false);
-    const [selectedStudy, setSelectedStudy] = React.useState<any>(null);
+    const [selectedStudy, setSelectedStudy] = React.useState<Project | null>(null);
 
     const handleSecretClick = () => {
         setIsVaultOpen(true);
@@ -122,7 +130,6 @@ const Projects = () => {
                                     href={project.link}
                                     className={`inline-flex items-center gap-2 text-xs font-bold hover:underline ${isHuman ? "text-blue-600 font-sans text-sm" : "text-[#10b981]"}`}
                                 >
-                                    {isHuman ? "View Project" : "[ ACCESS_RESOURCES ]"}
                                     {isHuman ? "View Project" : "[ ACCESS_RESOURCES ]"}
                                     <ExternalLink size={12} />
                                 </motion.a>

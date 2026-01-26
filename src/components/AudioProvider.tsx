@@ -30,6 +30,7 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     useEffect(() => {
         const initAudio = () => {
             if (!audioCtxRef.current) {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 const AudioContextClass = (window.AudioContext || (window as any).webkitAudioContext);
                 audioCtxRef.current = new AudioContextClass();
             }
@@ -135,8 +136,11 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
     // Attach to window for legacy/external support
     useEffect(() => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (window as any).playKey = playKeyPress;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (window as any).playPing = playPing;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (window as any).playHover = playHover;
     }, [isHuman, isEnabled]);
 

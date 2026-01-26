@@ -38,7 +38,7 @@ const Contact = () => {
 
                     <p className={`text-sm mb-10 max-w-xl mx-auto ${isHuman ? "text-slate-600 font-sans text-lg normal-case" : "text-[#10b98188]"}`}>
                         {isHuman
-                            ? "I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions."
+                            ? "I&apos;m always open to discussing new projects, creative ideas or opportunities to be part of your visions."
                             : "พร้อมที่จะสร้างความเปลี่ยนแปลงในระบบดิจิทัลแล้วหรือยัง? ส่งโปรโตคอลการสื่อสารมาหาเรา เพื่อเริ่มดำเนินการทันที"}
                     </p>
 

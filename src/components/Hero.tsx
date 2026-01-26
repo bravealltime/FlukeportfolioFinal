@@ -29,9 +29,9 @@ const Hero = () => {
         },
     };
 
-    // กำหนด Animation Variants สำหรับ items ภายใน (any type to silence linter)
+    // กำหนด Animation Variants สำหรับ items ภายใน
     // ปรับการเคลื่อนไหวตามโหมด (Human: ขึ้นจากล่าง, Hacker: มาจากซ้าย)
-    const itemVariants: any = {
+    const itemVariants: Variants = {
         hidden: { x: isHuman ? 0 : -20, y: isHuman ? 20 : 0, opacity: 0 },
         visible: {
             x: 0,
@@ -146,7 +146,7 @@ const Hero = () => {
                         IDENT_PROCESS: STARTING PORTFOLIO_V4.2 <br />
                         SUBJECT: THARANUT HIRANSRETTAWAT <br />
                         HOBBIES: [DIY_PC, HARDWARE, TECH_NEWS, GADGETS] <br />
-                        MISSION: "<DecryptText text="อัปเดตเทรนด์ไอที และประกอบคอมคือความสุข" delay={1500} />" <br />
+                        MISSION: &quot;<DecryptText text="อัปเดตเทรนด์ไอที และประกอบคอมคือความสุข" delay={1500} />&quot; <br />
                         STATUS: <span className="text-[#10b981] font-bold animate-pulse">LIVE UPDATE...</span>
                     </motion.p>
                 </motion.div>

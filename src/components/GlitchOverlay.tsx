@@ -9,10 +9,14 @@ const GlitchOverlay = () => {
     const [isActive, setIsActive] = useState(false);
 
     useEffect(() => {
-        setIsActive(true);
-        // Reset after animation
+        // Trigger animation immediately when isHuman changes
+        const trigger = setTimeout(() => setIsActive(true), 0);
+        // Reset after animation duration
         const timer = setTimeout(() => setIsActive(false), 2000);
-        return () => clearTimeout(timer);
+        return () => {
+            clearTimeout(trigger);
+            clearTimeout(timer);
+        };
     }, [isHuman]);
 
     return (

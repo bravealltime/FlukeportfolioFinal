@@ -5,7 +5,6 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
-import Contact from "@/components/Contact";
 import MatrixRain from "@/components/MatrixRain";
 import CodeShowcase from "@/components/CodeShowcase";
 import InteractiveTerminal from "@/components/InteractiveTerminal";

@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageSquare, X, Send, Bot, User } from "lucide-react";
+import { MessageSquare, X, Send, Bot } from "lucide-react";
 import { useSettings } from "./SettingsProvider";
 import { useAudio } from "./AudioProvider";
 
@@ -80,8 +80,8 @@ const Chatbot = () => {
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setIsOpen(true)}
                 className={`fixed bottom-24 right-4 z-50 p-4 rounded-full shadow-xl transition-all ${isHuman
-                        ? "bg-blue-600 text-white hover:bg-blue-700"
-                        : "bg-[#0a0a0a] border border-[#10b981] text-[#10b981] shadow-[0_0_20px_#10b98144]"
+                    ? "bg-blue-600 text-white hover:bg-blue-700"
+                    : "bg-[#0a0a0a] border border-[#10b981] text-[#10b981] shadow-[0_0_20px_#10b98144]"
                     } ${isOpen ? "hidden" : "flex"}`}
             >
                 <MessageSquare size={24} />
@@ -95,8 +95,8 @@ const Chatbot = () => {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 50, scale: 0.9 }}
                         className={`fixed bottom-4 right-4 md:bottom-8 md:right-8 z-[100] w-80 md:w-96 rounded-2xl overflow-hidden shadow-2xl border flex flex-col ${isHuman
-                                ? "bg-white border-slate-200 h-[500px]"
-                                : "bg-[#0a0a0a] border-[#10b981] h-[500px]"
+                            ? "bg-white border-slate-200 h-[500px]"
+                            : "bg-[#0a0a0a] border-[#10b981] h-[500px]"
                             }`}
                     >
                         {/* Header */}
@@ -118,8 +118,8 @@ const Chatbot = () => {
                             {messages.map((msg) => (
                                 <div key={msg.id} className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}>
                                     <div className={`max-w-[80%] p-3 rounded-2xl text-sm ${msg.sender === "user"
-                                            ? isHuman ? "bg-blue-600 text-white rounded-br-none" : "bg-[#10b981] text-black rounded-br-none font-bold"
-                                            : isHuman ? "bg-slate-100 text-slate-700 rounded-bl-none" : "bg-[#10b98122] text-[#10b981] border border-[#10b98144] rounded-bl-none"
+                                        ? isHuman ? "bg-blue-600 text-white rounded-br-none" : "bg-[#10b981] text-black rounded-br-none font-bold"
+                                        : isHuman ? "bg-slate-100 text-slate-700 rounded-bl-none" : "bg-[#10b98122] text-[#10b981] border border-[#10b98144] rounded-bl-none"
                                         }`}>
                                         {msg.text}
                                     </div>

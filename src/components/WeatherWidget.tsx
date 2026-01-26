@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useSettings } from "./SettingsProvider";
-import { Cloud, Sun, CloudRain, Wind, Thermometer } from "lucide-react";
+import { Cloud, Sun, CloudRain, Wind } from "lucide-react";
 
 interface WeatherData {
     temperature: number;
@@ -24,7 +24,6 @@ const WeatherWidget = () => {
 
     useEffect(() => {
         const fetchAll = async () => {
-            setLoading(true);
             try {
                 // 1. Fetch Location by IP
                 const locRes = await fetch("https://ipapi.co/json/");

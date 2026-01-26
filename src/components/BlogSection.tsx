@@ -129,7 +129,7 @@ const BlogSection = () => {
 
                             <span className={`text-xs font-bold uppercase tracking-widest ${isHuman ? "text-blue-500" : "text-[#10b98166]"
                                 }`}>
-                                {selectedPost.tag} // {selectedPost.date}
+                                {selectedPost.tag} {" // "} {selectedPost.date}
                             </span>
 
                             <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-6">

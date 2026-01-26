@@ -5,10 +5,18 @@ import { motion } from "framer-motion";
 import { X, Trophy, TrendingUp, Users } from "lucide-react";
 import { useSettings } from "./SettingsProvider";
 
+interface Project {
+    title: string;
+    description: string;
+    tech: string[];
+    link: string;
+    github: string;
+}
+
 interface ProjectCaseStudyProps {
     isOpen: boolean;
     onClose: () => void;
-    project: any;
+    project: Project | null;
 }
 
 const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ isOpen, onClose, project }) => {
@@ -109,7 +117,7 @@ const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ isOpen, onClose, pr
                         </div>
                         <h3 className="text-xl font-bold mb-2">บทสรุปความสำเร็จ</h3>
                         <p className="opacity-70 max-w-xl mx-auto">
-                            "ระบบใหม่ช่วยให้การทำงานลื่นไหลขึ้นมาก ลูกค้าแฮปปี้ ยอดขายโตขึ้นแบบไม่ต้องกังวลเรื่องเว็บล่มอีกเลย" - Feedback จากลูกค้า
+                            &quot;ระบบใหม่ช่วยให้การทำงานลื่นไหลขึ้นมาก ลูกค้าแฮปปี้ ยอดขายโตขึ้นแบบไม่ต้องกังวลเรื่องเว็บล่มอีกเลย&quot; - Feedback จากลูกค้า
                         </p>
                     </section>
                 </div>
