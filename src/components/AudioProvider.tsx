@@ -1,12 +1,14 @@
 "use client";
 
-import React, { useState, useEffect, createContext, useContext } from "react";
+import React, { useState, useEffect, createContext, useContext, useRef } from "react";
+import { useSettings } from "./SettingsProvider";
 
 interface AudioContextType {
     isEnabled: boolean;
     toggleAudio: () => void;
     playKeyPress: () => void;
     playPing: () => void;
+    playHover: () => void;
 }
 
 const AudioContext = createContext<AudioContextType | undefined>(undefined);
@@ -18,49 +20,109 @@ export const useAudio = () => {
 };
 
 export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [isEnabled, setIsEnabled] = useState(false);
-    const [keyAudio, setKeyAudio] = useState<HTMLAudioElement | null>(null);
-    const [pingAudio, setPingAudio] = useState<HTMLAudioElement | null>(null);
+    const [isEnabled, setIsEnabled] = useState(true); // Default to TRUE
+    const { isHuman } = useSettings();
+    const audioCtxRef = useRef<AudioContext | null>(null);
 
+    // Initialize Audio Context
     useEffect(() => {
-        // We'll use high-frequency synth-like beeps instead of external files for simplicity and reliability
-        const createBeep = async (freq: number, duration: number, type: OscillatorType = "square") => {
-            if (!isEnabled) return;
-            const AudioContextClass = (window.AudioContext || (window as any).webkitAudioContext);
-            const ctx = new AudioContextClass();
-
-            if (ctx.state === "suspended") {
-                await ctx.resume();
+        const initAudio = () => {
+            if (!audioCtxRef.current) {
+                const AudioContextClass = (window.AudioContext || (window as any).webkitAudioContext);
+                audioCtxRef.current = new AudioContextClass();
             }
+        };
 
+        initAudio();
+
+        // Resume listener
+        const resumeAudio = () => {
+            if (audioCtxRef.current?.state === "suspended") {
+                audioCtxRef.current.resume().then(() => {
+                    console.log("AudioContext resumed");
+                }).catch(e => console.error(e));
+            }
+        };
+
+        window.addEventListener('click', resumeAudio);
+        window.addEventListener('keydown', resumeAudio);
+
+        return () => {
+            window.removeEventListener('click', resumeAudio);
+            window.removeEventListener('keydown', resumeAudio);
+        };
+    }, []);
+
+    const createBeep = (freq: number, duration: number, type: OscillatorType = "sine", vol: number = 0.1) => {
+        if (!isEnabled || !audioCtxRef.current) return;
+
+        const ctx = audioCtxRef.current;
+
+        // Try to resume if somehow still suspended
+        if (ctx.state === "suspended") {
+            ctx.resume().catch(() => { });
+        }
+
+        try {
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
 
             osc.type = type;
             osc.frequency.setValueAtTime(freq, ctx.currentTime);
 
-            gain.gain.setValueAtTime(0.05, ctx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.00001, ctx.currentTime + duration);
+            // Increased volume
+            gain.gain.setValueAtTime(vol, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
 
             osc.connect(gain);
             gain.connect(ctx.destination);
 
             osc.start();
             osc.stop(ctx.currentTime + duration);
-        };
+        } catch (e) {
+            console.error("Audio generation failed:", e);
+        }
+    };
 
-        (window as any).playKey = () => createBeep(150 + Math.random() * 50, 0.05, "sine");
-        (window as any).playPing = () => createBeep(880, 0.1, "sine");
+    const playKeyPress = () => {
+        if (isHuman) {
+            // Human: Soft "Mechanical Click"
+            createBeep(600 + Math.random() * 200, 0.05, "sine", 0.15);
+        } else {
+            // Hacker: Retro "Terminal Beep"
+            createBeep(150 + Math.random() * 50, 0.05, "square", 0.1);
+        }
+    };
 
+    const playPing = () => {
+        if (isHuman) {
+            createBeep(1000, 0.2, "sine", 0.2);
+        } else {
+            createBeep(880, 0.1, "square", 0.15);
+        }
+    };
 
-    }, [isEnabled]);
+    const playHover = () => {
+        if (isHuman) {
+            // Human: Very subtle high tick
+            createBeep(800, 0.03, "sine", 0.05);
+        } else {
+            // Hacker: Quick low data blip
+            createBeep(200, 0.03, "square", 0.05);
+        }
+    };
+
+    // Attach to window for legacy/external support
+    useEffect(() => {
+        (window as any).playKey = playKeyPress;
+        (window as any).playPing = playPing;
+        (window as any).playHover = playHover;
+    }, [isHuman, isEnabled]);
 
     const toggleAudio = () => setIsEnabled(!isEnabled);
-    const playKeyPress = () => (window as any).playKey?.();
-    const playPing = () => (window as any).playPing?.();
 
     return (
-        <AudioContext.Provider value={{ isEnabled, toggleAudio, playKeyPress, playPing }}>
+        <AudioContext.Provider value={{ isEnabled, toggleAudio, playKeyPress, playPing, playHover }}>
             {children}
         </AudioContext.Provider>
     );

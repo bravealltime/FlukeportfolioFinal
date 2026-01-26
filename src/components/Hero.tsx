@@ -14,7 +14,7 @@ import { ArrowRight, Mail } from "lucide-react";
  * มี 2 โหมด: Human (คลีน) และ Hacker (ดิบ)
  */
 const Hero = () => {
-    const { playPing, playKeyPress } = useAudio();
+    const { playPing, playKeyPress, playHover } = useAudio();
     const { isHuman } = useSettings();
 
     // กำหนด Animation Variants สำหรับ Container หลัก
@@ -73,14 +73,18 @@ const Hero = () => {
                     <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center">
                         <a
                             href="#projects"
-                            className="px-8 py-4 bg-slate-900 text-white rounded-lg font-semibold hover:bg-slate-800 transition-all flex items-center justify-center gap-2 shadow-lg shadow-slate-200"
+                            onMouseEnter={() => playHover()}
+                            onClick={playKeyPress}
+                            className="px-8 py-4 bg-slate-900 text-white rounded-lg font-semibold hover:bg-slate-800 transition-all flex items-center justify-center gap-2 shadow-lg shadow-slate-200 cursor-pointer"
                         >
                             View Projects <ArrowRight size={18} />
                         </a>
                         <a
                             href="/resume-thara-official.txt"
                             target="_blank"
-                            className="px-8 py-4 bg-white text-slate-700 border border-slate-200 rounded-lg font-semibold hover:bg-slate-50 transition-all flex items-center justify-center gap-2"
+                            onMouseEnter={() => playHover()}
+                            onClick={playKeyPress}
+                            className="px-8 py-4 bg-white text-slate-700 border border-slate-200 rounded-lg font-semibold hover:bg-slate-50 transition-all flex items-center justify-center gap-2 cursor-pointer"
                         >
                             Download CV <Mail size={18} />
                         </a>
