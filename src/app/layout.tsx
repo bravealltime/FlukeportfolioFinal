@@ -4,6 +4,13 @@ import "./globals.css";
 import { AudioProvider } from "@/components/AudioProvider";
 import { SettingsProvider } from "@/components/SettingsProvider";
 
+import { ToastProvider } from "@/components/ToastProvider";
+import ScrollProgress from "@/components/ScrollProgress";
+import IncognitoDetector from "@/components/IncognitoDetector";
+import KonamiCode from "@/components/KonamiCode";
+import Chatbot from "@/components/Chatbot";
+import LiveCursors from "@/components/LiveCursors";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -31,7 +38,14 @@ export default function RootLayout({
       >
         <SettingsProvider>
           <AudioProvider>
-            {children}
+            <ToastProvider>
+              <ScrollProgress />
+              <LiveCursors />
+              <IncognitoDetector />
+              <KonamiCode />
+              <Chatbot />
+              {children}
+            </ToastProvider>
           </AudioProvider>
         </SettingsProvider>
 

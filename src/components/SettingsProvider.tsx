@@ -19,14 +19,28 @@ export const useSettings = () => {
 };
 
 export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    // กำหนดค่าเริ่มต้นเป็นโหมด "human" เพื่อให้เป็นหน้าหลัก
+    // Default to human, but will be overwritten by effect
     const [viewMode, setViewMode] = useState<ViewMode>("human");
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+        // Load preference
+        const savedMode = localStorage.getItem("viewMode") as ViewMode;
+        if (savedMode) {
+            setViewMode(savedMode);
+        }
+    }, []);
 
     const toggleViewMode = () => {
-        setViewMode((prev) => (prev === "hacker" ? "human" : "hacker"));
+        const newMode = viewMode === "hacker" ? "human" : "hacker";
+        setViewMode(newMode);
+        localStorage.setItem("viewMode", newMode);
     };
 
     const isHuman = viewMode === "human";
+
+    if (!mounted) return <div className="bg-white" />; // Prevent hydration mismatch flash
 
     return (
         <SettingsContext.Provider value={{ viewMode, toggleViewMode, isHuman }}>

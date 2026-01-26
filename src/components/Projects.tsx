@@ -4,6 +4,10 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import { useAudio } from "./AudioProvider";
+import PasswordVault from "./PasswordVault";
+import SecretProjectModal from "./SecretProjectModal";
+import ProjectCaseStudy from "./ProjectCaseStudy";
+import { Lock, BookOpen } from "lucide-react";
 
 const projects = [
     {
@@ -39,6 +43,14 @@ import { useSettings } from "./SettingsProvider";
 const Projects = () => {
     const { playPing } = useAudio();
     const { isHuman } = useSettings();
+    const [isVaultOpen, setIsVaultOpen] = React.useState(false);
+    const [isProjectUnlocked, setIsProjectUnlocked] = React.useState(false);
+    const [selectedStudy, setSelectedStudy] = React.useState<any>(null);
+
+    const handleSecretClick = () => {
+        setIsVaultOpen(true);
+        playPing();
+    };
 
     return (
         <section id="projects" className="py-24 px-4 bg-transparent font-mono relative z-10">
@@ -111,13 +123,60 @@ const Projects = () => {
                                     className={`inline-flex items-center gap-2 text-xs font-bold hover:underline ${isHuman ? "text-blue-600 font-sans text-sm" : "text-[#10b981]"}`}
                                 >
                                     {isHuman ? "View Project" : "[ ACCESS_RESOURCES ]"}
+                                    {isHuman ? "View Project" : "[ ACCESS_RESOURCES ]"}
                                     <ExternalLink size={12} />
                                 </motion.a>
+
+                                <button
+                                    onClick={() => setSelectedStudy(project)}
+                                    className={`ml-4 inline-flex items-center gap-2 text-xs font-bold hover:underline ${isHuman ? "text-slate-500" : "text-[#10b981aa]"}`}
+                                >
+                                    <BookOpen size={12} />
+                                    {isHuman ? "Read Case Study" : "DECRYPT_LOGS"}
+                                </button>
                             </div>
                         </motion.div>
                     ))}
+
+                    {/* Secret Project Card */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        whileHover={{ scale: 1.02 }}
+                        onClick={handleSecretClick}
+                        className={`cursor-pointer border p-6 rounded-2xl flex flex-col items-center justify-center text-center transition-all min-h-[300px] ${isHuman
+                            ? "bg-slate-100 border-dashed border-slate-300 hover:border-slate-400 hover:bg-slate-200"
+                            : "bg-black border-dashed border-[#10b98144] hover:border-[#10b981] hover:bg-[#10b98111]"
+                            }`}
+                    >
+                        <Lock size={48} className={`mb-4 ${isHuman ? "text-slate-400" : "text-[#10b981]"}`} />
+                        <h3 className={`text-xl font-bold mb-2 uppercase ${isHuman ? "text-slate-500" : "text-[#10b981]"}`}>
+                            {isHuman ? "Confidential Project" : "ENCRYPTED_FILE"}
+                        </h3>
+                        <p className={`text-xs ${isHuman ? "text-slate-400" : "text-[#10b98166]"}`}>
+                            {isHuman ? "Access Restricted. Authorized Personnel Only." : "LEVEL 5 SECURITY CLEARANCE REQUIRED"}
+                        </p>
+                    </motion.div>
                 </div>
             </div>
+
+            <PasswordVault
+                isOpen={isVaultOpen}
+                onClose={() => setIsVaultOpen(false)}
+                onUnlock={() => setIsProjectUnlocked(true)}
+            />
+
+            <SecretProjectModal
+                isOpen={isProjectUnlocked}
+                onClose={() => setIsProjectUnlocked(false)}
+            />
+
+            <ProjectCaseStudy
+                isOpen={!!selectedStudy}
+                onClose={() => setSelectedStudy(null)}
+                project={selectedStudy}
+            />
         </section>
     );
 };

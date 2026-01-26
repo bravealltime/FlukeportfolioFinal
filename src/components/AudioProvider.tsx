@@ -9,6 +9,8 @@ interface AudioContextType {
     playKeyPress: () => void;
     playPing: () => void;
     playHover: () => void;
+    playSuccess: () => void;
+    playError: () => void;
 }
 
 const AudioContext = createContext<AudioContextType | undefined>(undefined);
@@ -112,6 +114,25 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         }
     };
 
+    const playSuccess = () => {
+        if (isHuman) {
+            createBeep(880, 0.1, "sine", 0.1);
+            setTimeout(() => createBeep(1100, 0.2, "sine", 0.1), 100);
+        } else {
+            createBeep(440, 0.1, "square", 0.1);
+            setTimeout(() => createBeep(880, 0.2, "square", 0.1), 80);
+        }
+    };
+
+    const playError = () => {
+        if (isHuman) {
+            createBeep(300, 0.2, "triangle", 0.2);
+        } else {
+            createBeep(150, 0.15, "sawtooth", 0.2);
+            setTimeout(() => createBeep(100, 0.3, "sawtooth", 0.2), 100);
+        }
+    };
+
     // Attach to window for legacy/external support
     useEffect(() => {
         (window as any).playKey = playKeyPress;
@@ -122,7 +143,7 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     const toggleAudio = () => setIsEnabled(!isEnabled);
 
     return (
-        <AudioContext.Provider value={{ isEnabled, toggleAudio, playKeyPress, playPing, playHover }}>
+        <AudioContext.Provider value={{ isEnabled, toggleAudio, playKeyPress, playPing, playHover, playSuccess, playError }}>
             {children}
         </AudioContext.Provider>
     );

@@ -4,12 +4,14 @@ import React, { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { useSettings } from "./SettingsProvider";
 import { useAudio } from "./AudioProvider";
+import { useToast } from "./ToastProvider";
 import { motion } from "framer-motion";
 import { Send, Check, AlertTriangle } from "lucide-react";
 
 const ContactForm = () => {
     const { isHuman } = useSettings();
-    const { playHover, playKeyPress } = useAudio();
+    const { playHover, playKeyPress, playSuccess, playError } = useAudio();
+    const { addToast } = useToast();
     const form = useRef<HTMLFormElement>(null);
     const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
@@ -29,6 +31,8 @@ const ContactForm = () => {
             // Simulation Mode
             setTimeout(() => {
                 setStatus("success");
+                addToast(isHuman ? "Message sent successfully!" : "PACKET_TRANSMISSION::COMPLETE", "success");
+                playSuccess();
                 if (form.current) form.current.reset();
                 setTimeout(() => setStatus("idle"), 3000);
             }, 1500);
@@ -40,11 +44,15 @@ const ContactForm = () => {
                 .then((result) => {
                     console.log(result.text);
                     setStatus("success");
+                    addToast(isHuman ? "Message sent successfully!" : "PACKET_TRANSMISSION::COMPLETE", "success");
+                    playSuccess();
                     if (form.current) form.current.reset();
                     setTimeout(() => setStatus("idle"), 3000);
                 }, (error) => {
                     console.log(error.text);
                     setStatus("error");
+                    addToast(isHuman ? "Failed to send message." : "TRANSMISSION_ERROR::RETRY", "error");
+                    playError();
                     setTimeout(() => setStatus("idle"), 3000);
                 });
         }
