@@ -66,7 +66,7 @@ const WeatherWidget = () => {
     return (
         <div className={`fixed top-4 right-4 z-40 transition-all ${isHuman
             ? "bg-white/80 backdrop-blur-md shadow-sm border border-slate-200 rounded-full px-4 py-2 flex items-center gap-3 text-slate-700"
-            : "bg-black/60 border border-[#00ff41] px-2 py-1 text-[#00ff41] font-mono text-xs flex flex-col items-end gap-1"
+            : "bg-[#0a0a0a]/60 border border-[#10b981] px-2 py-1 text-[#10b981] font-mono text-xs flex flex-col items-end gap-1"
             }`}>
             {isHuman ? (
                 <>

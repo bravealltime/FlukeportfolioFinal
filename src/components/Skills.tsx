@@ -43,10 +43,10 @@ const Skills = () => {
                     viewport={{ once: true }}
                     className="mb-12"
                 >
-                    <h2 className={`text-3xl md:text-5xl font-bold mb-2 uppercase tracking-tighter ${isHuman ? "text-slate-900" : "text-[#00ff41]"}`}>
+                    <h2 className={`text-3xl md:text-5xl font-bold mb-2 uppercase tracking-tighter ${isHuman ? "text-slate-900" : "text-[#10b981]"}`}>
                         {isHuman ? "Technical Skills" : "[ // TECH_STACK ]"}
                     </h2>
-                    <p className={`text-xs uppercase tracking-widest ${isHuman ? "text-slate-500 font-sans mt-4 normal-case tracking-normal" : "text-[#00ff4188]"}`}>
+                    <p className={`text-xs uppercase tracking-widest ${isHuman ? "text-slate-500 font-sans mt-4 normal-case tracking-normal" : "text-[#10b98188]"}`}>
                         {isHuman ? "Technologies I work with" : "Scanning for available technologies..."}
                     </p>
                 </motion.div>
@@ -60,12 +60,12 @@ const Skills = () => {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.05 }}
-                            whileHover={isHuman ? { y: -2 } : { scale: 1.05, backgroundColor: "#00ff41", color: "#000" }}
+                            whileHover={isHuman ? { y: -2 } : { scale: 1.05, backgroundColor: "#10b981", color: "#000" }}
                             className={`
                                 cursor-default transition-all
                                 ${isHuman
                                     ? "px-6 py-3 bg-white border border-slate-200 text-slate-700 font-sans font-medium rounded-xl shadow-sm hover:shadow-md hover:border-slate-300"
-                                    : "px-4 py-2 border border-[#00ff4144] text-[#00ff41cc] font-bold text-xs uppercase hover:border-[#00ff41]"
+                                    : "px-4 py-2 border border-[#10b98144] text-[#10b981cc] font-bold text-xs uppercase hover:border-[#10b981]"
                                 }
                             `}
                         >

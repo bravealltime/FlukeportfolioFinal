@@ -1,24 +1,24 @@
 @import "tailwindcss";
 
 :root {
-  --background: #000000;
-  --foreground: #00ff41;
-  --primary-gradient: linear-gradient(to right, #00ff41, #008f11);
+  --background: #0a0a0a;
+  --foreground: #10b981;
+  --primary-gradient: linear-gradient(to right, #10b981, #059669);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-zinc-950: #0a0a0a;
-  --color-indigo-500: #00ff41;
-  --color-cyan-500: #008f11;
+  --color-indigo-500: #10b981;
+  --color-cyan-500: #10b981;
   --font-mono: "Courier New", Courier, monospace;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #000000;
-    --foreground: #00ff41;
+    --foreground: #10b981;
   }
 }
 
@@ -27,28 +27,29 @@ body {
   color: var(--foreground);
   font-family: "Courier New", Courier, monospace;
   overflow-x: hidden;
-  cursor: none; /* Custom cursor takes over */
+  cursor: none;
+  /* Custom cursor takes over */
 }
 
 @layer utilities {
   .glass {
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(10, 10, 10, 0.6);
     backdrop-filter: blur(10px);
-    border: 1px solid #00ff4133;
+    border: 1px solid #10b98133;
   }
 
   .hacker-border {
-    border: 1px solid #00ff4166;
-    box-shadow: 0 0 15px #00ff4122;
-    background: rgba(0, 255, 65, 0.02);
+    border: 1px solid #10b98144;
+    box-shadow: 0 0 10px #10b98111;
+    background: rgba(16, 185, 129, 0.02);
   }
 
   .glow-sm {
-    text-shadow: 0 0 5px #00ff41;
+    text-shadow: 0 0 3px #10b98188;
   }
 
   .glow-md {
-    text-shadow: 0 0 10px #00ff41;
+    text-shadow: 0 0 8px #10b98188;
   }
 
   .hacker-vignette {
@@ -67,13 +68,13 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #00ff4133;
+  background: #10b98133;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #00ff41;
-  box-shadow: 0 0 10px #00ff41;
+  background: #10b981;
+  box-shadow: 0 0 10px #10b981;
 }
 
 @keyframes pulse-slow {
@@ -119,19 +120,19 @@ body {
 }
 
 /* Force high contrast text */
-.human-mode .text-\[\#00ff41\],
-.human-mode .text-\[\#00ff4188\],
-.human-mode .text-\[\#00ff4166\],
-.human-mode .text-\[\#00ff41bb\],
-.human-mode .text-\[\#00ff41cc\],
+.human-mode .text-\[\#10b981\],
+.human-mode .text-\[\#10b98188\],
+.human-mode .text-\[\#10b98166\],
+.human-mode .text-\[\#10b981bb\],
+.human-mode .text-\[\#10b981cc\],
 .human-mode .text-\[\#008f11\] {
   color: #171717 !important;
   /* Neutral 900 */
 }
 
 /* Specific overrides for muted text to be readable gray */
-.human-mode .text-\[\#00ff4188\],
-.human-mode .text-\[\#00ff4166\] {
+.human-mode .text-\[\#10b98188\],
+.human-mode .text-\[\#10b98166\] {
   color: #525252 !important;
   /* Neutral 600 */
 }
@@ -158,24 +159,24 @@ body {
 }
 
 /* Borders */
-.human-mode .border-\[\#00ff41\],
-.human-mode .border-\[\#00ff4144\],
-.human-mode .border-\[\#00ff4155\],
-.human-mode .border-\[\#00ff4188\],
-.human-mode .border-\[\#00ff4133\] {
+.human-mode .border-\[\#10b981\],
+.human-mode .border-\[\#10b98144\],
+.human-mode .border-\[\#10b98155\],
+.human-mode .border-\[\#10b98188\],
+.human-mode .border-\[\#10b98133\] {
   border-color: #e5e5e5 !important;
 }
 
 /* Backgrounds */
-.human-mode .bg-\[\#00ff41\],
-.human-mode .bg-\[\#00ff4111\],
-.human-mode .bg-\[\#00ff4122\],
-.human-mode .bg-\[\#00ff4133\] {
+.human-mode .bg-\[\#10b981\],
+.human-mode .bg-\[\#10b98111\],
+.human-mode .bg-\[\#10b98122\],
+.human-mode .bg-\[\#10b98133\] {
   background-color: #f5f5f5 !important;
   color: #0a0a0a !important;
 }
 
-.human-mode .shadow-\[0_0_20px_\#00ff4122\] {
+.human-mode .shadow-\[0_0_20px_\#10b98122\] {
   box-shadow: none !important;
 }
 
@@ -190,7 +191,12 @@ body {
 .human-mode .bg-black\/80,
 .human-mode .bg-black\/60,
 .human-mode .bg-black\/50,
-.human-mode .bg-black\/40 {
+.human-mode .bg-black\/40,
+.human-mode .bg-\[\#0a0a0a\],
+.human-mode .bg-\[\#0a0a0a\]\/90,
+.human-mode .bg-\[\#0a0a0a\]\/80,
+.human-mode .bg-\[\#0a0a0a\]\/60,
+.human-mode .bg-\[\#0a0a0a\]\/40 {
   background-color: #ffffff !important;
   color: #0a0a0a !important;
   border-color: #e5e5e5 !important;

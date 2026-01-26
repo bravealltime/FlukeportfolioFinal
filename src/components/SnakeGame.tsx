@@ -132,12 +132,12 @@ const SnakeGame: React.FC<SnakeGameProps> = ({ onClose }) => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/90 backdrop-blur-sm font-mono"
+                className="fixed inset-0 z-[99999] flex items-center justify-center bg-[#0a0a0a]/90 backdrop-blur-sm font-mono"
             >
-                <div className="relative border-2 border-[#00ff41] p-2 rounded-lg shadow-[0_0_30px_#00ff4133]">
+                <div className="relative border-2 border-[#10b981] p-2 rounded-lg shadow-[0_0_30px_#10b98133]">
 
                     {/* Header */}
-                    <div className="flex justify-between items-center mb-2 text-[#00ff41] text-xs uppercase tracking-widest">
+                    <div className="flex justify-between items-center mb-2 text-[#10b981] text-xs uppercase tracking-widest">
                         <span>SNAKE_V1.0.EXE</span>
                         <div className="flex gap-4">
                             <span>Score: {score}</span>
@@ -148,13 +148,13 @@ const SnakeGame: React.FC<SnakeGameProps> = ({ onClose }) => {
 
                     {/* Game Board */}
                     <div
-                        className="bg-black relative grid"
+                        className="bg-[#0a0a0a] relative grid"
                         style={{
                             width: GRID_SIZE * CELL_SIZE,
                             height: GRID_SIZE * CELL_SIZE,
                             gridTemplateColumns: `repeat(${GRID_SIZE}, 1fr)`,
                             gridTemplateRows: `repeat(${GRID_SIZE}, 1fr)`,
-                            border: "1px solid #00ff4144"
+                            border: "1px solid #10b98144"
                         }}
                     >
                         {/* Snake */}
@@ -164,7 +164,7 @@ const SnakeGame: React.FC<SnakeGameProps> = ({ onClose }) => {
                                 style={{
                                     gridColumnStart: segment.x + 1,
                                     gridRowStart: segment.y + 1,
-                                    backgroundColor: i === 0 ? "#00ff41" : "#00ff41aa"
+                                    backgroundColor: i === 0 ? "#10b981" : "#10b981aa"
                                 }}
                                 className="w-full h-full border border-black"
                             />
@@ -180,17 +180,17 @@ const SnakeGame: React.FC<SnakeGameProps> = ({ onClose }) => {
                         />
 
                         {/* Grid Overlay (Scanlines) */}
-                        <div className="absolute inset-0 pointer-events-none opacity-10 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(0,255,65,0.06),rgba(0,255,65,0.02),rgba(0,255,65,0.06))] bg-[length:100%_4px,4px_100%]" />
+                        <div className="absolute inset-0 pointer-events-none opacity-10 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(16,185,129,0.06),rgba(16,185,129,0.02),rgba(16,185,129,0.06))] bg-[length:100%_4px,4px_100%]" />
                     </div>
 
                     {/* Game Over Overlay */}
                     {gameOver && (
-                        <div className="absolute inset-0 bg-black/80 flex flex-col items-center justify-center text-[#00ff41]">
+                        <div className="absolute inset-0 bg-black/80 flex flex-col items-center justify-center text-[#10b981]">
                             <h2 className="text-3xl font-bold mb-4 animate-pulse">GAME OVER</h2>
                             <p className="mb-6">FINAL SCORE: {score}</p>
                             <button
                                 onClick={resetGame}
-                                className="px-6 py-2 border border-[#00ff41] hover:bg-[#00ff41] hover:text-black transition-all text-sm font-bold uppercase"
+                                className="px-6 py-2 border border-[#10b981] hover:bg-[#10b981] hover:text-black transition-all text-sm font-bold uppercase"
                             >
                                 TRY AGAIN
                             </button>
@@ -198,7 +198,7 @@ const SnakeGame: React.FC<SnakeGameProps> = ({ onClose }) => {
                     )}
 
                     {/* Controls Hint */}
-                    <div className="mt-2 text-[#00ff4166] text-[10px] text-center">
+                    <div className="mt-2 text-[#10b98166] text-[10px] text-center">
                         USE ARROW KEYS TO MOVE | ESC TO CLOSE
                     </div>
 

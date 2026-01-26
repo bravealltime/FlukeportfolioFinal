@@ -51,10 +51,10 @@ const Projects = () => {
                     viewport={{ once: true }}
                     className="mb-16 text-center md:text-left"
                 >
-                    <h2 className={`text-3xl md:text-5xl font-bold mb-2 uppercase tracking-tighter ${isHuman ? "text-slate-900" : "text-[#00ff41]"}`}>
+                    <h2 className={`text-3xl md:text-5xl font-bold mb-2 uppercase tracking-tighter ${isHuman ? "text-slate-900" : "text-[#10b981]"}`}>
                         {isHuman ? "Featured Projects" : "[ // DATABASE_PROJECTS ]"}
                     </h2>
-                    {!isHuman && <div className="h-1 w-32 bg-[#00ff41] border shadow-[0_0_10px_#00ff41]" />}
+                    {!isHuman && <div className="h-1 w-32 bg-[#10b981] border shadow-[0_0_10px_#10b981]" />}
                     {isHuman && <div className="h-1 w-24 bg-blue-600 rounded-full mx-auto md:mx-0" />}
                 </motion.div>
 
@@ -70,25 +70,25 @@ const Projects = () => {
                             whileHover={{ scale: 1.02 }}
                             className={`${isHuman
                                 ? "bg-white border border-slate-200 shadow-md hover:shadow-xl rounded-2xl p-6 transition-all"
-                                : "bg-black border border-[#00ff4144] p-6 group relative overflow-hidden transition-all hover:border-[#00ff41] hover:shadow-[0_0_20px_#00ff4122]"
+                                : "bg-[#0a0a0a] border border-[#10b98144] p-6 group relative overflow-hidden transition-all hover:border-[#10b981] hover:shadow-[0_0_20px_#10b98122]"
                                 }`}
                         >
                             <div className="relative z-10">
                                 <div className="flex justify-between items-start mb-6">
-                                    <div className={`${isHuman ? "text-slate-400 font-sans font-bold text-sm" : "text-[#00ff41] opacity-50 text-xs"}`}>
+                                    <div className={`${isHuman ? "text-slate-400 font-sans font-bold text-sm" : "text-[#10b981] opacity-50 text-xs"}`}>
                                         {isHuman ? `0${index + 1}` : `0${index + 1} // FILE.SYS`}
                                     </div>
                                     <div className="flex gap-4">
-                                        <a href={project.github} className={`${isHuman ? "text-slate-400 hover:text-slate-900" : "text-[#00ff41] hover:glow-sm"} transition-all`}>
+                                        <a href={project.github} className={`${isHuman ? "text-slate-400 hover:text-slate-900" : "text-[#10b981] hover:glow-sm"} transition-all`}>
                                             <Github size={isHuman ? 20 : 18} />
                                         </a>
                                     </div>
                                 </div>
 
-                                <h3 className={`text-xl font-bold mb-4 uppercase ${isHuman ? "text-slate-800" : "text-[#00ff41]"}`}>
+                                <h3 className={`text-xl font-bold mb-4 uppercase ${isHuman ? "text-slate-800" : "text-[#10b981]"}`}>
                                     {project.title}
                                 </h3>
-                                <p className={`text-xs mb-8 leading-relaxed h-16 overflow-hidden ${isHuman ? "text-slate-600 font-sans text-sm" : "text-[#00ff41bb]"}`}>
+                                <p className={`text-xs mb-8 leading-relaxed h-16 overflow-hidden ${isHuman ? "text-slate-600 font-sans text-sm" : "text-[#10b981bb]"}`}>
                                     {project.description}
                                 </p>
 
@@ -98,7 +98,7 @@ const Projects = () => {
                                             key={t}
                                             className={`text-[10px] px-2 py-0.5 uppercase ${isHuman
                                                 ? "bg-slate-100 text-slate-600 rounded-full font-sans font-semibold border-none"
-                                                : "border border-[#00ff4133] text-[#00ff41cc]"
+                                                : "border border-[#10b98133] text-[#10b981cc]"
                                                 }`}
                                         >
                                             {t}
@@ -108,7 +108,7 @@ const Projects = () => {
 
                                 <motion.a
                                     href={project.link}
-                                    className={`inline-flex items-center gap-2 text-xs font-bold hover:underline ${isHuman ? "text-blue-600 font-sans text-sm" : "text-[#00ff41]"}`}
+                                    className={`inline-flex items-center gap-2 text-xs font-bold hover:underline ${isHuman ? "text-blue-600 font-sans text-sm" : "text-[#10b981]"}`}
                                 >
                                     {isHuman ? "View Project" : "[ ACCESS_RESOURCES ]"}
                                     <ExternalLink size={12} />

@@ -108,11 +108,11 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({ onCommand }) => {
     return (
         <section id="terminal" className="py-24 px-4 bg-transparent font-mono relative z-10">
             <div className="max-w-4xl mx-auto">
-                <div className="bg-black/40 border border-[#00ff41] shadow-[0_0_20px_#00ff4111] overflow-hidden backdrop-blur-md relative">
+                <div className="bg-[#0a0a0a]/40 border border-[#10b981] shadow-[0_0_20px_#10b98111] overflow-hidden backdrop-blur-md relative">
                     {/* Scanline overlay for terminal */}
-                    <div className="absolute inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(0,255,65,0.1),rgba(0,255,65,0.02),rgba(0,255,65,0.1))] bg-[length:100%_2px,3px_100%] z-20" />
+                    <div className="absolute inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(16,185,129,0.1),rgba(16,185,129,0.02),rgba(16,185,129,0.1))] bg-[length:100%_2px,3px_100%] z-20" />
 
-                    <div className="bg-[#00ff41] text-black px-4 py-1 text-[10px] md:text-xs font-bold flex justify-between items-center relative z-30">
+                    <div className="bg-[#10b981] text-black px-4 py-1 text-[10px] md:text-xs font-bold flex justify-between items-center relative z-30">
                         <span className="truncate">TERMINAL::GUESTBOOK_v4.2</span>
                         <div className="flex gap-2">
                             <div className="w-2 h-2 rounded-full bg-black/30" />
@@ -127,16 +127,16 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({ onCommand }) => {
                         {history.map((line, i) => (
                             <div key={i} className={
                                 line.type === "input" ? "text-white" :
-                                    line.type === "error" ? "text-red-500" : "text-[#00ff41]"
+                                    line.type === "error" ? "text-red-500" : "text-[#10b981]"
                             }>
-                                {line.type === "input" && <span className="mr-2 text-[#00ff4188] select-none">$</span>}
+                                {line.type === "input" && <span className="mr-2 text-[#10b98188] select-none">$</span>}
                                 <span className="break-all">{line.content}</span>
                             </div>
                         ))}
                     </div>
 
-                    <form onSubmit={handleCommand} className="border-t border-[#00ff4122] p-4 flex gap-2 relative z-30 bg-black/20">
-                        <span className="text-[#00ff4188] select-none">$</span>
+                    <form onSubmit={handleCommand} className="border-t border-[#10b98122] p-4 flex gap-2 relative z-30 bg-[#0a0a0a]/20">
+                        <span className="text-[#10b98188] select-none">$</span>
                         <input
                             type="text"
                             value={input}
@@ -144,7 +144,7 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({ onCommand }) => {
                                 setInput(e.target.value);
                                 playKeyPress();
                             }}
-                            className="bg-transparent border-none outline-none flex-1 text-[#00ff41] lowercase placeholder:text-[#00ff4122]"
+                            className="bg-transparent border-none outline-none flex-1 text-[#10b981] lowercase placeholder:text-[#10b98122]"
                             placeholder="type 'help'..."
                             autoFocus
                             autoComplete="off"
@@ -159,13 +159,13 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({ onCommand }) => {
           width: 4px;
         }
         .custom-scrollbar::-webkit-scrollbar-track {
-          background: #000;
+          background: #0a0a0a;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: #00ff4133;
+          background: #10b98133;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: #00ff41;
+          background: #10b981;
         }
       `}</style>
         </section>

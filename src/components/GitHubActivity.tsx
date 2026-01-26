@@ -17,7 +17,7 @@ const GitHubActivity = () => {
                     viewport={{ once: true }}
                     className="mb-10 text-center"
                 >
-                    <h2 className={`text-3xl md:text-5xl font-bold mb-4 uppercase tracking-tighter ${isHuman ? "text-slate-900" : "text-[#00ff41]"}`}>
+                    <h2 className={`text-3xl md:text-5xl font-bold mb-4 uppercase tracking-tighter ${isHuman ? "text-slate-900" : "text-[#10b981]"}`}>
                         {isHuman ? "GitHub Activity" : "[ GIT_COMMIT_LOG ]"}
                     </h2>
                     {isHuman && <p className="text-slate-600">Coding consistency over the last year.</p>}
@@ -27,7 +27,7 @@ const GitHubActivity = () => {
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    className={`p-6 rounded-xl ${isHuman ? "bg-white border border-slate-200 shadow-md" : "bg-black/40 border border-[#00ff4144]"}`}
+                    className={`p-6 rounded-xl ${isHuman ? "bg-white border border-slate-200 shadow-md" : "bg-[#0a0a0a]/40 border border-[#10b98144]"}`}
                 >
                     <GitHubCalendar
                         username="bravealltime"
@@ -36,16 +36,16 @@ const GitHubActivity = () => {
                         blockSize={12}
                         blockMargin={4}
                         theme={isHuman ? undefined : {
-                            dark: ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"],
+                            dark: ["#161b22", "#064e3b", "#065f46", "#047857", "#10b981"],
                         }}
                         style={{
-                            color: isHuman ? "#1e293b" : "#00ff41",
+                            color: isHuman ? "#1e293b" : "#10b981",
                         }}
                     />
                 </motion.div>
 
                 {!isHuman && (
-                    <div className="mt-4 text-[#00ff4166] text-xs font-mono">
+                    <div className="mt-4 text-[#10b98166] text-xs font-mono">
                         // COMMIT_STREAK: ANALYZING...
                     </div>
                 )}

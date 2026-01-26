@@ -45,8 +45,8 @@ const CustomCursor = () => {
             {/* Primary Cursor */}
             <motion.div
                 className={`absolute top-0 left-0 flex items-center justify-center pointer-events-none ${isHuman
-                        ? "w-4 h-4 bg-slate-800 rounded-full mix-blend-difference"
-                        : "w-5 h-5 border border-[#00ff41] bg-transparent"
+                    ? "w-4 h-4 bg-slate-800 rounded-full mix-blend-difference"
+                    : "w-5 h-5 border border-[#10b981] bg-transparent"
                     }`}
                 style={{
                     x: mouseX,
@@ -55,24 +55,24 @@ const CustomCursor = () => {
                     translateY: "-50%"
                 }}
             >
-                {!isHuman && <div className="w-1 h-1 bg-[#00ff41]" />}
+                {!isHuman && <div className="w-1 h-1 bg-[#10b981]" />}
             </motion.div>
 
             {/* Hacker Crosshair Lines */}
             {!isHuman && (
                 <>
                     <motion.div
-                        className="absolute top-0 w-[1px] h-screen bg-[#00ff4144]"
+                        className="absolute top-0 w-[1px] h-screen bg-[#10b98144]"
                         style={{ x: mouseX }}
                     />
                     <motion.div
-                        className="absolute left-0 w-screen h-[1px] bg-[#00ff4144]"
+                        className="absolute left-0 w-screen h-[1px] bg-[#10b98144]"
                         style={{ y: mouseY }}
                     />
 
                     {/* Coordinates */}
                     <motion.div
-                        className="absolute text-[#00ff41] text-[10px] font-mono ml-4 mt-4"
+                        className="absolute text-[#10b981] text-[10px] font-mono ml-4 mt-4"
                         style={{ x: mouseX, y: mouseY }}
                     >
                         TARGET_LOCKED

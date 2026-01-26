@@ -30,7 +30,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
     return (
         <SettingsContext.Provider value={{ viewMode, toggleViewMode, isHuman }}>
-            <div className={isHuman ? "human-mode font-sans text-white transition-all duration-500" : "hacker-mode font-mono text-[#00ff41] transition-all duration-500"}>
+            <div className={isHuman ? "human-mode font-sans text-white transition-all duration-500" : "hacker-mode font-mono text-[#10b981] transition-all duration-500"}>
                 {children}
             </div>
         </SettingsContext.Provider>

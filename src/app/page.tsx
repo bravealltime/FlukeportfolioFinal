@@ -48,7 +48,7 @@ export default function Home() {
 
   return (
     // Main Container: กำหนดพื้นหลังตามโหมด (Human: ขาว, Hacker: ดำ)
-    <main className={`min-h-screen ${isHuman ? "bg-white selection:bg-slate-200 selection:text-black" : "bg-black selection:bg-[#00ff41] selection:text-black"} relative overflow-x-hidden font-mono transition-colors duration-500`}>
+    <main className={`min-h-screen ${isHuman ? "bg-white selection:bg-slate-200 selection:text-black" : "bg-[#0a0a0a] selection:bg-[#10b981] selection:text-black"} relative overflow-x-hidden font-mono transition-colors duration-500`}>
       <CustomCursor />
       <GlitchOverlay />
       <WeatherWidget />
@@ -63,20 +63,20 @@ export default function Home() {
 
       {/* Background Overlay: ใช้เฉพาะโหมด Hacker เพื่อให้ออ่านง่ายขึ้น */}
       {!isHuman && (
-        <div className="fixed inset-0 bg-black/60 pointer-events-none z-[1] transition-colors duration-500" />
+        <div className="fixed inset-0 bg-[#0a0a0a]/60 pointer-events-none z-[1] transition-colors duration-500" />
       )}
 
       {/* Vignette Effect - ปิดในโหมด Human (Disable in Human Mode) */}
-      {!isHuman && <div className="fixed inset-0 hacker-vignette z-[5] pointer-events-none" />}
+      {!isHuman && <div className="fixed inset-0 hacker-vignette z-[5] pointer-events-none opacity-80" />}
 
       {/* Global Scanline Overlay - ปิดในโหมด Human */}
-      {!isHuman && <div className="fixed inset-0 pointer-events-none z-[10000] opacity-[0.08] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(0,255,65,0.05),rgba(0,255,65,0.02),rgba(0,255,65,0.05))] bg-[length:100%_4px,4px_100%]" />}
+      {!isHuman && <div className="fixed inset-0 pointer-events-none z-[10000] opacity-[0.05] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(16,185,129,0.05),rgba(16,185,129,0.02),rgba(16,185,129,0.05))] bg-[length:100%_4px,4px_100%]" />}
 
       {/* Animated Scanner Line - เส้นสแกนวิ่งลง (เฉพาะ Hacker) */}
       {!isHuman && <motion.div
         animate={{ y: ["0%", "100%", "0%"] }}
         transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-        className="fixed inset-x-0 h-[2px] bg-[#00ff4111] z-[10001] pointer-events-none shadow-[0_0_15px_#00ff41]"
+        className="fixed inset-x-0 h-[2px] bg-[#10b98111] z-[10001] pointer-events-none shadow-[0_0_15px_#10b981]"
       />}
 
 

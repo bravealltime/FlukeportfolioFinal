@@ -60,11 +60,11 @@ const Navbar = () => {
           className={cn(
             isHuman
               ? "fixed top-0 inset-x-0 z-[5000] px-4 py-4 bg-white/80 backdrop-blur-md border-b border-slate-200 shadow-sm font-sans"
-              : "fixed top-4 inset-x-4 md:inset-x-0 mx-auto z-[5000] px-4 py-2 hacker-border bg-black/90 max-w-fit md:min-w-[650px] font-mono"
+              : "fixed top-4 inset-x-4 md:inset-x-0 mx-auto z-[5000] px-4 py-2 hacker-border bg-[#0a0a0a]/90 max-w-fit md:min-w-[650px] font-mono"
           )}
         >
           <div className={isHuman ? "max-w-6xl mx-auto flex items-center justify-between" : "flex items-center justify-between gap-4 md:gap-8 px-2 md:px-4"}>
-            <div className={cn("font-bold tracking-tighter truncate max-w-[120px] md:max-w-none", isHuman ? "text-slate-900 text-xl" : "text-sm md:text-lg text-[#00ff41]")}>
+            <div className={cn("font-bold tracking-tighter truncate max-w-[120px] md:max-w-none", isHuman ? "text-slate-900 text-xl" : "text-sm md:text-lg text-[#10b981]")}>
               {isHuman ? "Thara." : "ROOT@THARA:~#"}
             </div>
 
@@ -79,7 +79,7 @@ const Navbar = () => {
                     "font-bold transition-all py-1",
                     isHuman
                       ? "text-slate-600 hover:text-slate-900 text-sm"
-                      : "text-[10px] lg:text-xs text-[#008f11] hover:text-[#00ff41] hover:glow-sm"
+                      : "text-[10px] lg:text-xs text-[#059669] hover:text-[#10b981] hover:glow-sm"
                   )}
                 >
                   {isHuman ? item.name.replace(/\[ | \]/g, "") : item.name}
@@ -94,7 +94,7 @@ const Navbar = () => {
                   playPing();
                 }}
                 onMouseEnter={() => !isHuman && playPing()}
-                className={cn("transition-colors p-2 rounded-full", isHuman ? "text-slate-500 hover:bg-slate-100 text-slate-900" : "text-[#00ff4188] hover:text-[#00ff41]")}
+                className={cn("transition-colors p-2 rounded-full", isHuman ? "text-slate-500 hover:bg-slate-100 text-slate-900" : "text-[#10b98188] hover:text-[#10b981]")}
                 title={isHuman ? "Switch to Hacker Mode" : "Switch to Readability Mode"}
               >
                 {isHuman ? <Terminal size={20} /> : <Eye size={16} />}
@@ -106,7 +106,7 @@ const Navbar = () => {
                   playPing();
                 }}
                 onMouseEnter={() => !isHuman && playPing()}
-                className={cn("transition-colors p-2 rounded-full", isHuman ? "text-slate-500 hover:bg-slate-100 text-slate-900" : "text-[#00ff4188] hover:text-[#00ff41]")}
+                className={cn("transition-colors p-2 rounded-full", isHuman ? "text-slate-500 hover:bg-slate-100 text-slate-900" : "text-[#10b98188] hover:text-[#10b981]")}
               >
                 {isEnabled ? <Volume2 size={isHuman ? 20 : 16} /> : <VolumeX size={isHuman ? 20 : 16} />}
               </button>
@@ -119,8 +119,8 @@ const Navbar = () => {
                 }}
               >
                 {isOpen
-                  ? <X size={20} className={isHuman ? "text-slate-900" : "text-[#00ff41]"} />
-                  : <Menu size={20} className={isHuman ? "text-slate-900" : "text-[#00ff41]"} />
+                  ? <X size={20} className={isHuman ? "text-slate-900" : "text-[#10b981]"} />
+                  : <Menu size={20} className={isHuman ? "text-slate-900" : "text-[#10b981]"} />
                 }
               </button>
 
@@ -129,7 +129,7 @@ const Navbar = () => {
                 <motion.div
                   animate={{ opacity: [1, 0] }}
                   transition={{ repeat: Infinity, duration: 0.8 }}
-                  className="w-2 h-4 bg-[#00ff41] hidden md:block"
+                  className="w-2 h-4 bg-[#10b981] hidden md:block"
                 />
               )}
             </div>
@@ -146,7 +146,7 @@ const Navbar = () => {
             exit={{ opacity: 0, x: "100%" }}
             className={cn(
               "fixed inset-0 z-[4999] flex flex-col items-center justify-center p-8 md:hidden",
-              isHuman ? "bg-white font-sans text-slate-900" : "bg-black/95 font-mono text-[#00ff41]"
+              isHuman ? "bg-white font-sans text-slate-900" : "bg-[#0a0a0a]/95 font-mono text-[#10b981]"
             )}
           >
             <div className="flex flex-col gap-8 text-center">
@@ -172,7 +172,7 @@ const Navbar = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className={cn("mt-20 text-[10px] uppercase", isHuman ? "text-slate-400" : "text-[#00ff4144]")}
+              className={cn("mt-20 text-[10px] uppercase", isHuman ? "text-slate-400" : "text-[#10b98144]")}
             >
               {isHuman ? "© 2024 Thara Portfolio" : "Connection: Secure | User: Guest"}
             </motion.div>

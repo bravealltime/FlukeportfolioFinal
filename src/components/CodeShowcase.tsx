@@ -91,26 +91,26 @@ const CodeShowcase = () => {
                     viewport={{ once: true }}
                     className="mb-12 flex flex-col items-center text-center"
                 >
-                    <div className="flex items-center gap-2 text-[#00ff41] font-mono text-sm mb-4">
+                    <div className="flex items-center gap-2 text-[#10b981] font-mono text-sm mb-4">
                         <Terminal size={16} />
                         <span>[ GET /api/v1/source-code ]</span>
                     </div>
-                    <h2 className="text-3xl md:text-5xl font-bold text-[#00ff41] mb-4 uppercase tracking-tighter">เจาะลึกเบื้องหลังโค้ด</h2>
-                    <p className="text-[#00ff4188] max-w-2xl">
+                    <h2 className="text-3xl md:text-5xl font-bold text-[#10b981] mb-4 uppercase tracking-tighter">เจาะลึกเบื้องหลังโค้ด</h2>
+                    <p className="text-[#10b98188] max-w-2xl">
                         ตัวอย่าง Logic ที่น่าสนใจจากโปรเจกต์ต่างๆ ที่ผมได้พัฒนา
                         เน้นความคลีนและประสิทธิภาพในการทำงาน
                     </p>
                 </motion.div>
 
-                <div className="bg-black/40 border border-[#00ff4144] overflow-hidden shadow-2xl hacker-border backdrop-blur-md">
+                <div className="bg-[#0a0a0a]/40 border border-[#10b98144] overflow-hidden shadow-2xl hacker-border backdrop-blur-md">
                     {/* Terminal Header */}
-                    <div className="bg-[#00ff4111] px-6 py-4 border-b border-[#00ff4144] flex items-center justify-between">
+                    <div className="bg-[#10b98111] px-6 py-4 border-b border-[#10b98144] flex items-center justify-between">
                         <div className="flex gap-2">
                             <div className="w-3 h-3 rounded-full bg-red-950/50 border border-red-500/30" />
                             <div className="w-3 h-3 rounded-full bg-amber-950/50 border border-amber-500/30" />
                             <div className="w-3 h-3 rounded-full bg-emerald-950/50 border border-emerald-500/30" />
                         </div>
-                        <div className="text-[#00ff4166] font-mono text-xs hidden md:block">
+                        <div className="text-[#10b98166] font-mono text-xs hidden md:block">
                             ~/root/projects/{activeTab.id}/{activeTab.lang === "python" ? "main.py" : "index.ts"}
                         </div>
                         <div className="w-12" />
@@ -118,15 +118,15 @@ const CodeShowcase = () => {
 
                     <div className="flex flex-col md:flex-row min-h-[400px]">
                         {/* Sidebar Tabs */}
-                        <div className="w-full md:w-64 border-r border-[#00ff4144] p-2 space-y-1">
+                        <div className="w-full md:w-64 border-r border-[#10b98144] p-2 space-y-1">
                             {codeSnippets.map((snippet) => (
                                 <button
                                     key={snippet.id}
                                     onMouseEnter={playPing}
                                     onClick={() => setActiveTab(snippet)}
                                     className={`w-full flex items-center gap-3 px-4 py-3 border transition-all ${activeTab.id === snippet.id
-                                        ? "bg-[#00ff4122] text-[#00ff41] border-[#00ff4188]"
-                                        : "text-[#00ff4144] border-transparent hover:text-[#00ff4188] hover:bg-[#00ff4108]"
+                                        ? "bg-[#10b98122] text-[#10b981] border-[#10b98188]"
+                                        : "text-[#10b98144] border-transparent hover:text-[#10b98188] hover:bg-[#10b98108]"
                                         }`}
                                 >
                                     {snippet.icon}
@@ -159,7 +159,7 @@ const CodeShowcase = () => {
                                             {activeTab.code}
                                         </SyntaxHighlighter>
                                     ) : (
-                                        <div className="text-[#00ff4144]">Loading code block...</div>
+                                        <div className="text-[#10b98144]">Loading code block...</div>
                                     )}
                                 </motion.div>
                             </AnimatePresence>

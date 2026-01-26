@@ -47,7 +47,7 @@ const BlogSection = () => {
                     viewport={{ once: true }}
                     className="mb-12 text-center"
                 >
-                    <h2 className={`text-3xl md:text-5xl font-bold mb-4 uppercase tracking-tighter ${isHuman ? "text-slate-900" : "text-[#00ff41]"
+                    <h2 className={`text-3xl md:text-5xl font-bold mb-4 uppercase tracking-tighter ${isHuman ? "text-slate-900" : "text-[#10b981]"
                         }`}>
                         {isHuman ? "Latest Articles" : "[ KNOWLEDGE_BASE ]"}
                     </h2>
@@ -68,25 +68,25 @@ const BlogSection = () => {
                             }}
                             className={`cursor-pointer p-6 rounded-xl border transition-all h-full flex flex-col ${isHuman
                                 ? "bg-slate-50 border-slate-200 hover:shadow-lg"
-                                : "bg-black/40 border-[#00ff4144] hover:border-[#00ff41] hover:shadow-[0_0_15px_#00ff4122]"
+                                : "bg-[#0a0a0a]/40 border-[#10b98144] hover:border-[#10b981] hover:shadow-[0_0_15px_#10b98122]"
                                 }`}
                         >
                             <div className="flex justify-between items-start mb-4">
-                                <span className={`text-xs px-2 py-1 rounded-full font-bold uppercase ${isHuman ? "bg-blue-100 text-blue-600" : "bg-[#00ff4122] text-[#00ff41]"
+                                <span className={`text-xs px-2 py-1 rounded-full font-bold uppercase ${isHuman ? "bg-blue-100 text-blue-600" : "bg-[#10b98122] text-[#10b981]"
                                     }`}>
                                     {post.tag}
                                 </span>
-                                <span className={`text-xs ${isHuman ? "text-slate-400" : "text-[#00ff4166]"}`}>
+                                <span className={`text-xs ${isHuman ? "text-slate-400" : "text-[#10b98166]"}`}>
                                     {post.date}
                                 </span>
                             </div>
-                            <h3 className={`text-xl font-bold mb-2 ${isHuman ? "text-slate-800" : "text-[#00ff41]"}`}>
+                            <h3 className={`text-xl font-bold mb-2 ${isHuman ? "text-slate-800" : "text-[#10b981]"}`}>
                                 {post.title}
                             </h3>
-                            <p className={`text-sm flex-grow ${isHuman ? "text-slate-600" : "text-[#00ff41aa]"}`}>
+                            <p className={`text-sm flex-grow ${isHuman ? "text-slate-600" : "text-[#10b981aa]"}`}>
                                 {post.excerpt}
                             </p>
-                            <div className={`mt-4 pt-4 border-t text-sm font-bold flex items-center gap-2 ${isHuman ? "border-slate-200 text-blue-600" : "border-[#00ff4122] text-[#00ff41]"
+                            <div className={`mt-4 pt-4 border-t text-sm font-bold flex items-center gap-2 ${isHuman ? "border-slate-200 text-blue-600" : "border-[#10b98122] text-[#10b981]"
                                 }`}>
                                 Read More <BookOpen size={16} />
                             </div>
@@ -102,7 +102,7 @@ const BlogSection = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+                        className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-[#0a0a0a]/80 backdrop-blur-sm"
                         onClick={() => setSelectedPost(null)}
                     >
                         <motion.div
@@ -112,7 +112,7 @@ const BlogSection = () => {
                             onClick={(e) => e.stopPropagation()}
                             className={`relative w-full max-w-2xl max-h-[80vh] overflow-y-auto p-8 rounded-2xl shadow-2xl ${isHuman
                                 ? "bg-white text-slate-800"
-                                : "bg-black border border-[#00ff41] text-[#00ff41] shadow-[0_0_30px_#00ff4144]"
+                                : "bg-black border border-[#10b981] text-[#10b981] shadow-[0_0_30px_#10b98144]"
                                 }`}
                         >
                             <button
@@ -121,13 +121,13 @@ const BlogSection = () => {
                                     setSelectedPost(null)
                                 }}
                                 onMouseEnter={() => playHover()}
-                                className={`absolute top-4 right-4 p-2 rounded-full transition-colors ${isHuman ? "hover:bg-slate-100" : "hover:bg-[#00ff4122]"
+                                className={`absolute top-4 right-4 p-2 rounded-full transition-colors ${isHuman ? "hover:bg-slate-100" : "hover:bg-[#10b98122]"
                                     }`}
                             >
                                 <X size={24} />
                             </button>
 
-                            <span className={`text-xs font-bold uppercase tracking-widest ${isHuman ? "text-blue-500" : "text-[#00ff4166]"
+                            <span className={`text-xs font-bold uppercase tracking-widest ${isHuman ? "text-blue-500" : "text-[#10b98166]"
                                 }`}>
                                 {selectedPost.tag} // {selectedPost.date}
                             </span>
@@ -146,7 +146,7 @@ const BlogSection = () => {
                             </div>
 
                             {!isHuman && (
-                                <div className="mt-8 pt-4 border-t border-[#00ff4144] text-xs font-mono text-[#00ff4166] flex items-center gap-2">
+                                <div className="mt-8 pt-4 border-t border-[#10b98144] text-xs font-mono text-[#10b98166] flex items-center gap-2">
                                     <AlertCircle size={12} /> END_OF_FILE
                                 </div>
                             )}

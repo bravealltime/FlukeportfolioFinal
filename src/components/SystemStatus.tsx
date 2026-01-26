@@ -31,32 +31,32 @@ const SystemStatus = () => {
             className="fixed bottom-4 right-4 z-[10000] hidden lg:block font-mono"
             onMouseEnter={() => playHover()}
         >
-            <div className="bg-black/90 border border-[#00ff4144] p-4 text-[10px] space-y-2 hacker-border">
-                <div className="flex items-center justify-between gap-8 border-b border-[#00ff4122] pb-1">
-                    <span className="text-[#00ff4188]">IDENT::THARA</span>
-                    <span className="text-[#00ff41]">V4.0.1</span>
+            <div className="bg-[#0a0a0a]/90 border border-[#10b98144] p-4 text-[10px] space-y-2 hacker-border">
+                <div className="flex items-center justify-between gap-8 border-b border-[#10b98122] pb-1">
+                    <span className="text-[#10b98188]">IDENT::THARA</span>
+                    <span className="text-[#10b981]">V4.0.1</span>
                 </div>
 
                 <div className="space-y-1">
                     <div className="flex justify-between">
-                        <span className="text-[#00ff4166]">UPTIME:</span>
-                        <span className="text-[#00ff41]">{uptime}s</span>
+                        <span className="text-[#10b98166]">UPTIME:</span>
+                        <span className="text-[#10b981]">{uptime}s</span>
                     </div>
                     <div className="flex justify-between">
-                        <span className="text-[#00ff4166]">LOCAL_TIME:</span>
-                        <span className="text-[#00ff41]">{time}</span>
+                        <span className="text-[#10b98166]">LOCAL_TIME:</span>
+                        <span className="text-[#10b981]">{time}</span>
                     </div>
                     <div className="flex justify-between">
-                        <span className="text-[#00ff4166]">LOCATION:</span>
-                        <span className="text-[#00ff41]">LOCALHOST</span>
+                        <span className="text-[#10b98166]">LOCATION:</span>
+                        <span className="text-[#10b981]">LOCALHOST</span>
                     </div>
                     <div className="flex justify-between">
-                        <span className="text-[#00ff4166]">STATUS:</span>
-                        <span className="text-[#00ff41] animate-pulse">COFFEE_POWERED</span>
+                        <span className="text-[#10b98166]">STATUS:</span>
+                        <span className="text-[#10b981] animate-pulse">COFFEE_POWERED</span>
                     </div>
                 </div>
 
-                <div className="flex gap-3 pt-2 text-[#00ff4188]">
+                <div className="flex gap-3 pt-2 text-[#10b98188]">
                     <Activity size={12} />
                     <ShieldCheck size={12} />
                     <Wifi size={12} />

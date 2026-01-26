@@ -28,7 +28,7 @@ const GlitchOverlay = () => {
                         className="w-full bg-black relative z-50"
                     >
                         {/* Optional Scanline at bottom of shutter */}
-                        <div className={`absolute bottom-0 w-full h-[1px] ${isHuman ? "bg-blue-500" : "bg-[#00ff41]"} shadow-[0_0_20px_rgba(0,255,65,0.5)]`} />
+                        <div className={`absolute bottom-0 w-full h-[1px] ${isHuman ? "bg-blue-500" : "bg-[#10b981]"} shadow-[0_0_20px_rgba(16,185,129,0.5)]`} />
                     </motion.div>
 
                     {/* Center Line (The Beam) */}
@@ -36,7 +36,7 @@ const GlitchOverlay = () => {
                         initial={{ scaleX: 0, opacity: 1 }}
                         animate={{ scaleX: 1, opacity: 0 }}
                         transition={{ duration: 0.4, ease: "easeOut", opacity: { delay: 0.4, duration: 0.1 } }}
-                        className={`absolute top-1/2 left-0 right-0 h-[2px] -translate-y-1/2 z-[60] ${isHuman ? "bg-white box-shadow-[0_0_30px_white]" : "bg-[#00ff41] shadow-[0_0_30px_#00ff41]"
+                        className={`absolute top-1/2 left-0 right-0 h-[2px] -translate-y-1/2 z-[60] ${isHuman ? "bg-white box-shadow-[0_0_30px_white]" : "bg-[#10b981] shadow-[0_0_30px_#10b981]"
                             }`}
                     />
 
@@ -49,7 +49,7 @@ const GlitchOverlay = () => {
                         className="w-full bg-black mt-auto relative z-50"
                     >
                         {/* Optional Scanline at top of shutter */}
-                        <div className={`absolute top-0 w-full h-[1px] ${isHuman ? "bg-blue-500" : "bg-[#00ff41]"} shadow-[0_0_20px_rgba(0,255,65,0.5)]`} />
+                        <div className={`absolute top-0 w-full h-[1px] ${isHuman ? "bg-blue-500" : "bg-[#10b981]"} shadow-[0_0_20px_rgba(16,185,129,0.5)]`} />
                     </motion.div>
                 </div>
             )}

@@ -58,17 +58,17 @@ const ContactForm = () => {
                     whileInView={{ opacity: 1 }}
                     className={`p-8 rounded-2xl ${isHuman
                         ? "bg-white shadow-xl border border-slate-100"
-                        : "bg-black/40 border border-[#00ff41] shadow-[0_0_30px_#00ff4122]"
+                        : "bg-[#0a0a0a]/40 border border-[#10b981] shadow-[0_0_30px_#10b98122]"
                         }`}
                 >
-                    <h2 className={`text-2xl font-bold mb-6 text-center uppercase tracking-wider ${isHuman ? "text-slate-800" : "text-[#00ff41]"
+                    <h2 className={`text-2xl font-bold mb-6 text-center uppercase tracking-wider ${isHuman ? "text-slate-800" : "text-[#10b981]"
                         }`}>
                         {isHuman ? "Send me a message" : "[ ESTABLISH_UPLINK ]"}
                     </h2>
 
                     <form ref={form} onSubmit={sendEmail} className="space-y-4">
                         <div>
-                            <label className={`block text-xs font-bold mb-1 uppercase ${isHuman ? "text-slate-500" : "text-[#00ff41aa]"
+                            <label className={`block text-xs font-bold mb-1 uppercase ${isHuman ? "text-slate-500" : "text-[#10b981aa]"
                                 }`}>
                                 Name / Identity
                             </label>
@@ -78,14 +78,14 @@ const ContactForm = () => {
                                 required
                                 className={`w-full p-3 rounded-lg outline-none transition-all ${isHuman
                                     ? "bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 text-slate-800"
-                                    : "bg-black border border-[#00ff4144] focus:border-[#00ff41] text-[#00ff41] placeholder-[#00ff4144]"
+                                    : "bg-black border border-[#10b98144] focus:border-[#10b981] text-[#10b981] placeholder-[#10b98144]"
                                     }`}
                                 placeholder={isHuman ? "John Doe" : "Enter Codex Name..."}
                             />
                         </div>
 
                         <div>
-                            <label className={`block text-xs font-bold mb-1 uppercase ${isHuman ? "text-slate-500" : "text-[#00ff41aa]"
+                            <label className={`block text-xs font-bold mb-1 uppercase ${isHuman ? "text-slate-500" : "text-[#10b981aa]"
                                 }`}>
                                 Email / Frequency
                             </label>
@@ -95,14 +95,14 @@ const ContactForm = () => {
                                 required
                                 className={`w-full p-3 rounded-lg outline-none transition-all ${isHuman
                                     ? "bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 text-slate-800"
-                                    : "bg-black border border-[#00ff4144] focus:border-[#00ff41] text-[#00ff41] placeholder-[#00ff4144]"
+                                    : "bg-black border border-[#10b98144] focus:border-[#10b981] text-[#10b981] placeholder-[#10b98144]"
                                     }`}
                                 placeholder={isHuman ? "john@example.com" : "encrypted@mesh.net"}
                             />
                         </div>
 
                         <div>
-                            <label className={`block text-xs font-bold mb-1 uppercase ${isHuman ? "text-slate-500" : "text-[#00ff41aa]"
+                            <label className={`block text-xs font-bold mb-1 uppercase ${isHuman ? "text-slate-500" : "text-[#10b981aa]"
                                 }`}>
                                 Message / Payload
                             </label>
@@ -112,7 +112,7 @@ const ContactForm = () => {
                                 rows={4}
                                 className={`w-full p-3 rounded-lg outline-none transition-all ${isHuman
                                     ? "bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 text-slate-800"
-                                    : "bg-black border border-[#00ff4144] focus:border-[#00ff41] text-[#00ff41] placeholder-[#00ff4144]"
+                                    : "bg-black border border-[#10b98144] focus:border-[#10b981] text-[#10b981] placeholder-[#10b98144]"
                                     }`}
                                 placeholder={isHuman ? "Hello there..." : "Injecting payload..."}
                             />
@@ -126,7 +126,7 @@ const ContactForm = () => {
                             className={`w-full py-4 rounded-lg font-bold uppercase tracking-widest transition-all flex items-center justify-center gap-2 ${status === "sending" ? "opacity-50 cursor-not-allowed" : ""
                                 } ${isHuman
                                     ? "bg-blue-600 text-white hover:bg-blue-700 shadow-lg hover:shadow-blue-200"
-                                    : "bg-[#00ff4122] text-[#00ff41] border border-[#00ff41] hover:bg-[#00ff41] hover:text-black hover:shadow-[0_0_20px_#00ff41]"
+                                    : "bg-[#10b98122] text-[#10b981] border border-[#10b981] hover:bg-[#10b981] hover:text-black hover:shadow-[0_0_20px_#10b981]"
                                 }`}
                         >
                             {status === "idle" && (

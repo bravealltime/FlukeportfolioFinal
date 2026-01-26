@@ -104,10 +104,10 @@ const Hero = () => {
             <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute -right-20 md:right-10 top-20 md:top-40 w-64 md:w-96 h-64 md:h-96 border border-[#00ff4111] rounded-full pointer-events-none hidden sm:block"
+                className="absolute -right-20 md:right-10 top-20 md:top-40 w-64 md:w-96 h-64 md:h-96 border border-[#10b98111] rounded-full pointer-events-none hidden sm:block"
             >
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-4 bg-[#00ff4108] rounded-full" />
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-4 bg-[#00ff4108] rounded-full" />
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-4 bg-[#10b98108] rounded-full" />
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-4 bg-[#10b98108] rounded-full" />
             </motion.div>
 
             <motion.div
@@ -118,36 +118,36 @@ const Hero = () => {
             >
                 <motion.p
                     variants={itemVariants}
-                    className="text-[#00ff41] mb-2 text-xs md:text-base opacity-70 flex items-center gap-2"
+                    className="text-[#10b981] mb-2 text-xs md:text-base opacity-70 flex items-center gap-2"
                 >
-                    <span className="w-8 h-[1px] bg-[#00ff4144]" />
+                    <span className="w-8 h-[1px] bg-[#10b98144]" />
                     <DecryptText text="INITIALIZING SYSTEM... DONE" />
                 </motion.p>
 
                 <motion.h1
                     variants={itemVariants}
-                    className="text-3xl sm:text-4xl md:text-7xl font-bold mb-6 tracking-tighter text-[#00ff41] leading-[1.1]"
+                    className="text-3xl sm:text-4xl md:text-7xl font-bold mb-6 tracking-tighter text-[#10b981] leading-[1.1]"
                 >
                     &lt;<DecryptText text="SYSTEM_ACCESS" /> /&gt; <br />
-                    <span className="text-white bg-[#00ff41] px-2 inline-block mt-2">
+                    <span className="text-white bg-[#10b981] px-2 inline-block mt-2">
                         USER::<DecryptText text="THARANUT_H" delay={1000} />
                     </span>
                 </motion.h1>
 
                 <motion.div
                     variants={itemVariants}
-                    className="bg-black/40 border border-[#00ff41] p-4 md:p-6 mb-10 h-36 md:h-40 overflow-hidden relative backdrop-blur-md hacker-border"
+                    className="bg-[#0a0a0a]/40 border border-[#10b981] p-4 md:p-6 mb-10 h-36 md:h-40 overflow-hidden relative backdrop-blur-md hacker-border"
                 >
                     <motion.p
                         animate={{ opacity: [1, 0.8, 1] }}
                         transition={{ repeat: Infinity, duration: 0.1 }}
-                        className="text-[#00ff41] text-[10px] md:text-sm leading-relaxed"
+                        className="text-[#10b981] text-[10px] md:text-sm leading-relaxed"
                     >
                         IDENT_PROCESS: STARTING PORTFOLIO_V4.2 <br />
                         SUBJECT: THARANUT HIRANSRETTAWAT <br />
                         HOBBIES: [DIY_PC, HARDWARE, TECH_NEWS, GADGETS] <br />
                         MISSION: "<DecryptText text="อัปเดตเทรนด์ไอที และประกอบคอมคือความสุข" delay={1500} />" <br />
-                        STATUS: <span className="text-[#00ff41] font-bold animate-pulse">LIVE UPDATE...</span>
+                        STATUS: <span className="text-[#10b981] font-bold animate-pulse">LIVE UPDATE...</span>
                     </motion.p>
                 </motion.div>
 
@@ -155,18 +155,18 @@ const Hero = () => {
                     <motion.button
                         onMouseEnter={playPing}
                         onClick={playKeyPress}
-                        whileHover={{ scale: 1.02, backgroundColor: "#00ff41", color: "#000" }}
+                        whileHover={{ scale: 1.02, backgroundColor: "#10b981", color: "#000" }}
                         whileTap={{ scale: 0.98 }}
-                        className="px-8 py-3 bg-[#00ff4111] border border-[#00ff41] text-[#00ff41] font-bold text-xs md:text-sm uppercase transition-all flex items-center justify-center gap-2"
+                        className="px-8 py-3 bg-[#10b98111] border border-[#10b981] text-[#10b981] font-bold text-xs md:text-sm uppercase transition-all flex items-center justify-center gap-2"
                     >
                         [ EXECUTE::VIEW_WORK ]
                     </motion.button>
                     <motion.button
                         onMouseEnter={playPing}
                         onClick={() => window.open('/resume-thara-hacker.txt', '_blank')}
-                        whileHover={{ scale: 1.02, backgroundColor: "#00ff4133" }}
+                        whileHover={{ scale: 1.02, backgroundColor: "#10b98133" }}
                         whileTap={{ scale: 0.98 }}
-                        className="px-8 py-3 border border-[#00ff4155] text-[#00ff41bb] font-bold text-xs md:text-sm uppercase transition-all flex items-center justify-center gap-2"
+                        className="px-8 py-3 border border-[#10b98155] text-[#10b981bb] font-bold text-xs md:text-sm uppercase transition-all flex items-center justify-center gap-2"
                     >
                         [ DOWNLOAD::PROFILE ]
                     </motion.button>

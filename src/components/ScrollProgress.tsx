@@ -33,18 +33,18 @@ const ScrollProgress = () => {
 
             {/* Hacker Mode: Vertical Binary Bar */}
             {!isHuman && (
-                <div className="fixed right-0 top-1/2 -translate-y-1/2 hidden md:flex flex-col gap-1 z-[9999] bg-black/50 p-1 border-l border-[#00ff41]">
-                    <div className="text-[#00ff41] text-[10px] font-mono mb-2 text-center">
+                <div className="fixed right-0 top-1/2 -translate-y-1/2 hidden md:flex flex-col gap-1 z-[9999] bg-[#0a0a0a]/50 p-1 border-l border-[#10b981]">
+                    <div className="text-[#10b981] text-[10px] font-mono mb-2 text-center">
                         SCRL<br />{percent}%
                     </div>
                     {Array.from({ length: 20 }).map((_, i) => (
                         <div
                             key={i}
-                            className={`w-1 h-1 transition-colors ${percent >= (i / 20) * 100 ? "bg-[#00ff41]" : "bg-[#003300]"
+                            className={`w-1 h-1 transition-colors ${percent >= (i / 20) * 100 ? "bg-[#10b981]" : "bg-[#064e3b]"
                                 }`}
                         />
                     ))}
-                    <div className="text-[8px] text-[#00ff41] font-mono mt-2 opacity-50 text-center">
+                    <div className="text-[8px] text-[#10b981] font-mono mt-2 opacity-50 text-center">
                         0x{percent.toString(16).toUpperCase()}
                     </div>
                 </div>
