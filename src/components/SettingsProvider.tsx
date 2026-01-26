@@ -19,7 +19,8 @@ export const useSettings = () => {
 };
 
 export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [viewMode, setViewMode] = useState<ViewMode>("hacker");
+    // Defaulting to "human" mode as the main page view
+    const [viewMode, setViewMode] = useState<ViewMode>("human");
 
     const toggleViewMode = () => {
         setViewMode((prev) => (prev === "hacker" ? "human" : "hacker"));
