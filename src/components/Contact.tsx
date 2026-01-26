@@ -4,16 +4,12 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Mail, MessageCircle, Send } from "lucide-react";
 import { useAudio } from "./AudioProvider";
-
 import { useSettings } from "./SettingsProvider";
 
 /**
  * Component: Contact
- * ส่วนช่องทางการติดต่อ (Footer Section)
- * แสดงปุ่ม Email และ Social Links
- * ปรับสไตล์ตามโหมด Human/Hacker อัตโนมัติ
+ * Social links and contact methods.
  */
-// Placeholder to avoid error, I need to view ContactForm.tsx first.
 const Contact = () => {
     const { playPing, playKeyPress } = useAudio();
     const { isHuman } = useSettings();
@@ -91,7 +87,5 @@ const Contact = () => {
         </section>
     );
 };
-
-
 
 export default Contact;
