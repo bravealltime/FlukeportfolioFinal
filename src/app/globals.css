@@ -27,6 +27,7 @@ body {
   color: var(--foreground);
   font-family: "Courier New", Courier, monospace;
   overflow-x: hidden;
+  cursor: none; /* Custom cursor takes over */
 }
 
 @layer utilities {

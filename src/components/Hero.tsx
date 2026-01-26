@@ -55,16 +55,19 @@ const Hero = () => {
                     animate="visible"
                     className="max-w-3xl relative z-10" // เพิ่ม z-10 เพื่อให้เนื้อหาลอยเหนือพื้นหลัง
                 >
+                    {/* ปรับข้อความให้น่าสนใจ เป็นกันเอง */}
                     <motion.div variants={itemVariants} className="mb-6 inline-block px-4 py-1.5 rounded-full bg-slate-100 text-slate-600 text-sm font-medium">
-                        Senior Frontend Developer
+                        Computer & Tech Lover 💻
                     </motion.div>
 
-                    <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl font-bold text-slate-900 tracking-tight mb-6 leading-[1.1]">
-                        Transforming ideas into <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-violet-600">digital reality.</span>
+                    <motion.h1 variants={itemVariants} className="text-5xl md:text-8xl font-bold text-slate-900 tracking-tight mb-6 leading-[1.1]">
+                        Tharanut <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-violet-600">Hiransrettawat</span>
                     </motion.h1>
 
                     <motion.p variants={itemVariants} className="text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-                        I specialize in building accessible, high-performance web applications using modern technologies like React, Next.js, and TypeScript.
+                        ผมชอบเรื่องคอมพิวเตอร์มากครับ โดยเฉพาะการประกอบคอมและศึกษาเรื่องอุปกรณ์ฮาร์ดแวร์ต่างๆ
+                        ผมติดตามข่าวสารวงการไอทีตลอดเวลา ชอบเรียนรู้เทคโนโลยีใหม่ๆ และสนุกทุกครั้งที่ได้อัปเดตความรู้ครับ
                     </motion.p>
 
                     <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -75,10 +78,11 @@ const Hero = () => {
                             View Projects <ArrowRight size={18} />
                         </a>
                         <a
-                            href="#contact"
+                            href="/resume-thara-official.txt"
+                            target="_blank"
                             className="px-8 py-4 bg-white text-slate-700 border border-slate-200 rounded-lg font-semibold hover:bg-slate-50 transition-all flex items-center justify-center gap-2"
                         >
-                            Contact Me <Mail size={18} />
+                            Download CV <Mail size={18} />
                         </a>
                     </motion.div>
                 </motion.div>
@@ -122,7 +126,7 @@ const Hero = () => {
                 >
                     &lt;<DecryptText text="SYSTEM_ACCESS" /> /&gt; <br />
                     <span className="text-white bg-[#00ff41] px-2 inline-block mt-2">
-                        USER::<DecryptText text="THARA" delay={1000} />
+                        USER::<DecryptText text="THARANUT_H" delay={1000} />
                     </span>
                 </motion.h1>
 
@@ -136,9 +140,10 @@ const Hero = () => {
                         className="text-[#00ff41] text-[10px] md:text-sm leading-relaxed"
                     >
                         IDENT_PROCESS: STARTING PORTFOLIO_V4.2 <br />
-                        LOADING_SKILLS: [REACT, NEXTJS, PYTHON, LUA, FIREBASE] <br />
-                        CORE_OBJECTIVE: "<DecryptText text="สร้างสรรค์เว็บไซต์ที่สวยงาม และมอบประสบการณ์การใช้งานที่ราบรื่น" delay={1500} />" <br />
-                        STATUS: <span className="text-[#00ff41] font-bold animate-pulse">ONLINE [SECURE]</span>
+                        SUBJECT: THARANUT HIRANSRETTAWAT <br />
+                        HOBBIES: [DIY_PC, HARDWARE, TECH_NEWS, GADGETS] <br />
+                        MISSION: "<DecryptText text="อัปเดตเทรนด์ไอที และประกอบคอมคือความสุข" delay={1500} />" <br />
+                        STATUS: <span className="text-[#00ff41] font-bold animate-pulse">LIVE UPDATE...</span>
                     </motion.p>
                 </motion.div>
 
@@ -154,12 +159,12 @@ const Hero = () => {
                     </motion.button>
                     <motion.button
                         onMouseEnter={playPing}
-                        onClick={playKeyPress}
+                        onClick={() => window.open('/resume-thara-hacker.txt', '_blank')}
                         whileHover={{ scale: 1.02, backgroundColor: "#00ff4133" }}
                         whileTap={{ scale: 0.98 }}
                         className="px-8 py-3 border border-[#00ff4155] text-[#00ff41bb] font-bold text-xs md:text-sm uppercase transition-all flex items-center justify-center gap-2"
                     >
-                        [ ACTION::CONTACT ]
+                        [ DOWNLOAD::PROFILE ]
                     </motion.button>
                 </motion.div>
             </motion.div>

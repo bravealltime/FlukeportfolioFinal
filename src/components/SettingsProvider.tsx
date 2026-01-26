@@ -19,7 +19,7 @@ export const useSettings = () => {
 };
 
 export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    // Defaulting to "human" mode as the main page view
+    // กำหนดค่าเริ่มต้นเป็นโหมด "human" เพื่อให้เป็นหน้าหลัก
     const [viewMode, setViewMode] = useState<ViewMode>("human");
 
     const toggleViewMode = () => {

@@ -40,7 +40,7 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({ onCommand }) => {
 
         switch (cmd) {
             case "help":
-                newHistory.push({ type: "output", content: "AVAILABLE COMMANDS: whoami, projects, ls, clear, date, sudo, msg [text]" });
+                newHistory.push({ type: "output", content: "AVAILABLE COMMANDS: whoami, projects, ls, rolldice, game, clear, date, sudo, msg [text]" });
                 break;
             case "whoami":
                 newHistory.push({ type: "output", content: "USER: THARA | ROLE: SENIOR_DEV | STATUS: HACKING_THE_PLANET" });
@@ -56,12 +56,40 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({ onCommand }) => {
             case "date":
                 newHistory.push({ type: "output", content: new Date().toString() });
                 break;
+            case "game":
+                newHistory.push({ type: "output", content: "LAUNCHING SNAKE_GAME_V1.0..." });
+                onCommand?.("game");
+                break;
             case "sudo":
                 newHistory.push({ type: "error", content: "PERMISSION_DENIED: USER IS NOT IN THE SUDOERS FILE. THIS INCIDENT WILL BE REPORTED." });
                 break;
             case "matrix":
                 newHistory.push({ type: "output", content: "RE-INITIALIZING MATRIX_RAIN... [CHECK BACKGROUND]" });
                 onCommand?.("matrix");
+                break;
+            case "rolldice":
+                newHistory.push(
+                    { type: "output", content: "PROJECT: Rolldice (RedM Script)" },
+                    { type: "output", content: "USAGE: Type /rollss in-game to open menu. Use ARROW_UP to change dice count." },
+                    { type: "output", content: "SOURCE_CODE: [HTML Structure]" },
+                    { type: "output", content: "------------------------------------------------" },
+                    { type: "output", content: '<div class="dice-hud" id="diceHud">' },
+                    { type: "output", content: '  <div class="dice-icon">🎲</div>' },
+                    { type: "output", content: '  <div class="dice-count">' },
+                    { type: "output", content: '    <span id="countValue">1</span>' },
+                    { type: "output", content: '    <span class="label">DICE</span>' },
+                    { type: "output", content: '  </div>' },
+                    { type: "output", content: '</div>' },
+                    { type: "output", content: '<div class="result-box hidden" id="resultBox">' },
+                    { type: "output", content: '  <div class="result-header">DICE ROLLED</div>' },
+                    { type: "output", content: '  <div class="dice-visuals" id="diceVisuals"></div>' },
+                    { type: "output", content: '  <div class="result-total">TOTAL: <span id="totalValue">0</span></div>' },
+                    { type: "output", content: '</div>' },
+                    { type: "output", content: "------------------------------------------------" },
+                    { type: "output", content: "STATUS: LOADED" }
+
+                );
+                onCommand?.("rolldice");
                 break;
 
             default:

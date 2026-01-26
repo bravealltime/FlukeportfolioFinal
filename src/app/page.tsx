@@ -10,13 +10,27 @@ import MatrixRain from "@/components/MatrixRain";
 import CodeShowcase from "@/components/CodeShowcase";
 import InteractiveTerminal from "@/components/InteractiveTerminal";
 import SystemStatus from "@/components/SystemStatus";
+import PCSpecs from "@/components/PCSpecs";
+import GitHubActivity from "@/components/GitHubActivity";
+import GlitchOverlay from "@/components/GlitchOverlay";
+import WeatherWidget from "@/components/WeatherWidget";
+import ScrollProgress from "@/components/ScrollProgress";
+import Timeline from "@/components/Timeline";
+import BlogSection from "@/components/BlogSection";
+import CustomCursor from "@/components/CustomCursor";
+import ContactForm from "@/components/ContactForm";
 import { useSettings } from "@/components/SettingsProvider";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 
+import RolldiceDemo from "@/components/RolldiceDemo";
+import SnakeGame from "@/components/SnakeGame";
+
 export default function Home() {
   const [matrixFullscreen, setMatrixFullscreen] = useState(false);
+  const [showRolldice, setShowRolldice] = useState(false);
+  const [showSnake, setShowSnake] = useState(false);
 
   const { isHuman } = useSettings();
 
@@ -35,7 +49,17 @@ export default function Home() {
   return (
     // Main Container: กำหนดพื้นหลังตามโหมด (Human: ขาว, Hacker: ดำ)
     <main className={`min-h-screen ${isHuman ? "bg-white selection:bg-slate-200 selection:text-black" : "bg-black selection:bg-[#00ff41] selection:text-black"} relative overflow-x-hidden font-mono transition-colors duration-500`}>
+      <CustomCursor />
+      <GlitchOverlay />
+      <WeatherWidget />
+      <ScrollProgress />
       {!isHuman && <MatrixRain isVisible={matrixFullscreen} isIntense={matrixFullscreen} />}
+
+      {/* Rolldice Demo Modal */}
+      {showRolldice && <RolldiceDemo onClose={() => setShowRolldice(false)} />}
+
+      {/* Snake Game Modal */}
+      {showSnake && <SnakeGame onClose={() => setShowSnake(false)} />}
 
       {/* Background Overlay: ใช้เฉพาะโหมด Hacker เพื่อให้ออ่านง่ายขึ้น */}
       {!isHuman && (
@@ -67,6 +91,12 @@ export default function Home() {
               if (cmd === "matrix") {
                 setMatrixFullscreen(prev => !prev);
               }
+              if (cmd === "rolldice") {
+                setShowRolldice(true);
+              }
+              if (cmd === "game") {
+                setShowSnake(true);
+              }
             }} />
             <CodeShowcase />
             <SystemStatus />
@@ -75,7 +105,11 @@ export default function Home() {
 
         <Projects />
         <Skills />
-        <Contact />
+        <PCSpecs />
+        <Timeline />
+        <BlogSection />
+        <GitHubActivity />
+        <ContactForm />
       </div>
     </main>
   );

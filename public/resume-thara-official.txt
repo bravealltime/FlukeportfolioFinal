@@ -1,0 +1,5 @@
+This is a placeholder for the Official Resume of Tharanut Hiransrettawat.
+Position: Senior Frontend Developer / Computer Enthusiast
+Stack: Next.js, React, TypeScript, Python
+Phone: 08x-xxx-xxxx
+Email: tharanut@example.com

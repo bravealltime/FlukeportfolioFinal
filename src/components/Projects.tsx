@@ -8,22 +8,22 @@ import { useAudio } from "./AudioProvider";
 const projects = [
     {
         title: "TeeRao - ระบบจัดการหอพัก",
-        description: "ระบบจัดการค่าไฟฟ้าและห้องพักที่ทันสมัย พร้อมระบบออกบิล PDF และ QR Code PromptPay",
-        tech: ["Next.js", "TypeScript", "Firebase", "Chakra UI"],
+        description: "เว็บแอปฯ จัดการหอพักครบวงจร คำนวณค่าน้ำ-ไฟอัตโนมัติ ออกบิล PDF และสร้าง QR PromptPay ได้ทันที ช่วยให้เจ้าของหอทำงานง่ายขึ้น 100%",
+        tech: ["Next.js", "TypeScript", "Firebase", "Real-time DB"],
         link: "https://github.com/thara/raoteebaan",
         github: "https://github.com/thara/raoteebaan",
     },
     {
         title: "Heartopia Piano Bot Pro",
-        description: "โปรแกรมบอทเล่นเปียโนอัตโนมัติจากไฟล์ MIDI พร้อมระบบ Auto-Transpose และจำลองการกดคีย์",
-        tech: ["Python", "Mido", "Pynput", "MIDI"],
+        description: "บอทเล่นดนตรีในเกมอัตโนมัติ อ่านโน้ตจากไฟล์ MIDI แม่นยำทุกคีย์ พร้อมระบบปรับคีย์เพลง (Auto-Transpose) ให้เพราะที่สุดโดยไม่ต้องตั้งค่าเอง",
+        tech: ["Python", "Mido", "Automation", "Algorithm"],
         link: "https://github.com/thara/heartopia-piano",
         github: "https://github.com/thara/heartopia-piano",
     },
     {
         title: "Rolldice - RedM Script",
-        description: "สคริปต์ทอยเต๋าสำหรับ RedM (RDR3) พร้อม UI แสดงผล และระบบแชร์ผลลัพธ์ในเซิร์ฟเวอร์",
-        tech: ["Lua", "HTML/CSS", "JavaScript", "RedM"],
+        description: "ระบบทอยเต๋า 3D สำหรับเกม RedM (RDR2 Roleplay) มี UI สวยงาม ซิงค์ผลลัพธ์เรียลไทม์ เพิ่มความสนุกสมจริงให้กับการเล่นบทบาทสมมติ",
+        tech: ["Lua", "HTML/CSS", "JavaScript", "RedM API"],
         link: "https://github.com/thara/Rolldice",
         github: "https://github.com/thara/Rolldice",
     },
