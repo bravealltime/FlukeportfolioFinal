@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useSettings } from "./SettingsProvider";
+import { useAudio } from "./AudioProvider";
 import { motion } from "framer-motion";
 
 const timelineData = [
@@ -33,6 +34,7 @@ const timelineData = [
 
 const Timeline = () => {
     const { isHuman } = useSettings();
+    const { playHover } = useAudio();
 
     return (
         <section className={`py-20 px-4 relative z-10 ${isHuman ? "bg-slate-50" : "bg-transparent"}`}>
@@ -66,8 +68,8 @@ const Timeline = () => {
                             <div className="order-1 w-5/12 hidden md:block" />
 
                             <div className={`z-20 flex items-center order-1 w-8 h-8 rounded-full ring-4 ${isHuman
-                                    ? "bg-blue-500 ring-blue-200"
-                                    : "bg-black ring-[#00ff41] shadow-[0_0_10px_#00ff41]"
+                                ? "bg-blue-500 ring-blue-200"
+                                : "bg-black ring-[#00ff41] shadow-[0_0_10px_#00ff41]"
                                 } shadow-xl`}>
                                 <h1 className="mx-auto font-semibold text-lg text-white">
                                     {isHuman ? "" : ""}
@@ -76,9 +78,10 @@ const Timeline = () => {
 
                             <motion.div
                                 whileHover={{ scale: 1.05 }}
+                                onMouseEnter={() => playHover()}
                                 className={`order-1 w-full md:w-5/12 ml-8 md:ml-0 px-6 py-4 rounded-lg shadow-xl ${isHuman
-                                        ? "bg-white text-slate-700"
-                                        : "bg-black/80 border border-[#00ff4188] text-[#00ff41]"
+                                    ? "bg-white text-slate-700"
+                                    : "bg-black/80 border border-[#00ff4188] text-[#00ff41]"
                                     }`}
                             >
                                 <span className={`font-bold text-sm ${isHuman ? "text-blue-500" : "text-[#00ff41aa]"}`}>

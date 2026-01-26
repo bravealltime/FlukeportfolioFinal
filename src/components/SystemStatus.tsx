@@ -3,11 +3,13 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Activity, ShieldCheck, Wifi } from "lucide-react";
+import { useAudio } from "./AudioProvider";
 
 const SystemStatus = () => {
     const [uptime, setUptime] = useState(0);
     const [time, setTime] = useState("");
     const [mounted, setMounted] = useState(false);
+    const { playHover } = useAudio();
 
     useEffect(() => {
         setMounted(true);
@@ -27,6 +29,7 @@ const SystemStatus = () => {
             initial={{ x: 100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             className="fixed bottom-4 right-4 z-[10000] hidden lg:block font-mono"
+            onMouseEnter={() => playHover()}
         >
             <div className="bg-black/90 border border-[#00ff4144] p-4 text-[10px] space-y-2 hacker-border">
                 <div className="flex items-center justify-between gap-8 border-b border-[#00ff4122] pb-1">

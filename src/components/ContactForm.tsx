@@ -3,11 +3,13 @@
 import React, { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { useSettings } from "./SettingsProvider";
+import { useAudio } from "./AudioProvider";
 import { motion } from "framer-motion";
 import { Send, Check, AlertTriangle } from "lucide-react";
 
 const ContactForm = () => {
     const { isHuman } = useSettings();
+    const { playHover, playKeyPress } = useAudio();
     const form = useRef<HTMLFormElement>(null);
     const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
@@ -55,8 +57,8 @@ const ContactForm = () => {
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     className={`p-8 rounded-2xl ${isHuman
-                            ? "bg-white shadow-xl border border-slate-100"
-                            : "bg-black/40 border border-[#00ff41] shadow-[0_0_30px_#00ff4122]"
+                        ? "bg-white shadow-xl border border-slate-100"
+                        : "bg-black/40 border border-[#00ff41] shadow-[0_0_30px_#00ff4122]"
                         }`}
                 >
                     <h2 className={`text-2xl font-bold mb-6 text-center uppercase tracking-wider ${isHuman ? "text-slate-800" : "text-[#00ff41]"
@@ -75,8 +77,8 @@ const ContactForm = () => {
                                 name="user_name"
                                 required
                                 className={`w-full p-3 rounded-lg outline-none transition-all ${isHuman
-                                        ? "bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 text-slate-800"
-                                        : "bg-black border border-[#00ff4144] focus:border-[#00ff41] text-[#00ff41] placeholder-[#00ff4144]"
+                                    ? "bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 text-slate-800"
+                                    : "bg-black border border-[#00ff4144] focus:border-[#00ff41] text-[#00ff41] placeholder-[#00ff4144]"
                                     }`}
                                 placeholder={isHuman ? "John Doe" : "Enter Codex Name..."}
                             />
@@ -92,8 +94,8 @@ const ContactForm = () => {
                                 name="user_email"
                                 required
                                 className={`w-full p-3 rounded-lg outline-none transition-all ${isHuman
-                                        ? "bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 text-slate-800"
-                                        : "bg-black border border-[#00ff4144] focus:border-[#00ff41] text-[#00ff41] placeholder-[#00ff4144]"
+                                    ? "bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 text-slate-800"
+                                    : "bg-black border border-[#00ff4144] focus:border-[#00ff41] text-[#00ff41] placeholder-[#00ff4144]"
                                     }`}
                                 placeholder={isHuman ? "john@example.com" : "encrypted@mesh.net"}
                             />
@@ -109,8 +111,8 @@ const ContactForm = () => {
                                 required
                                 rows={4}
                                 className={`w-full p-3 rounded-lg outline-none transition-all ${isHuman
-                                        ? "bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 text-slate-800"
-                                        : "bg-black border border-[#00ff4144] focus:border-[#00ff41] text-[#00ff41] placeholder-[#00ff4144]"
+                                    ? "bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 text-slate-800"
+                                    : "bg-black border border-[#00ff4144] focus:border-[#00ff41] text-[#00ff41] placeholder-[#00ff4144]"
                                     }`}
                                 placeholder={isHuman ? "Hello there..." : "Injecting payload..."}
                             />
@@ -119,6 +121,8 @@ const ContactForm = () => {
                         <button
                             type="submit"
                             disabled={status === "sending"}
+                            onMouseEnter={() => playHover()}
+                            onClick={playKeyPress}
                             className={`w-full py-4 rounded-lg font-bold uppercase tracking-widest transition-all flex items-center justify-center gap-2 ${status === "sending" ? "opacity-50 cursor-not-allowed" : ""
                                 } ${isHuman
                                     ? "bg-blue-600 text-white hover:bg-blue-700 shadow-lg hover:shadow-blue-200"

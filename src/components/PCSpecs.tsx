@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { useAudio } from "./AudioProvider";
 import { useSettings } from "./SettingsProvider";
 import { Cpu, HardDrive, Monitor, Zap, Disc, Speaker } from "lucide-react";
 import DecryptText from "./DecryptText";
@@ -17,6 +18,7 @@ const specs = [
 
 const PCSpecs = () => {
     const { isHuman } = useSettings();
+    const { playHover, playKeyPress } = useAudio();
 
     return (
         <section className={`py-20 px-4 relative z-10 ${isHuman ? "bg-slate-50" : "bg-transparent"}`}>
@@ -42,9 +44,10 @@ const PCSpecs = () => {
                             whileInView={{ opacity: 1, scale: 1 }}
                             transition={{ delay: index * 0.1 }}
                             whileHover={!isHuman ? { scale: 1.05, borderColor: "#00ff41", boxShadow: "0 0 15px #00ff4144" } : { y: -5 }}
+                            onMouseEnter={() => playHover()}
                             className={`p-6 rounded-xl transition-all ${isHuman
-                                    ? "bg-white shadow-lg border border-slate-100 hover:shadow-xl group"
-                                    : "bg-black/40 border border-[#00ff4122] backdrop-blur-sm group relative overflow-hidden"
+                                ? "bg-white shadow-lg border border-slate-100 hover:shadow-xl group"
+                                : "bg-black/40 border border-[#00ff4122] backdrop-blur-sm group relative overflow-hidden"
                                 }`}
                         >
                             <div className="flex items-start gap-4">

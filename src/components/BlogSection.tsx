@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useSettings } from "./SettingsProvider";
+import { useAudio } from "./AudioProvider";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, BookOpen, AlertCircle } from "lucide-react";
 
@@ -34,6 +35,7 @@ const posts = [
 
 const BlogSection = () => {
     const { isHuman } = useSettings();
+    const { playHover, playKeyPress } = useAudio();
     const [selectedPost, setSelectedPost] = useState<typeof posts[0] | null>(null);
 
     return (
@@ -59,10 +61,14 @@ const BlogSection = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.1 }}
                             whileHover={{ y: -5 }}
-                            onClick={() => setSelectedPost(post)}
+                            onMouseEnter={() => playHover()}
+                            onClick={() => {
+                                playKeyPress();
+                                setSelectedPost(post);
+                            }}
                             className={`cursor-pointer p-6 rounded-xl border transition-all h-full flex flex-col ${isHuman
-                                    ? "bg-slate-50 border-slate-200 hover:shadow-lg"
-                                    : "bg-black/40 border-[#00ff4144] hover:border-[#00ff41] hover:shadow-[0_0_15px_#00ff4122]"
+                                ? "bg-slate-50 border-slate-200 hover:shadow-lg"
+                                : "bg-black/40 border-[#00ff4144] hover:border-[#00ff41] hover:shadow-[0_0_15px_#00ff4122]"
                                 }`}
                         >
                             <div className="flex justify-between items-start mb-4">
@@ -105,12 +111,16 @@ const BlogSection = () => {
                             exit={{ scale: 0.9, y: 20 }}
                             onClick={(e) => e.stopPropagation()}
                             className={`relative w-full max-w-2xl max-h-[80vh] overflow-y-auto p-8 rounded-2xl shadow-2xl ${isHuman
-                                    ? "bg-white text-slate-800"
-                                    : "bg-black border border-[#00ff41] text-[#00ff41] shadow-[0_0_30px_#00ff4144]"
+                                ? "bg-white text-slate-800"
+                                : "bg-black border border-[#00ff41] text-[#00ff41] shadow-[0_0_30px_#00ff4144]"
                                 }`}
                         >
                             <button
-                                onClick={() => setSelectedPost(null)}
+                                onClick={() => {
+                                    playKeyPress();
+                                    setSelectedPost(null)
+                                }}
+                                onMouseEnter={() => playHover()}
                                 className={`absolute top-4 right-4 p-2 rounded-full transition-colors ${isHuman ? "hover:bg-slate-100" : "hover:bg-[#00ff4122]"
                                     }`}
                             >
