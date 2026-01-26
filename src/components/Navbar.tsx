@@ -91,7 +91,7 @@ const Navbar = () => {
               <button
                 onClick={() => {
                   toggleViewMode();
-                  if (!isHuman) playPing();
+                  playPing();
                 }}
                 onMouseEnter={() => !isHuman && playPing()}
                 className={cn("transition-colors p-2 rounded-full", isHuman ? "text-slate-500 hover:bg-slate-100 text-slate-900" : "text-[#00ff4188] hover:text-[#00ff41]")}
@@ -103,7 +103,7 @@ const Navbar = () => {
               <button
                 onClick={() => {
                   toggleAudio();
-                  if (!isHuman) playPing();
+                  playPing();
                 }}
                 onMouseEnter={() => !isHuman && playPing()}
                 className={cn("transition-colors p-2 rounded-full", isHuman ? "text-slate-500 hover:bg-slate-100 text-slate-900" : "text-[#00ff4188] hover:text-[#00ff41]")}

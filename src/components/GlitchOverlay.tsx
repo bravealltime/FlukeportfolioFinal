@@ -18,7 +18,7 @@ const GlitchOverlay = () => {
     return (
         <AnimatePresence>
             {isActive && (
-                <div className="fixed inset-0 z-[999999] pointer-events-none flex flex-col">
+                <div key={isHuman ? "human" : "hacker"} className="fixed inset-0 z-[999999] pointer-events-none flex flex-col">
                     {/* Top Shutter */}
                     <motion.div
                         initial={{ height: "50vh" }}
