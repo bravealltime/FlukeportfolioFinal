@@ -28,6 +28,8 @@ import { useSettings } from "./SettingsProvider";
  * Human Mode: แสดงเป็น Badge สไตล์โมเดิร์น
  * Hacker Mode: แสดงเป็น Terminal List
  */
+import TypewriterText from "./TypewriterText";
+
 const Skills = () => {
     const { playPing } = useAudio();
     const { isHuman } = useSettings();
@@ -43,9 +45,11 @@ const Skills = () => {
                     viewport={{ once: true }}
                     className="mb-12"
                 >
-                    <h2 className={`text-3xl md:text-5xl font-bold mb-2 uppercase tracking-tighter ${isHuman ? "text-slate-900" : "text-[#10b981]"}`}>
-                        {isHuman ? "Technical Skills" : "[ // TECH_STACK ]"}
-                    </h2>
+                    <TypewriterText
+                        as="h2"
+                        text={isHuman ? "Technical Skills" : "[ // TECH_STACK ]"}
+                        className={`text-3xl md:text-5xl font-bold mb-2 uppercase tracking-tighter ${isHuman ? "text-slate-900" : "text-[#10b981]"}`}
+                    />
                     <p className={`text-xs uppercase tracking-widest ${isHuman ? "text-slate-500 font-sans mt-4 normal-case tracking-normal" : "text-[#10b98188]"}`}>
                         {isHuman ? "Technologies I work with" : "Scanning for available technologies..."}
                     </p>

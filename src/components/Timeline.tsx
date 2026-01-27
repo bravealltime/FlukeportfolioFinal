@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 const timelineData = [
     {
         year: "2024",
-        title: "Senior Developer",
+        title: "Creative Coder",
         company: "Tech Company",
         desc: "Leading frontend team, utilizing Next.js and Cloud architecture.",
     },

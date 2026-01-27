@@ -25,6 +25,11 @@ import { useEffect, useState } from "react";
 
 import RolldiceDemo from "@/components/RolldiceDemo";
 import SnakeGame from "@/components/SnakeGame";
+import QuickNav from "@/components/QuickNav";
+import GravityFall from "@/components/GravityFall";
+import GenerativeArt from "@/components/GenerativeArt";
+import Guestbook from "@/components/Guestbook";
+import LiveCodingStatus from "@/components/LiveCodingStatus";
 
 export default function Home() {
   const [matrixFullscreen, setMatrixFullscreen] = useState(false);
@@ -52,6 +57,10 @@ export default function Home() {
       <GlitchOverlay />
       <WeatherWidget />
       <ScrollProgress />
+      <QuickNav />
+      <GravityFall />
+      <GenerativeArt />
+      <LiveCodingStatus />
       {!isHuman && <MatrixRain isVisible={matrixFullscreen} isIntense={matrixFullscreen} />}
 
       {/* Rolldice Demo Modal */}
@@ -108,6 +117,7 @@ export default function Home() {
         <Timeline />
         <BlogSection />
         <GitHubActivity />
+        <Guestbook />
         <ContactForm />
       </div>
     </main>

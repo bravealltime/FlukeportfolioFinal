@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MessageSquare, X, Send, Bot } from "lucide-react";
 import { useSettings } from "./SettingsProvider";
 import { useAudio } from "./AudioProvider";
+import { KNOWLEDGE_BASE } from "./ChatData";
+import { askGemini } from "@/app/actions";
 
 interface Message {
     id: string;
@@ -12,46 +14,59 @@ interface Message {
     sender: "bot" | "user";
 }
 
-const FAQ = [
-    {
-        keywords: ["hello", "hi", "hey", "start"],
-        answer: "Greetings! I'm the automated assistant for Tharanut's portfolio. How can I help you? (Try asking about 'skills', 'contact', or 'price')"
-    },
-    {
-        keywords: ["skill", "stack", "technology", "language"],
-        answer: "My creator is proficient in Next.js, React, TypeScript, Node.js, and Python. He enjoys building high-performance web applications and interactive experiences."
-    },
-    {
-        keywords: ["price", "rate", "cost", "hiring", "freelance"],
-        answer: "Rates depend on project complexity. Typical range: $30 - $50 / hour. For a fixed quote, please use the Contact form!"
-    },
-    {
-        keywords: ["contact", "email", "reach"],
-        answer: "You can send a message directly via the form below, or email at example@email.com."
-    },
-    {
-        keywords: ["who", "author", "creator"],
-        answer: "I am developed by Tharanut Hiransrettawat, a Senior Frontend Developer based in Thailand."
-    }
-];
-
 const Chatbot = () => {
     const { isHuman } = useSettings();
     const { playPing, playKeyPress, playHover } = useAudio();
     const [isOpen, setIsOpen] = useState(false);
     const [input, setInput] = useState("");
     const [messages, setMessages] = useState<Message[]>([
-        { id: "intro", text: "System Online. How may I assist you?", sender: "bot" }
+        { id: "intro", text: isHuman ? "Hello! How can I help you today?" : "SYSTEM_ONLINE. AWAITING_INPUT.", sender: "bot" }
     ]);
     const scrollRef = useRef<HTMLDivElement>(null);
 
+    // Auto-scroll to bottom
     useEffect(() => {
         if (scrollRef.current) {
             scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
         }
     }, [messages, isOpen]);
 
-    const handleSend = () => {
+    // Update intro message when mode changes
+    useEffect(() => {
+        setMessages(prev => {
+            if (prev.length === 1 && prev[0].id === "intro") {
+                return [{
+                    id: "intro",
+                    text: isHuman ? "Hello! How can I help you today?" : "SYSTEM_ONLINE. AWAITING_INPUT.",
+                    sender: "bot"
+                }];
+            }
+            return prev;
+        });
+    }, [isHuman]);
+
+    const detectLanguage = (text: string): "th" | "en" => {
+        // Simple Thai character detection
+        const thaiPattern = /[\u0E00-\u0E7F]/;
+        return thaiPattern.test(text) ? "th" : "en";
+    };
+
+    const findAnswer = (query: string, lang: "th" | "en", mode: "human" | "hacker") => {
+        const lowerQuery = query.toLowerCase();
+
+        // Find best match in knowledge base
+        const match = KNOWLEDGE_BASE.find(item =>
+            item.keywords.some(k => lowerQuery.includes(k.toLowerCase()))
+        );
+
+        if (match) {
+            return match.answers[mode][lang];
+        }
+
+        return null; // No match found
+    };
+
+    const handleSend = async () => {
         if (!input.trim()) return;
 
         playKeyPress();
@@ -59,15 +74,48 @@ const Chatbot = () => {
         setMessages(prev => [...prev, userMsg]);
         setInput("");
 
-        // Simulate thinking
-        setTimeout(() => {
-            const lowerInput = userMsg.text.toLowerCase();
-            const hit = FAQ.find(f => f.keywords.some(k => lowerInput.includes(k)));
-            const responseText = hit ? hit.answer : "I didn't quite catch that. Try asking about 'skills' or 'contact'.";
+        // Show Loading/Thinking
+        const loadingId = Date.now().toString() + "_loading";
+        setMessages(prev => [...prev, { id: loadingId, text: isHuman ? "Thinking..." : "PROCESSING...", sender: "bot" }]);
 
-            setMessages(prev => [...prev, { id: Date.now().toString() + "bot", text: responseText, sender: "bot" }]);
-            playPing();
-        }, 800);
+        const lang = detectLanguage(userMsg.text);
+        const mode = isHuman ? "human" : "hacker";
+
+        // 1. Try Local RAG First
+        const localResponse = findAnswer(userMsg.text, lang, mode);
+
+        let finalResponse = "";
+
+        if (localResponse) {
+            // Simulate delay for realism
+            await new Promise(resolve => setTimeout(resolve, 600));
+            finalResponse = localResponse;
+        } else {
+            // 2. Local Miss -> Ask Gemini AI
+            try {
+                // Determine context for system prompt (handled in server action mostly, but we pass query)
+                const aiResponse = await askGemini(userMsg.text);
+
+                if (!aiResponse || !aiResponse.trim()) {
+                    finalResponse = isHuman
+                        ? "I'm thinking... but I couldn't find the words."
+                        : "SYSTEM_WARNING: EMPTY_RESPONSE_FROM_CORE. RETRY_INITIATED.";
+                } else {
+                    finalResponse = aiResponse;
+                }
+
+                // Note: Hacker styling is now handled in the visual component loop
+            } catch (error) {
+                finalResponse = isHuman
+                    ? "Sorry, I can't connect to the AI right now."
+                    : "ERROR: NEURAL_NET_UNREACHABLE. CHECK_CONNECTION.";
+            }
+        }
+
+        // Remove loading and add response
+        setMessages(prev => prev.filter(m => m.id !== loadingId));
+        setMessages(prev => [...prev, { id: Date.now().toString() + "bot", text: finalResponse, sender: "bot" }]);
+        playPing();
     };
 
     return (
@@ -79,7 +127,7 @@ const Chatbot = () => {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setIsOpen(true)}
-                className={`fixed bottom-24 right-4 z-50 p-4 rounded-full shadow-xl transition-all ${isHuman
+                className={`fixed bottom-8 right-28 z-50 p-4 rounded-full shadow-xl transition-all ${isHuman
                     ? "bg-blue-600 text-white hover:bg-blue-700"
                     : "bg-[#0a0a0a] border border-[#10b981] text-[#10b981] shadow-[0_0_20px_#10b98144]"
                     } ${isOpen ? "hidden" : "flex"}`}
@@ -94,9 +142,9 @@ const Chatbot = () => {
                         initial={{ opacity: 0, y: 50, scale: 0.9 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 50, scale: 0.9 }}
-                        className={`fixed bottom-4 right-4 md:bottom-8 md:right-8 z-[100] w-80 md:w-96 rounded-2xl overflow-hidden shadow-2xl border flex flex-col ${isHuman
+                        className={`fixed bottom-24 right-4 md:bottom-28 md:right-8 z-[100] w-[90vw] md:w-[450px] rounded-2xl overflow-hidden shadow-2xl border flex flex-col ${isHuman
                             ? "bg-white border-slate-200 h-[500px]"
-                            : "bg-[#0a0a0a] border-[#10b981] h-[500px]"
+                            : "bg-[#0a0a0a] border-[#10b981] h-[600px]"
                             }`}
                     >
                         {/* Header */}
@@ -105,7 +153,7 @@ const Chatbot = () => {
                             <div className="flex items-center gap-2">
                                 <Bot size={20} className={isHuman ? "text-blue-600" : "text-[#10b981]"} />
                                 <span className={`font-bold ${isHuman ? "text-slate-800" : "text-[#10b981]"}`}>
-                                    {isHuman ? "Support Bot" : "AI_ASSISTANT v1.0"}
+                                    {isHuman ? "Support Bot" : "AI_ASSISTANT v2.0"}
                                 </span>
                             </div>
                             <button onClick={() => setIsOpen(false)} className="hover:opacity-70">
@@ -117,10 +165,18 @@ const Chatbot = () => {
                         <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-4">
                             {messages.map((msg) => (
                                 <div key={msg.id} className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}>
-                                    <div className={`max-w-[80%] p-3 rounded-2xl text-sm ${msg.sender === "user"
+                                    <div className={`max-w-[85%] p-3 rounded-2xl text-sm shadow-sm ${msg.sender === "user"
                                         ? isHuman ? "bg-blue-600 text-white rounded-br-none" : "bg-[#10b981] text-black rounded-br-none font-bold"
-                                        : isHuman ? "bg-slate-100 text-slate-700 rounded-bl-none" : "bg-[#10b98122] text-[#10b981] border border-[#10b98144] rounded-bl-none"
+                                        : isHuman
+                                            ? "bg-white border border-slate-100 text-slate-700 rounded-bl-none shadow-md"
+                                            : "bg-[#0a0a0a] border border-[#10b981] text-[#10b981] rounded-bl-none shadow-[0_0_10px_#10b98122]"
                                         }`}>
+                                        {/* AI Indicator Icon for Bot Messages */}
+                                        {msg.sender === "bot" && !isHuman && (
+                                            <div className="text-[9px] opacity-50 mb-1 font-mono tracking-wider border-b border-[#10b98144] pb-1">
+                                                {msg.text.includes("ERROR") ? "SYSTEM_ALERT" : "AI_CORE_RESPONSE"}
+                                            </div>
+                                        )}
                                         {msg.text}
                                     </div>
                                 </div>

@@ -48,11 +48,16 @@ import { useSettings } from "./SettingsProvider";
  * แสดงผลผลงานที่ผ่านมา (Featured Projects)
  * รองรับการแสดงผล 2 โหมด: Human (การ์ดขาว) และ Hacker (Terminal Style)
  */
+import TypewriterText from "./TypewriterText";
+import DoodleGame from "./DoodleGame";
+import { Trophy } from "lucide-react";
+
 const Projects = () => {
     const { playPing } = useAudio();
     const { isHuman } = useSettings();
     const [isVaultOpen, setIsVaultOpen] = React.useState(false);
     const [isProjectUnlocked, setIsProjectUnlocked] = React.useState(false);
+    const [isDoodleOpen, setIsDoodleOpen] = React.useState(false);
     const [selectedStudy, setSelectedStudy] = React.useState<Project | null>(null);
 
     const handleSecretClick = () => {
@@ -71,9 +76,11 @@ const Projects = () => {
                     viewport={{ once: true }}
                     className="mb-16 text-center md:text-left"
                 >
-                    <h2 className={`text-3xl md:text-5xl font-bold mb-2 uppercase tracking-tighter ${isHuman ? "text-slate-900" : "text-[#10b981]"}`}>
-                        {isHuman ? "Featured Projects" : "[ // DATABASE_PROJECTS ]"}
-                    </h2>
+                    <TypewriterText
+                        as="h2"
+                        text={isHuman ? "Featured Projects" : "[ // DATABASE_PROJECTS ]"}
+                        className={`text-3xl md:text-5xl font-bold mb-2 uppercase tracking-tighter ${isHuman ? "text-slate-900" : "text-[#10b981]"}`}
+                    />
                     {!isHuman && <div className="h-1 w-32 bg-[#10b981] border shadow-[0_0_10px_#10b981]" />}
                     {isHuman && <div className="h-1 w-24 bg-blue-600 rounded-full mx-auto md:mx-0" />}
                 </motion.div>
@@ -145,6 +152,31 @@ const Projects = () => {
                         </motion.div>
                     ))}
 
+                    {/* AI Doodle Game Card */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        whileHover={{ scale: 1.02 }}
+                        onClick={() => setIsDoodleOpen(true)}
+                        className={`cursor-pointer border p-6 rounded-2xl flex flex-col items-center justify-center text-center transition-all min-h-[300px] ${isHuman
+                            ? "bg-gradient-to-br from-indigo-50 to-purple-50 border-indigo-100 hover:shadow-indigo-100/50 hover:shadow-xl"
+                            : "bg-black border border-[#10b981] shadow-[0_0_15px_#10b98122] hover:shadow-[0_0_30px_#10b98144]"
+                            }`}
+                    >
+                        <Trophy size={48} className={`mb-4 ${isHuman ? "text-indigo-500" : "text-[#10b981]"}`} />
+                        <h3 className={`text-xl font-bold mb-2 uppercase ${isHuman ? "text-indigo-900" : "text-[#10b981]"}`}>
+                            {isHuman ? "AI Doodle Challenge" : "NEURAL_NET_TRAINING"}
+                        </h3>
+                        <p className={`text-xs ${isHuman ? "text-indigo-600" : "text-[#10b981bb]"}`}>
+                            {isHuman ? "Draw something and let AI guess what it is!" : "TESTING_RECOGNITION_ALGORITHM_V2.0"}
+                        </p>
+                        <div className={`mt-4 px-4 py-2 rounded-full text-xs font-bold ${isHuman ? "bg-indigo-600 text-white" : "bg-[#10b981] text-black"
+                            }`}>
+                            PLAY NOW
+                        </div>
+                    </motion.div>
+
                     {/* Secret Project Card */}
                     <motion.div
                         initial={{ opacity: 0, y: 10 }}
@@ -183,6 +215,11 @@ const Projects = () => {
                 isOpen={!!selectedStudy}
                 onClose={() => setSelectedStudy(null)}
                 project={selectedStudy}
+            />
+
+            <DoodleGame
+                isOpen={isDoodleOpen}
+                onClose={() => setIsDoodleOpen(false)}
             />
         </section>
     );

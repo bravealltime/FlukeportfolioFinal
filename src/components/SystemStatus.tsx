@@ -28,7 +28,7 @@ const SystemStatus = () => {
         <motion.div
             initial={{ x: 100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            className="fixed bottom-4 right-4 z-[10000] hidden lg:block font-mono"
+            className="fixed bottom-4 left-4 z-[10000] hidden lg:block font-mono"
             onMouseEnter={() => playHover()}
         >
             <div className="bg-[#0a0a0a]/90 border border-[#10b98144] p-4 text-[10px] space-y-2 hacker-border">

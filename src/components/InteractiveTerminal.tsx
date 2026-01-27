@@ -23,7 +23,39 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({ onCommand }) => {
         { type: "output", content: "TYPE 'help' TO VIEW AVAILABLE COMMANDS" },
     ]);
     const [input, setInput] = useState("");
+    const [commandHistory, setCommandHistory] = useState<string[]>([]);
+    const [historyPointer, setHistoryPointer] = useState<number | null>(null);
     const scrollRef = useRef<HTMLDivElement>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    const availableCommands = ["help", "whoami", "projects", "ls", "clear", "date", "game", "sudo", "matrix", "rolldice", "msg"];
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "ArrowUp") {
+            e.preventDefault();
+            if (commandHistory.length === 0) return;
+            const newPointer = historyPointer === null ? commandHistory.length - 1 : Math.max(0, historyPointer - 1);
+            setHistoryPointer(newPointer);
+            setInput(commandHistory[newPointer]);
+        } else if (e.key === "ArrowDown") {
+            e.preventDefault();
+            if (historyPointer === null) return;
+            const newPointer = Math.min(commandHistory.length - 1, historyPointer + 1);
+            if (historyPointer === commandHistory.length - 1) {
+                setHistoryPointer(null);
+                setInput("");
+            } else {
+                setHistoryPointer(newPointer);
+                setInput(commandHistory[newPointer]);
+            }
+        } else if (e.key === "Tab") {
+            e.preventDefault();
+            const match = availableCommands.find(cmd => cmd.startsWith(input.toLowerCase()));
+            if (match) {
+                setInput(match);
+            }
+        }
+    };
 
     useEffect(() => {
         if (scrollRef.current) {
@@ -38,9 +70,22 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({ onCommand }) => {
         const cmd = input.toLowerCase().trim();
         const newHistory: TerminalLine[] = [...history, { type: "input", content: cmd }];
 
+        // Add to history if not empty and distinct from last
+        if (cmd && commandHistory[commandHistory.length - 1] !== cmd) {
+            setCommandHistory(prev => [...prev, cmd]);
+        }
+        setHistoryPointer(null);
+
         switch (cmd) {
             case "help":
                 newHistory.push({ type: "output", content: "AVAILABLE COMMANDS: whoami, projects, ls, rolldice, game, clear, date, sudo, msg [text]" });
+                break;
+            case "hello":
+            case "hi":
+            case "sawasdee":
+            case "สวัสดี":
+            case "ทักทาย":
+                newHistory.push({ type: "output", content: "AI_RESPONSE: This is a Terminal. Please use the Chatbot (Bottom Right) to talk to me!" });
                 break;
             case "whoami":
                 newHistory.push({ type: "output", content: "USER: THARA | ROLE: SENIOR_DEV | STATUS: HACKING_THE_PLANET" });
@@ -123,6 +168,7 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({ onCommand }) => {
                     <div
                         ref={scrollRef}
                         className="h-[300px] md:h-[450px] overflow-y-auto p-4 text-[10px] md:text-sm space-y-1 custom-scrollbar relative z-10"
+                        onClick={() => inputRef.current?.focus()}
                     >
                         {history.map((line, i) => (
                             <div key={i} className={
@@ -138,12 +184,14 @@ const InteractiveTerminal: React.FC<TerminalProps> = ({ onCommand }) => {
                     <form onSubmit={handleCommand} className="border-t border-[#10b98122] p-4 flex gap-2 relative z-30 bg-[#0a0a0a]/20">
                         <span className="text-[#10b98188] select-none">$</span>
                         <input
+                            ref={inputRef}
                             type="text"
                             value={input}
                             onChange={(e) => {
                                 setInput(e.target.value);
                                 playKeyPress();
                             }}
+                            onKeyDown={handleKeyDown}
                             className="bg-transparent border-none outline-none flex-1 text-[#10b981] lowercase placeholder:text-[#10b98122]"
                             placeholder="type 'help'..."
                             autoFocus
