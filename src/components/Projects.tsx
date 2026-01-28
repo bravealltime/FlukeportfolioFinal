@@ -37,7 +37,7 @@ const projects = [
         tech: ["Python", "Mido", "Automation", "Algorithm"],
         link: "https://github.com/bravealltime/heartopia-piano",
         github: "https://github.com/bravealltime/heartopia-piano",
-        image: "/projects/heartopia.jpg",
+        image: "/projects/heartopia.png",
     },
     {
         title: "Rolldice - RedM Script",
