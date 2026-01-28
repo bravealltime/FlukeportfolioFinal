@@ -121,6 +121,6 @@ export async function guessDoodle(base64Image: string) {
         return text;
     } catch (error: any) {
         console.error("Gemini Vision Error:", error);
-        return "Error during guessing.";
+        return `Error: ${error.message || "Unknown error during guessing."}`;
     }
 }
