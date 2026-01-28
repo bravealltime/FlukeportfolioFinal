@@ -91,3 +91,36 @@ export async function askGemini(prompt: string) {
 
     return "Error: Unknown system failure.";
 }
+
+export async function guessDoodle(base64Image: string) {
+    if (!apiKey) {
+        return "Error: API Key is missing.";
+    }
+
+    try {
+        // Use gemini-1.5-flash for vision capabilities
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+        // Clean base64 string. Handle cases where prefix might be missing just in case, though toDataURL always has it.
+        const base64Data = base64Image.includes(",") ? base64Image.split(",")[1] : base64Image;
+
+        const imageParts = [
+            {
+                inlineData: {
+                    data: base64Data,
+                    mimeType: "image/png",
+                },
+            },
+        ];
+
+        const prompt = "This is a simple doodle drawn by a user. Please guess what it is in 1-2 words. Identify the main object. Reply in Thai. ตอบเป็นภาษาไทยสั้นๆ ว่าคือรูปอะไร";
+
+        const result = await model.generateContent([prompt, ...imageParts]);
+        const response = await result.response;
+        const text = response.text();
+        return text;
+    } catch (error: any) {
+        console.error("Gemini Vision Error:", error);
+        return "Error during guessing.";
+    }
+}
