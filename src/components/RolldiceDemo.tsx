@@ -3,12 +3,14 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Dices } from "lucide-react";
+import { useSettings } from "./SettingsProvider";
 
 interface RolldiceDemoProps {
     onClose: () => void;
 }
 
 const RolldiceDemo: React.FC<RolldiceDemoProps> = ({ onClose }) => {
+    const { isHuman } = useSettings();
     const [count, setCount] = useState(1);
     const [results, setResults] = useState<number[]>([]);
     const [isRolling, setIsRolling] = useState(false);
@@ -54,7 +56,7 @@ const RolldiceDemo: React.FC<RolldiceDemoProps> = ({ onClose }) => {
                 {/* Close Button (Top Right of Screen) */}
                 <button
                     onClick={onClose}
-                    className="absolute top-6 right-6 text-white hover:text-red-500 transition-colors z-50 p-2"
+                    className={`absolute top-6 right-6 transition-colors z-50 p-2 rounded-full ${isHuman ? "text-slate-900 bg-white/50 hover:bg-red-500 hover:text-white" : "text-white hover:text-red-500"}`}
                 >
                     <X size={32} />
                 </button>
@@ -62,11 +64,11 @@ const RolldiceDemo: React.FC<RolldiceDemoProps> = ({ onClose }) => {
                 {/* Main Container - Parchment Texture Style */}
                 <div className="relative w-full h-full flex items-center justify-center pointer-events-none">
 
-                    {/* HUD - Bottom Right (Clickable) */}
+                    {/* HUD - Bottom Center (Clickable) */}
                     <motion.div
                         initial={{ y: 100, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
-                        className="fixed bottom-10 right-10 pointer-events-auto cursor-pointer group"
+                        className="fixed bottom-10 left-1/2 -translate-x-1/2 pointer-events-auto cursor-pointer group"
                         onClick={handleRoll}
                     >
                         <div className="bg-gradient-to-br from-[#2b1d12] to-[#1a100a] border-2 border-[#cda434] rounded-xl p-6 shadow-2xl flex flex-col items-center gap-2 transform transition-transform group-hover:scale-105 group-active:scale-95">
