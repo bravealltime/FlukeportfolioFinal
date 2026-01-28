@@ -99,9 +99,20 @@ export async function guessDoodle(base64Image: string) {
 
     try {
         // Try multiple models for robustness (Vision capable models)
-        const modelsToTry = ["gemini-1.5-flash", "gemini-1.5-flash-latest", "gemini-1.5-pro", "gemini-pro-vision"];
+        // Extensive list of models to try
+        const modelsToTry = [
+            "gemini-1.5-flash",
+            "gemini-1.5-flash-latest",
+            "gemini-1.5-flash-001",
+            "gemini-1.5-flash-002",
+            "gemini-1.5-pro",
+            "gemini-1.5-pro-latest",
+            "gemini-1.5-pro-001",
+            "gemini-1.5-pro-002",
+            "gemini-pro-vision"
+        ];
 
-        let lastError;
+        let errorLog: string[] = [];
 
         for (const modelName of modelsToTry) {
             try {
@@ -127,13 +138,14 @@ export async function guessDoodle(base64Image: string) {
                 return text;
             } catch (error: any) {
                 console.warn(`Model ${modelName} failed:`, error.message);
-                lastError = error;
+                errorLog.push(`${modelName}: ${error.message}`);
                 continue; // Try next model
             }
         }
 
         // If all failed
-        throw lastError || new Error("All models failed");
+        console.error("All Gemini models failed:", errorLog);
+        return `Error: All models failed. Details: ${errorLog.join(" | ")}`;
 
     } catch (error: any) {
         console.error("Gemini Vision Error:", error);
