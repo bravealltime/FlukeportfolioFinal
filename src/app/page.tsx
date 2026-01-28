@@ -1,27 +1,23 @@
-"use client";
-
 import Navbar from "@/components/Navbar";
-
 import Hero from "@/components/Hero";
-import Projects from "@/components/Projects";
-import Skills from "@/components/Skills";
-import PCSpecs from "@/components/PCSpecs";
-import GitHubActivity from "@/components/GitHubActivity";
 import GlitchOverlay from "@/components/GlitchOverlay";
 import WeatherWidget from "@/components/WeatherWidget";
 import ScrollProgress from "@/components/ScrollProgress";
-import Timeline from "@/components/Timeline";
-import BlogSection from "@/components/BlogSection";
 import CustomCursor from "@/components/CustomCursor";
-import ContactForm from "@/components/ContactForm";
 import { useSettings } from "@/components/SettingsProvider";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import QuickNav from "@/components/QuickNav";
-import Guestbook from "@/components/Guestbook";
-
-// Dynamic Imports for Heavy/Interactive Components
+// Dynamic Imports for Sections & Components
+const Projects = dynamic(() => import("@/components/Projects"), { ssr: false });
+const Skills = dynamic(() => import("@/components/Skills"), { ssr: false });
+const PCSpecs = dynamic(() => import("@/components/PCSpecs"), { ssr: false });
+const Timeline = dynamic(() => import("@/components/Timeline"), { ssr: false });
+const BlogSection = dynamic(() => import("@/components/BlogSection"), { ssr: false });
+const GitHubActivity = dynamic(() => import("@/components/GitHubActivity"), { ssr: false });
+const Guestbook = dynamic(() => import("@/components/Guestbook"), { ssr: false });
+const ContactForm = dynamic(() => import("@/components/ContactForm"), { ssr: false });
 const MatrixRain = dynamic(() => import("@/components/MatrixRain"), { ssr: false });
 const CodeShowcase = dynamic(() => import("@/components/CodeShowcase"), { ssr: false });
 const InteractiveTerminal = dynamic(() => import("@/components/InteractiveTerminal"), { ssr: false });

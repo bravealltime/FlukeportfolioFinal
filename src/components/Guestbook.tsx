@@ -541,7 +541,7 @@ const Guestbook = () => {
                                             animate={{ opacity: 1, scale: 1 }}
                                             exit={{ opacity: 0, scale: 0.95 }}
                                             layout
-                                            className={`p-4 rounded-2xl border relative overflow-hidden transition-all h-fit ${isHuman
+                                            className={`p-4 rounded-2xl border relative overflow-hidden transition-all h-fit group ${isHuman
                                                 ? "bg-white/80 backdrop-blur-md border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1"
                                                 : "bg-[#0a0a0a]/60 backdrop-blur-xl border-[#10b98133] hover:border-[#10b981] hover:shadow-[0_0_20px_#10b98111]"
                                                 }`}
@@ -590,12 +590,13 @@ const Guestbook = () => {
                                                 </p>
 
                                                 {block.imageUrl && (
-                                                    <div className={`rounded-xl overflow-hidden border ${isHuman ? "border-slate-100" : "border-[#10b98122]"}`}>
+                                                    <div className={`rounded-xl overflow-hidden border relative aspect-video transition-all duration-500 ${isHuman ? "border-slate-100 bg-slate-50" : "border-[#10b98122] bg-[#10b98105]"}`}>
                                                         <img
                                                             src={block.imageUrl}
                                                             alt="Guest attachment"
-                                                            className="w-full max-h-40 object-cover hover:scale-110 transition-transform duration-500"
-                                                            onError={(e) => (e.currentTarget.style.display = 'none')}
+                                                            className="absolute inset-0 w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                                                            loading="lazy"
+                                                            onError={(e) => (e.currentTarget.parentElement!.style.display = 'none')}
                                                         />
                                                     </div>
                                                 )}
@@ -618,8 +619,8 @@ const Guestbook = () => {
                                                                 onClick={() => toggleLike(block.id!)}
                                                                 disabled={likedIds.includes(block.id)}
                                                                 className={`ml-3 flex flex-col items-center gap-0.5 transition-colors ${likedIds.includes(block.id) || (block.likes || 0) > 0
-                                                                        ? "text-red-500"
-                                                                        : isHuman ? "text-slate-300 hover:text-red-400" : "text-[#10b98122] hover:text-red-500"
+                                                                    ? "text-red-500"
+                                                                    : isHuman ? "text-slate-300 hover:text-red-400" : "text-[#10b98122] hover:text-red-500"
                                                                     } ${likedIds.includes(block.id) ? "cursor-default" : "cursor-pointer"}`}
                                                             >
                                                                 <Heart size={16} fill={likedIds.includes(block.id) || (block.likes || 0) > 0 ? "currentColor" : "none"} />

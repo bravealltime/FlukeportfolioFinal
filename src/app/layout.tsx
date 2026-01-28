@@ -31,6 +31,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="th" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://github-contributions-api.jogruber.de" />
+        <link rel="preconnect" href="https://ipapi.co" />
+      </head>
       <body
         className={`${kanit.variable} ${geistMono.variable} antialiased`}
       >
