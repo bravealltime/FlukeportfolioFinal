@@ -25,6 +25,9 @@ const CustomCursor = () => {
             return;
         }
 
+        // Hide native cursor only when custom cursor is active
+        document.documentElement.classList.add("custom-cursor-none");
+
         const moveMouse = (e: MouseEvent) => {
             mouseX.set(e.clientX);
             mouseY.set(e.clientY);
@@ -39,6 +42,7 @@ const CustomCursor = () => {
         window.addEventListener("mouseup", handleMouseUp);
 
         return () => {
+            document.documentElement.classList.remove("custom-cursor-none");
             window.removeEventListener("mousemove", moveMouse);
             window.removeEventListener("mousedown", handleMouseDown);
             window.removeEventListener("mouseup", handleMouseUp);

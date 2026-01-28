@@ -27,8 +27,7 @@ body {
   color: var(--foreground);
   font-family: "Courier New", Courier, monospace;
   overflow-x: hidden;
-  cursor: none;
-  /* Custom cursor takes over */
+  /* cursor: none; will be applied via JS when custom cursor is ready */
 }
 
 @layer utilities {
@@ -55,6 +54,11 @@ body {
   .hacker-vignette {
     background: radial-gradient(circle, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
     pointer-events: none;
+  }
+
+  .custom-cursor-none,
+  .custom-cursor-none * {
+    cursor: none !important;
   }
 }
 
