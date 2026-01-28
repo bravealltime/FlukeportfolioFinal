@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, Dices } from "lucide-react";
 import { useAudio } from "./AudioProvider";
 import dynamic from "next/dynamic";
 
@@ -10,6 +10,7 @@ const PasswordVault = dynamic(() => import("./PasswordVault"), { ssr: false });
 const SecretProjectModal = dynamic(() => import("./SecretProjectModal"), { ssr: false });
 const ProjectCaseStudy = dynamic(() => import("./ProjectCaseStudy"), { ssr: false });
 const DoodleGame = dynamic(() => import("./DoodleGame"), { ssr: false });
+const RolldiceDemo = dynamic(() => import("./RolldiceDemo"), { ssr: false });
 
 import { Lock, BookOpen } from "lucide-react";
 
@@ -74,6 +75,7 @@ const Projects = () => {
     const [isProjectUnlocked, setIsProjectUnlocked] = React.useState(false);
     const [isDoodleOpen, setIsDoodleOpen] = React.useState(false);
     const [selectedStudy, setSelectedStudy] = React.useState<Project | null>(null);
+    const [isRolldiceOpen, setIsRolldiceOpen] = React.useState(false);
 
     const handleSecretClick = () => {
         setIsVaultOpen(true);
@@ -199,6 +201,16 @@ const Projects = () => {
                                         <BookOpen size={11} />
                                         {isHuman ? "อ่านเพิ่มเติม" : "INFO"}
                                     </button>
+
+                                    {project.title.includes("Rolldice") && (
+                                        <button
+                                            onClick={() => setIsRolldiceOpen(true)}
+                                            className={`inline-flex items-center gap-1.5 text-xs font-semibold transition-colors ${isHuman ? "text-indigo-600 hover:text-indigo-800" : "text-[#fbbf24] hover:text-[#fbbf24] drop-shadow-[0_0_5px_rgba(251,191,36,0.5)]"}`}
+                                        >
+                                            <Dices size={12} />
+                                            {isHuman ? "จำลองการใช้งาน" : "[ SIMULATE ]"}
+                                        </button>
+                                    )}
                                 </div>
                             </div>
                         </motion.div>
@@ -273,6 +285,10 @@ const Projects = () => {
                 isOpen={isDoodleOpen}
                 onClose={() => setIsDoodleOpen(false)}
             />
+
+            {isRolldiceOpen && (
+                <RolldiceDemo onClose={() => setIsRolldiceOpen(false)} />
+            )}
         </section>
     );
 };

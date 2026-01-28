@@ -74,7 +74,7 @@ const WeatherWidget = () => {
     const displayWeather = weather || MOCK_WEATHER;
 
     return (
-        <div className={`fixed top-20 right-4 md:top-6 md:right-32 z-[40] transition-all ${isHuman
+        <div className={`fixed top-24 right-4 md:top-24 md:right-10 z-[40] transition-all ${isHuman
             ? "bg-white/80 backdrop-blur-md shadow-sm border border-slate-200 rounded-full px-4 py-2 flex items-center gap-3 text-slate-700"
             : "bg-[#0a0a0a]/60 border border-[#10b981] px-2 py-1 text-[#10b981] font-mono text-xs flex flex-col items-end gap-1"
             }`}>
