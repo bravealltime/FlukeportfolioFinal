@@ -27,9 +27,9 @@ const projects = [
         title: "TeeRao - ระบบจัดการหอพัก",
         description: "เว็บแอปฯ จัดการหอพักครบวงจร คำนวณค่าน้ำ-ไฟอัตโนมัติ ออกบิล PDF และสร้าง QR PromptPay ได้ทันที ช่วยให้เจ้าของหอทำงานง่ายขึ้น 100%",
         tech: ["Next.js", "TypeScript", "Firebase", "Real-time DB"],
-        link: "https://github.com/bravealltime/raoteebaan",
+        link: "https://teerao.vercel.app/",
         github: "https://github.com/bravealltime/raoteebaan",
-        image: "/projects/teerao.jpg",
+        image: "/projects/teerao.png",
     },
     {
         title: "Heartopia Piano Bot Pro",
