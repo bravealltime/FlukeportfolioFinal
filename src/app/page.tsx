@@ -36,9 +36,15 @@ export default function Home() {
   const [showSnake, setShowSnake] = useState(false);
 
   const { isHuman } = useSettings();
+  const [shouldShowEffects, setShouldShowEffects] = useState(false);
 
 
   useEffect(() => {
+    // Delay heavy background effects
+    const timer = setTimeout(() => {
+      setShouldShowEffects(true);
+    }, 1500);
+
     const handleKeyDown = (e: KeyboardEvent) => {
       // Simple hidden command listener
       if (e.key === "m") {
@@ -46,7 +52,10 @@ export default function Home() {
       }
     };
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      clearTimeout(timer);
+    };
   }, []);
 
   return (
@@ -57,10 +66,14 @@ export default function Home() {
       <WeatherWidget />
       <ScrollProgress />
       <QuickNav />
-      <GravityFall />
-      <GenerativeArt />
-      <LiveCodingStatus />
-      {!isHuman && <MatrixRain isVisible={matrixFullscreen} isIntense={matrixFullscreen} />}
+      {shouldShowEffects && (
+        <>
+          <GravityFall />
+          <GenerativeArt />
+          <LiveCodingStatus />
+          {!isHuman && <MatrixRain isVisible={matrixFullscreen} isIntense={matrixFullscreen} />}
+        </>
+      )}
 
       {/* Rolldice Demo Modal */}
       {showRolldice && <RolldiceDemo onClose={() => setShowRolldice(false)} />}

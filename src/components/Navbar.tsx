@@ -52,93 +52,95 @@ const Navbar = () => {
 
   return (
     <>
-      <AnimatePresence mode="wait">
-        <motion.nav
-          initial={{ y: -100, opacity: 0 }}
-          animate={{ y: visible ? 0 : -100, opacity: visible ? 1 : 0 }}
-          transition={{ duration: 0.3 }}
-          className={cn(
-            isHuman
-              ? "fixed top-0 inset-x-0 z-[5000] px-4 py-4 bg-white/80 backdrop-blur-md border-b border-slate-200 shadow-sm font-sans"
-              : "fixed top-4 inset-x-4 md:inset-x-0 mx-auto z-[5000] px-4 py-2 hacker-border bg-[#0a0a0a]/90 max-w-fit md:min-w-[650px] font-mono"
-          )}
-        >
-          <div className={isHuman ? "max-w-6xl mx-auto flex items-center justify-between" : "flex items-center justify-between gap-4 md:gap-8 px-2 md:px-4"}>
-            <div className={cn("font-bold tracking-tighter truncate max-w-[120px] md:max-w-none", isHuman ? "text-slate-900 text-xl" : "text-sm md:text-lg text-[#10b981]")}>
-              {isHuman ? "ธรณัส." : "ROOT@THARANAS:~#"}
-            </div>
+      <div className="h-0 md:h-16 relative z-[5000]">
+        <AnimatePresence mode="wait">
+          <motion.nav
+            initial={{ y: -100, opacity: 0 }}
+            animate={{ y: visible ? 0 : -100, opacity: visible ? 1 : 0 }}
+            transition={{ duration: 0.3 }}
+            className={cn(
+              isHuman
+                ? "fixed top-0 inset-x-0 z-[5000] px-4 py-4 bg-white/80 backdrop-blur-md border-b border-slate-200 shadow-sm font-sans"
+                : "fixed top-4 inset-x-4 md:inset-x-0 mx-auto z-[5000] px-4 py-2 hacker-border bg-[#0a0a0a]/90 max-w-fit md:min-w-[650px] font-mono"
+            )}
+          >
+            <div className={isHuman ? "max-w-6xl mx-auto flex items-center justify-between" : "flex items-center justify-between gap-4 md:gap-8 px-2 md:px-4"}>
+              <div className={cn("font-bold tracking-tighter truncate max-w-[120px] md:max-w-none", isHuman ? "text-slate-900 text-xl" : "text-sm md:text-lg text-[#10b981]")}>
+                {isHuman ? "ธรณัส." : "ROOT@THARANAS:~#"}
+              </div>
 
-            {/* Desktop Menu */}
-            <div className="hidden md:flex items-center gap-6">
-              {navItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
+              {/* Desktop Menu */}
+              <div className="hidden md:flex items-center gap-6">
+                {navItems.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    onMouseEnter={() => !isHuman && playPing()}
+                    className={cn(
+                      "font-bold transition-all py-1",
+                      isHuman
+                        ? "text-slate-600 hover:text-slate-900 text-sm"
+                        : "text-[10px] lg:text-xs text-[#059669] hover:text-[#10b981] hover:glow-sm"
+                    )}
+                  >
+                    {isHuman ? item.name.replace(/\[ | \]/g, "") : item.name}
+                  </a>
+                ))}
+              </div>
+
+              <div className="flex items-center gap-2 md:gap-4">
+                <button
+                  onClick={() => {
+                    toggleViewMode();
+                    playPing();
+                  }}
                   onMouseEnter={() => !isHuman && playPing()}
-                  className={cn(
-                    "font-bold transition-all py-1",
-                    isHuman
-                      ? "text-slate-600 hover:text-slate-900 text-sm"
-                      : "text-[10px] lg:text-xs text-[#059669] hover:text-[#10b981] hover:glow-sm"
-                  )}
+                  className={cn("transition-colors p-2 rounded-full", isHuman ? "text-slate-500 hover:bg-slate-100 text-slate-900" : "text-[#10b98188] hover:text-[#10b981]")}
+                  title={isHuman ? "สลับไปโหมดแฮกเกอร์" : "สลับไปโหมดปกติ"}
+                  aria-label={isHuman ? "สลับไปโหมดแฮกเกอร์" : "สลับไปโหมดปกติ"}
                 >
-                  {isHuman ? item.name.replace(/\[ | \]/g, "") : item.name}
-                </a>
-              ))}
+                  {isHuman ? <Terminal size={20} /> : <Eye size={16} />}
+                </button>
+
+                <button
+                  onClick={() => {
+                    toggleAudio();
+                    playPing();
+                  }}
+                  onMouseEnter={() => !isHuman && playPing()}
+                  className={cn("transition-colors p-2 rounded-full", isHuman ? "text-slate-500 hover:bg-slate-100 text-slate-900" : "text-[#10b98188] hover:text-[#10b981]")}
+                  aria-label={isEnabled ? "ปิดเสียง" : "เปิดเสียง"}
+                >
+                  {isEnabled ? <Volume2 size={isHuman ? 20 : 16} /> : <VolumeX size={isHuman ? 20 : 16} />}
+                </button>
+
+                <button
+                  className="md:hidden p-2"
+                  onClick={() => {
+                    setIsOpen(!isOpen);
+                    if (!isHuman) playPing();
+                  }}
+                  aria-label={isOpen ? "ปิดเมนู" : "เปิดเมนู"}
+                >
+                  {isOpen
+                    ? <X size={20} className={isHuman ? "text-slate-900" : "text-[#10b981]"} />
+                    : <Menu size={20} className={isHuman ? "text-slate-900" : "text-[#10b981]"} />
+                  }
+                </button>
+
+                {/* Blink Cursor - Only in Hacker Mode */}
+                {!isHuman && (
+                  <motion.div
+                    animate={{ opacity: [1, 0] }}
+                    transition={{ repeat: Infinity, duration: 0.8 }}
+                    className="w-2 h-4 bg-[#10b981] hidden md:block"
+                  />
+                )}
+              </div>
             </div>
-
-            <div className="flex items-center gap-2 md:gap-4">
-              <button
-                onClick={() => {
-                  toggleViewMode();
-                  playPing();
-                }}
-                onMouseEnter={() => !isHuman && playPing()}
-                className={cn("transition-colors p-2 rounded-full", isHuman ? "text-slate-500 hover:bg-slate-100 text-slate-900" : "text-[#10b98188] hover:text-[#10b981]")}
-                title={isHuman ? "สลับไปโหมดแฮกเกอร์" : "สลับไปโหมดปกติ"}
-                aria-label={isHuman ? "สลับไปโหมดแฮกเกอร์" : "สลับไปโหมดปกติ"}
-              >
-                {isHuman ? <Terminal size={20} /> : <Eye size={16} />}
-              </button>
-
-              <button
-                onClick={() => {
-                  toggleAudio();
-                  playPing();
-                }}
-                onMouseEnter={() => !isHuman && playPing()}
-                className={cn("transition-colors p-2 rounded-full", isHuman ? "text-slate-500 hover:bg-slate-100 text-slate-900" : "text-[#10b98188] hover:text-[#10b981]")}
-                aria-label={isEnabled ? "ปิดเสียง" : "เปิดเสียง"}
-              >
-                {isEnabled ? <Volume2 size={isHuman ? 20 : 16} /> : <VolumeX size={isHuman ? 20 : 16} />}
-              </button>
-
-              <button
-                className="md:hidden p-2"
-                onClick={() => {
-                  setIsOpen(!isOpen);
-                  if (!isHuman) playPing();
-                }}
-                aria-label={isOpen ? "ปิดเมนู" : "เปิดเมนู"}
-              >
-                {isOpen
-                  ? <X size={20} className={isHuman ? "text-slate-900" : "text-[#10b981]"} />
-                  : <Menu size={20} className={isHuman ? "text-slate-900" : "text-[#10b981]"} />
-                }
-              </button>
-
-              {/* Blink Cursor - Only in Hacker Mode */}
-              {!isHuman && (
-                <motion.div
-                  animate={{ opacity: [1, 0] }}
-                  transition={{ repeat: Infinity, duration: 0.8 }}
-                  className="w-2 h-4 bg-[#10b981] hidden md:block"
-                />
-              )}
-            </div>
-          </div>
-        </motion.nav>
-      </AnimatePresence>
+          </motion.nav>
+        </AnimatePresence>
+      </div>
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
