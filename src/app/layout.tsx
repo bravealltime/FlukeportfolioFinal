@@ -6,12 +6,7 @@ import { SettingsProvider } from "@/components/SettingsProvider";
 
 import { ToastProvider } from "@/components/ToastProvider";
 import ScrollProgress from "@/components/ScrollProgress";
-import dynamic from "next/dynamic";
-
-const Chatbot = dynamic(() => import("@/components/Chatbot"), { ssr: false });
-const LiveCursors = dynamic(() => import("@/components/LiveCursors"), { ssr: false });
-const IncognitoDetector = dynamic(() => import("@/components/IncognitoDetector"), { ssr: false });
-const KonamiCode = dynamic(() => import("@/components/KonamiCode"), { ssr: false });
+import ClientSideComponents from "@/components/ClientSideComponents";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,10 +37,7 @@ export default function RootLayout({
           <AudioProvider>
             <ToastProvider>
               <ScrollProgress />
-              <LiveCursors />
-              <IncognitoDetector />
-              <KonamiCode />
-              <Chatbot />
+              <ClientSideComponents />
               {children}
             </ToastProvider>
           </AudioProvider>

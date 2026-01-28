@@ -43,6 +43,13 @@ const projects = [
         link: "https://github.com/thara/Rolldice",
         github: "https://github.com/thara/Rolldice",
     },
+    {
+        title: "JokPed v3 (BTFT)",
+        description: "บอทช่วยเหลือการเล่นเกม (FiveM/RedM) ที่มาพร้อมระบบ OCR ตรวจจับข้อความเรียลไทม์, ควบคุมผ่าน Discord และระบบ Live Stream ในตัว",
+        tech: ["Python", "OpenCV", "Tesseract OCR", "Discord.py"],
+        link: "https://github.com/bravealltime/BTFT-Bot",
+        github: "https://github.com/bravealltime/BTFT-Bot",
+    },
 ];
 
 import { useSettings } from "./SettingsProvider";
