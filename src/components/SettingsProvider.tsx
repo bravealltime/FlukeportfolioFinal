@@ -43,7 +43,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     return (
         <SettingsContext.Provider value={{ viewMode, toggleViewMode, isHuman }}>
             <div
-                className={isHuman ? "human-mode font-sans text-slate-900 transition-all duration-500 min-h-screen bg-white" : "hacker-mode font-mono text-[#10b981] transition-all duration-500 min-h-screen bg-[#0a0a0a]"}
+                className={isHuman ? "human-mode font-[family-name:var(--font-kanit)] text-slate-900 transition-all duration-500 min-h-screen bg-white" : "hacker-mode font-mono text-[#10b981] transition-all duration-500 min-h-screen bg-[#0a0a0a]"}
                 style={{ opacity: mounted ? 1 : 0.99 }} // Slight opacity change to trigger re-render without layout shift
             >
                 {children}

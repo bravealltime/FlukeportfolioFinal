@@ -9,19 +9,19 @@ const timelineData = [
     {
         year: "2021",
         title: "BorntoDev",
-        company: "Certification",
+        company: "ใบประกาศนียบัตร",
         desc: "สำเร็จหลักสูตร UX/UI Design ยกระดับทักษะการออกแบบหน้าเว็บและประสบการณ์ผู้ใช้ให้ดียิ่งขึ้น",
     },
     {
         year: "2016-2021",
-        title: "Thai-Nichi Institute of Technology",
-        company: "Bachelor's Degree",
+        title: "สถาบันเทคโนโลยีไทย-ญี่ปุ่น",
+        company: "ปริญญาตรี",
         desc: "เทคโนโลยีสารสนเทศ (IT) เน้นการพัฒนาซอฟต์แวร์และเรียนรู้วัฒนธรรมการทำงานแบบญี่ปุ่น",
     },
     {
         year: "2009-2016",
-        title: "Saint Dominic School",
-        company: "High School",
+        title: "โรงเรียนเซนต์ดอมินิก",
+        company: "มัธยมศึกษาตอนปลาย",
         desc: "สายวิทย์-คณิต พื้นฐานแน่นทั้งด้านตรรกะและการคำนวณ",
     },
 ];
@@ -41,7 +41,7 @@ const Timeline = () => {
                 >
                     <h2 className={`text-3xl md:text-5xl font-bold mb-4 uppercase tracking-tighter ${isHuman ? "text-slate-900" : "text-[#10b981]"
                         }`}>
-                        {isHuman ? "Education History" : "[ EDUCATION_LOG ]"}
+                        {isHuman ? "ประวัติการศึกษา" : "[ บันทึก_การศึกษา ]"}
                     </h2>
                 </motion.div>
 

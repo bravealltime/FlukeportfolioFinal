@@ -25,16 +25,16 @@ const Contact = () => {
                     className="relative z-10"
                 >
                     {!isHuman && <div className="text-[#10b981] text-xs mb-4 animate-pulse">
-                        [ ENCRYPTED_CHANNEL_OPEN ]
+                        [ เปิด_ช่องทาง_เข้ารหัส ]
                     </div>}
 
                     <h2 className={`text-3xl md:text-5xl font-bold mb-6 uppercase tracking-tighter ${isHuman ? "text-slate-900 normal-case" : "text-[#10b981]"}`}>
-                        {isHuman ? "Get in Touch" : "&gt; ESTABLISH_CONTACT_"}
+                        {isHuman ? "ส่งข้อความหาผม" : "[ สร้าง_การเชื่อมต่อ_ข้อมูล ]"}
                     </h2>
 
                     <p className={`text-sm mb-10 max-w-xl mx-auto ${isHuman ? "text-slate-600 font-sans text-lg normal-case" : "text-[#10b98188]"}`}>
                         {isHuman
-                            ? "I&apos;m always open to discussing new projects, creative ideas or opportunities to be part of your visions."
+                            ? "ผมยินดีต้อนรับเสมอสำหรับการพูดคุยเรื่องโปรเจกต์ใหม่ๆ ไอเดียสร้างสรรค์ หรือโอกาสในการร่วมงานกับคุณครับ"
                             : "พร้อมที่จะสร้างความเปลี่ยนแปลงในระบบดิจิทัลแล้วหรือยัง? ส่งโปรโตคอลการสื่อสารมาหาเรา เพื่อเริ่มดำเนินการทันที"}
                     </p>
 
@@ -50,7 +50,7 @@ const Contact = () => {
                                 : "border-[#10b981] text-[#10b981]"}`}
                         >
                             <Mail size={isHuman ? 20 : 16} />
-                            {isHuman ? "Send Email" : "SEND_PACKET::EMAIL"}
+                            {isHuman ? "ส่งอีเมล" : "ส่ง_แพ็กเกจ::อีเมล"}
                         </motion.a>
 
                         <div className="flex gap-4">
@@ -82,7 +82,7 @@ const Contact = () => {
             </div>
 
             <div className={`mt-24 text-[10px] text-center uppercase tracking-[0.3em] ${isHuman ? "text-slate-400 font-sans tracking-normal normal-case" : "text-[#10b98144]"}`}>
-                {isHuman ? "© 2024 Thara Portfolio. All rights reserved." : "System Version: 4.0.1 // Security Status: Verified"}
+                {isHuman ? "© 2024 Thara Portfolio. สงวนลิขสิทธิ์." : "เวอร์ชันระบบ: 4.0.1 // สถานะความปลอดภัย: ตรวจสอบแล้ว"}
             </div>
         </section>
     );

@@ -65,7 +65,7 @@ const Navbar = () => {
         >
           <div className={isHuman ? "max-w-6xl mx-auto flex items-center justify-between" : "flex items-center justify-between gap-4 md:gap-8 px-2 md:px-4"}>
             <div className={cn("font-bold tracking-tighter truncate max-w-[120px] md:max-w-none", isHuman ? "text-slate-900 text-xl" : "text-sm md:text-lg text-[#10b981]")}>
-              {isHuman ? "Thara." : "ROOT@THARA:~#"}
+              {isHuman ? "ธรณัส." : "ROOT@THARANAS:~#"}
             </div>
 
             {/* Desktop Menu */}
@@ -95,8 +95,8 @@ const Navbar = () => {
                 }}
                 onMouseEnter={() => !isHuman && playPing()}
                 className={cn("transition-colors p-2 rounded-full", isHuman ? "text-slate-500 hover:bg-slate-100 text-slate-900" : "text-[#10b98188] hover:text-[#10b981]")}
-                title={isHuman ? "Switch to Hacker Mode" : "Switch to Readability Mode"}
-                aria-label={isHuman ? "Switch to Hacker Mode" : "Switch to Human Mode"}
+                title={isHuman ? "สลับไปโหมดแฮกเกอร์" : "สลับไปโหมดปกติ"}
+                aria-label={isHuman ? "สลับไปโหมดแฮกเกอร์" : "สลับไปโหมดปกติ"}
               >
                 {isHuman ? <Terminal size={20} /> : <Eye size={16} />}
               </button>
@@ -108,7 +108,7 @@ const Navbar = () => {
                 }}
                 onMouseEnter={() => !isHuman && playPing()}
                 className={cn("transition-colors p-2 rounded-full", isHuman ? "text-slate-500 hover:bg-slate-100 text-slate-900" : "text-[#10b98188] hover:text-[#10b981]")}
-                aria-label={isEnabled ? "Mute sound" : "Unmute sound"}
+                aria-label={isEnabled ? "ปิดเสียง" : "เปิดเสียง"}
               >
                 {isEnabled ? <Volume2 size={isHuman ? 20 : 16} /> : <VolumeX size={isHuman ? 20 : 16} />}
               </button>
@@ -119,7 +119,7 @@ const Navbar = () => {
                   setIsOpen(!isOpen);
                   if (!isHuman) playPing();
                 }}
-                aria-label={isOpen ? "Close menu" : "Open menu"}
+                aria-label={isOpen ? "ปิดเมนู" : "เปิดเมนู"}
               >
                 {isOpen
                   ? <X size={20} className={isHuman ? "text-slate-900" : "text-[#10b981]"} />
@@ -177,7 +177,7 @@ const Navbar = () => {
               transition={{ delay: 0.5 }}
               className={cn("mt-20 text-[10px] uppercase", isHuman ? "text-slate-400" : "text-[#10b98144]")}
             >
-              {isHuman ? "© 2024 Thara Portfolio" : "Connection: Secure | User: Guest"}
+              {isHuman ? "© 2024 Thara Portfolio" : "สถานะการเชื่อมต่อ: ปลอดภัย | ผู้ใช้: แขก"}
             </motion.div>
           </motion.div>
         )}

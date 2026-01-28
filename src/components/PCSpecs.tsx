@@ -8,12 +8,12 @@ import { Cpu, HardDrive, Monitor, Zap, Disc, Speaker } from "lucide-react";
 import DecryptText from "./DecryptText";
 
 const specs = [
-    { icon: Cpu, label: "CPU", value: "Intel Core i9-14900K", desc: "24 Cores / 32 Threads @ 6.0 GHz" },
-    { icon: Zap, label: "GPU", value: "NVIDIA RTX 4090", desc: "24GB GDDR6X" },
-    { icon: HardDrive, label: "RAM", value: "64GB DDR5", desc: "Corsair Dominator Platinum 6000MHz" },
-    { icon: Disc, label: "Storage", value: "2TB NVMe Gen5", desc: "Samsung 990 Pro x2" },
-    { icon: Monitor, label: "Monitor", value: "OLED 4K 240Hz", desc: "Samsung Odyssey G9" },
-    { icon: Speaker, label: "Audio", value: "DAC/Amp Stack", desc: "Sennheiser HD 800S" },
+    { icon: Cpu, label: "ซีพียู", value: "AMD Ryzen 7 9800X3D", desc: "8 คอร์ / 16 เธรด @ 4.7GHz (AM5)" },
+    { icon: Zap, label: "การ์ดจอ", value: "MSI RTX 5060 Ti", desc: "16GB GDDR7 Shadow 2X OC" },
+    { icon: HardDrive, label: "แรม", value: "32GB (16x2) DDR5", desc: "Lexar Ares RGB 6400MHz Black" },
+    { icon: Disc, label: "ความจุ", value: "1TB Lexar NQ780", desc: "NVMe PCIe Gen4x4 (7400MB/s)" },
+    { icon: Monitor, label: "เมนบอร์ด", value: "GIGABYTE B650M", desc: "GAMING WIFI (REV1.2)" },
+    { icon: Speaker, label: "พาวเวอร์ซัพพลาย", value: "ASUS PRIME 750W", desc: "80+ Bronze Certified" },
 ];
 
 const PCSpecs = () => {
@@ -30,7 +30,7 @@ const PCSpecs = () => {
                     className="mb-12 text-center"
                 >
                     <h2 className={`text-3xl md:text-5xl font-bold mb-4 uppercase tracking-tighter ${isHuman ? "text-slate-900" : "text-[#10b981]"}`}>
-                        {isHuman ? "My Setup" : "[ SYSTEM_HARDWARE_DIAGNOSTICS ]"}
+                        {isHuman ? "มุมทำงานของผม" : "[ การวิเคราะห์_ฮาร์ดแวร์_ระบบ ]"}
                     </h2>
                     {isHuman && <div className="h-1 w-24 bg-blue-600 rounded-full mx-auto" />}
                     {!isHuman && <div className="h-[1px] w-full max-w-md mx-auto bg-[#10b98144]" />}

@@ -47,11 +47,11 @@ const Skills = () => {
                 >
                     <TypewriterText
                         as="h2"
-                        text={isHuman ? "Technical Skills" : "[ // TECH_STACK ]"}
+                        text={isHuman ? "ทักษะทางเทคนิค" : "[ // รายการ_ทักษะ ]"}
                         className={`text-3xl md:text-5xl font-bold mb-2 uppercase tracking-tighter ${isHuman ? "text-slate-900" : "text-[#10b981]"}`}
                     />
                     <p className={`text-xs uppercase tracking-widest ${isHuman ? "text-slate-500 font-sans mt-4 normal-case tracking-normal" : "text-[#10b98188]"}`}>
-                        {isHuman ? "Technologies I work with" : "Scanning for available technologies..."}
+                        {isHuman ? "เทคโนโลยีที่ผมเชี่ยวชาญ" : "กำลังสแกนหาเทคโนโลยีที่พร้อมใช้งาน..."}
                     </p>
                 </motion.div>
 

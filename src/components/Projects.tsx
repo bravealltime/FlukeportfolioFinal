@@ -88,7 +88,7 @@ const Projects = () => {
                 >
                     <TypewriterText
                         as="h2"
-                        text={isHuman ? "Featured Projects" : "[ // DATABASE_PROJECTS ]"}
+                        text={isHuman ? "ผลงานที่โดดเด่น" : "[ // ฐานข้อมูล_โปรเจกต์ ]"}
                         className={`text-3xl md:text-5xl font-bold mb-2 uppercase tracking-tighter ${isHuman ? "text-slate-900" : "text-[#10b981]"}`}
                     />
                     {!isHuman && <div className="h-1 w-32 bg-[#10b981] border shadow-[0_0_10px_#10b981]" />}
@@ -113,13 +113,13 @@ const Projects = () => {
                             <div className="relative z-10">
                                 <div className="flex justify-between items-start mb-6">
                                     <div className={`${isHuman ? "text-slate-400 font-sans font-bold text-sm" : "text-[#10b981] opacity-50 text-xs"}`}>
-                                        {isHuman ? `0${index + 1}` : `0${index + 1} // FILE.SYS`}
+                                        {isHuman ? `ชิ้นที่ ${index + 1}` : `ไฟล์_${index + 1} // DATA.SYS`}
                                     </div>
                                     <div className="flex gap-4">
                                         <a
                                             href={project.github}
                                             className={`${isHuman ? "text-slate-400 hover:text-slate-900" : "text-[#10b981] hover:glow-sm"} transition-all`}
-                                            aria-label={`View ${project.title} on GitHub`}
+                                            aria-label={`ดูรหัสต้นฉบับ ${project.title} บน GitHub`}
                                         >
                                             <Github size={isHuman ? 20 : 18} />
                                         </a>
@@ -151,7 +151,7 @@ const Projects = () => {
                                     href={project.link}
                                     className={`inline-flex items-center gap-2 text-xs font-bold hover:underline ${isHuman ? "text-blue-600 font-sans text-sm" : "text-[#10b981]"}`}
                                 >
-                                    {isHuman ? "View Project" : "[ ACCESS_RESOURCES ]"}
+                                    {isHuman ? "เข้าชมโปรเจกต์" : "[ เข้าถึง_ทรัพยากร ]"}
                                     <ExternalLink size={12} />
                                 </motion.a>
 
@@ -160,7 +160,7 @@ const Projects = () => {
                                     className={`ml-4 inline-flex items-center gap-2 text-xs font-bold hover:underline ${isHuman ? "text-slate-500" : "text-[#10b981aa]"}`}
                                 >
                                     <BookOpen size={12} />
-                                    {isHuman ? "Read Case Study" : "DECRYPT_LOGS"}
+                                    {isHuman ? "อ่านกรณีศึกษา" : "ถอดรหัส_บันทึก"}
                                 </button>
                             </div>
                         </motion.div>
@@ -180,14 +180,14 @@ const Projects = () => {
                     >
                         <Trophy size={48} className={`mb-4 ${isHuman ? "text-indigo-500" : "text-[#10b981]"}`} />
                         <h3 className={`text-xl font-bold mb-2 uppercase ${isHuman ? "text-indigo-900" : "text-[#10b981]"}`}>
-                            {isHuman ? "AI Doodle Challenge" : "NEURAL_NET_TRAINING"}
+                            {isHuman ? "ความท้าทาย AI Doodle" : "ฝึกฝน_โครงข่าย_ประสาท"}
                         </h3>
                         <p className={`text-xs ${isHuman ? "text-indigo-600" : "text-[#10b981bb]"}`}>
-                            {isHuman ? "Draw something and let AI guess what it is!" : "TESTING_RECOGNITION_ALGORITHM_V2.0"}
+                            {isHuman ? "วาดรูปแล้วให้ AI ทายว่าคุณวาดอะไร!" : "ทดสอบ_อัลกอริทึม_การจดจำ_V2.0"}
                         </p>
                         <div className={`mt-4 px-4 py-2 rounded-full text-xs font-bold ${isHuman ? "bg-indigo-600 text-white" : "bg-[#10b981] text-black"
                             }`}>
-                            PLAY NOW
+                            เล่นเลย
                         </div>
                     </motion.div>
 
@@ -205,10 +205,10 @@ const Projects = () => {
                     >
                         <Lock size={48} className={`mb-4 ${isHuman ? "text-slate-400" : "text-[#10b981]"}`} />
                         <h3 className={`text-xl font-bold mb-2 uppercase ${isHuman ? "text-slate-500" : "text-[#10b981]"}`}>
-                            {isHuman ? "Confidential Project" : "ENCRYPTED_FILE"}
+                            {isHuman ? "โปรเจกต์ลับ" : "ไฟล์_รอ_การถอดรหัส"}
                         </h3>
                         <p className={`text-xs ${isHuman ? "text-slate-400" : "text-[#10b98166]"}`}>
-                            {isHuman ? "Access Restricted. Authorized Personnel Only." : "LEVEL 5 SECURITY CLEARANCE REQUIRED"}
+                            {isHuman ? "จำกัดการเข้าถึง เฉพาะผู้ที่ได้รับอนุญาตเท่านั้น" : "ต้องการการอนุมัติความปลอดภัยระดับ 5"}
                         </p>
                     </motion.div>
                 </div>

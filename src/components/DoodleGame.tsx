@@ -144,7 +144,7 @@ const DoodleGame: React.FC<DoodleGameProps> = ({ isOpen, onClose }) => {
                     }`}>
                     <h2 className={`font-bold flex items-center gap-2 ${isHuman ? "text-slate-800" : "text-[#10b981]"
                         }`}>
-                        <Trophy size={20} /> AI Doodle Guesser
+                        <Trophy size={20} /> ทายภาพวาด AI
                     </h2>
                     <button onClick={onClose} className="hover:opacity-70">
                         <X size={24} className={isHuman ? "text-slate-500" : "text-[#10b981]"} />
@@ -157,7 +157,7 @@ const DoodleGame: React.FC<DoodleGameProps> = ({ isOpen, onClose }) => {
                     {isLoading && (
                         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-white/80">
                             <div className="animate-spin text-4xl mb-2">⏳</div>
-                            <p className="font-bold text-slate-500">Loading Brain...</p>
+                            <p className="font-bold text-slate-500">กำลังโหลดสมองกล...</p>
                         </div>
                     )}
 
@@ -175,7 +175,7 @@ const DoodleGame: React.FC<DoodleGameProps> = ({ isOpen, onClose }) => {
                         className="bg-white shadow-lg border-2 border-dashed border-gray-300 rounded-lg cursor-crosshair touch-none"
                     />
 
-                    <p className="mt-2 text-xs text-gray-400">Draw something simple (e.g. Laptop, Cat, Mug)</p>
+                    <p className="mt-2 text-xs text-gray-400">ลองวาดอะไรง่ายๆ ดูครับ (เช่น แล็ปท็อป, แมว, แก้วน้ำ)</p>
                 </div>
 
                 {/* Controls & Result */}
@@ -185,7 +185,7 @@ const DoodleGame: React.FC<DoodleGameProps> = ({ isOpen, onClose }) => {
                         <div className="flex-1">
                             {prediction ? (
                                 <div>
-                                    <p className="text-xs opacity-70">I think it is...</p>
+                                    <p className="text-xs opacity-70">ผมคิดว่ามันคือ...</p>
                                     <h3 className="text-2xl font-bold uppercase">{prediction}</h3>
                                     <div className="w-full bg-gray-200 h-2 rounded-full mt-1 overflow-hidden">
                                         <div
@@ -193,10 +193,10 @@ const DoodleGame: React.FC<DoodleGameProps> = ({ isOpen, onClose }) => {
                                             style={{ width: `${confidence}%` }}
                                         />
                                     </div>
-                                    <p className="text-right text-xs mt-1">{confidence}% Confidence</p>
+                                    <p className="text-right text-xs mt-1">ความมั่นใจ {confidence}%</p>
                                 </div>
                             ) : (
-                                <p className="opacity-50 italic">Draw something above...</p>
+                                <p className="opacity-50 italic">ลองวาดรูปด้านบนได้เลยครับ...</p>
                             )}
                         </div>
 

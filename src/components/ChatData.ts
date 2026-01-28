@@ -4,7 +4,7 @@ export const KNOWLEDGE_BASE = [
         answers: {
             human: {
                 en: "Hello! I'm Thara's assistant. How can I help you today? (Ask about: skills, experience, or contact)",
-                th: "สวัสดีครับ! ผมเป็นผู้ช่วยของธารา มีอะไรให้ช่วยไหมครับ? (ลองถามเรื่อง: ทักษะ, ประสบการณ์, หรือติดต่อ)"
+                th: "สวัสดีครับ! ผมเป็นผู้ช่วยของธรณัส มีอะไรให้ผมช่วยไหมครับ? (ลองถามเกี่ยวกับ: ทักษะ, ประสบการณ์, หรือข้อมูลการติดต่อ)"
             },
             hacker: {
                 en: "SYSTEM_ONLINE... WAITING_FOR_INPUT. >> ASK_ABOUT: [SKILLS, EXP, CONTACT]",
@@ -17,7 +17,7 @@ export const KNOWLEDGE_BASE = [
         answers: {
             human: {
                 en: "I specialize in Fullstack Development. My core stack includes Next.js, React, TypeScript, Node.js, and Python. I also have experience with Cloud Architecture.",
-                th: "ผมเชี่ยวชาญด้าน Fullstack Development ครับ โดยใช้ Next.js, React, TypeScript, Node.js และ Python เป็นหลัก และมีประสบการณ์ด้าน Cloud Architecture ด้วย"
+                th: "ธรณัสเชี่ยวชาญด้าน Fullstack Development ครับ โดยใช้ Next.js, React, TypeScript, Node.js และ Python เป็นหลัก นอกจากนี้ยังมีประสบการณ์ด้าน Cloud Architecture ด้วยครับ"
             },
             hacker: {
                 en: "DETECTED_STACK: [NEXT.JS, REACT, TS, NODE.JS, PYTHON]. STATUS: MASTERED. EXECUTION_RATE: 100%.",
@@ -34,7 +34,7 @@ export const KNOWLEDGE_BASE = [
             },
             hacker: {
                 en: "ACCESSING_LOGS... > 2024: SENIOR_DEV [LEADER] > 2022: FULLSTACK [BUILDER] > 2020: JUNIOR [INITIATE].",
-                th: "ดึงข้อมูลประวัติ... > 2024: SENIOR_DEV [ผู้นำทีม] > 2022: FULLSTACK [ผู้สร้าง] > 2020: JUNIOR [จุดเริ่มต้น]."
+                th: "ดึงข้อมูลบันทึกประวัติ... > 2024: SENIOR_DEV [หัวหน้าทีม] > 2022: FULLSTACK [ผู้พัฒนา] > 2020: JUNIOR [เริ่มต้น]."
             }
         }
     },
@@ -43,7 +43,7 @@ export const KNOWLEDGE_BASE = [
         answers: {
             human: {
                 en: "You can reach me via the contact form on this website, or email me at example@email.com. I'm open to opportunities!",
-                th: "คุณสามารถส่งข้อความผ่านแบบฟอร์มในเว็บนี้ หรืออีเมลมาที่ example@email.com ได้เลยครับ ผมพร้อมคุยทุกโอกาส!"
+                th: "คุณสามารถส่งข้อความหาเขาได้ทางแบบฟอร์มในหน้าเว็บนี้ หรือส่งอีเมลไปที่ example@email.com ได้เลยครับ เขายินดีตอบรับทุกการติดต่อ!"
             },
             hacker: {
                 en: "COMM_CHANNEL_OPEN. SEND_PACKET_TO: [CONTACT_FORM] OR [MAIL_PROTOCOL]. AWAITING_HANDSHAKE.",
@@ -86,7 +86,7 @@ export const KNOWLEDGE_BASE = [
             },
             hacker: {
                 en: "CURRENT_MODEL: STATIC_RAG_V1. UPGRADE_PATH_AVAILABLE: [OPENAI_API, GEMINI_API, ANTHROPIC]. REQUIRE_API_KEY_INJECTION.",
-                th: "โมเดลปัจจุบัน: STATIC_RAG_V1. เส้นทางอัปเกรด: [OPENAI_API, GEMINI_API]. ต้องการ: API_KEY."
+                th: "โมเดลปัจจุบัน: STATIC_RAG_V1. เส้นทางอัปเกรดที่รองรับ: [OPENAI_API, GEMINI_API]. สถานะ: ต้องการ API_KEY."
             }
         }
     },
@@ -98,8 +98,21 @@ export const KNOWLEDGE_BASE = [
                 th: "ผมคือ ธารา ครับ นักพัฒนาสาย Creative Coder จากไทย ผมชอบสร้างเว็บไซต์ที่โต้ตอบได้และสวยงาม"
             },
             hacker: {
-                en: "IDENTITY: THARANUT_H. ROLE: CREATIVE_CODER. LOCATION: THAILAND [SERVER_SEA].",
-                th: "ระบุตัวตน: THARANUT_H. ตำแหน่ง: CREATIVE_CODER. พิกัด: THAILAND [SERVER_SEA]."
+                en: "IDENTITY: THARANAS_H. ROLE: CREATIVE_CODER. LOCATION: THAILAND [SERVER_SEA].",
+                th: "ยืนยันตัวตน: THARANAS_H. บทบาท: CREATIVE_CODER. พิกัด: THAILAND [SERVER_SEA]."
+            }
+        }
+    },
+    {
+        keywords: ["this web", "build with", "architecture", "stack", "library", "framework", "ใช้อะไรสร้าง", "พัฒนาด้วยอะไร", "หลังบ้าน", "หน้าบ้าน"],
+        answers: {
+            human: {
+                en: "This website is built with Next.js 15 (React 19), TypeScript, and Tailwind CSS 4. For animations, I use Framer Motion, and Firebase handles the database. I also integrated TensorFlow.js for the AI Doodle and Matter.js for physics!",
+                th: "เว็บไซต์นี้สร้างด้วย Next.js 15 (React 19), TypeScript และ Tailwind CSS 4 ครับ ส่วนงานอนิเมชั่นใช้ Framer Motion และใช้ Firebase จัดการข้อมูล หลังบ้านยังมี TensorFlow.js สำหรับระบบวาดเขียน AI และ Matter.js สำหรับฟิสิกส์ในหน้าเว็บด้วยครับ!"
+            },
+            hacker: {
+                en: "ARCH_SCAN: [NEXT.JS 15, REACT 19, TS, TAILWIND 4]. MODULE_INTEGRATION: [FRAMER_MOTION, FIREBASE, TENSORFLOW.JS, MATTER.JS]. STATUS: OPTIMIZED.",
+                th: "ตรวจสอบสถาปัตยกรรม: [NEXT.JS 15, REACT 19, TS, TAILWIND 4]. การเชื่อมต่อโมดูล: [FRAMER_MOTION, FIREBASE, TENSORFLOW.JS]. สถานะ: ทำงานปกติ."
             }
         }
     }

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Kanit, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AudioProvider } from "@/components/AudioProvider";
 import { SettingsProvider } from "@/components/SettingsProvider";
@@ -8,9 +8,10 @@ import { ToastProvider } from "@/components/ToastProvider";
 import ScrollProgress from "@/components/ScrollProgress";
 import ClientSideComponents from "@/components/ClientSideComponents";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const kanit = Kanit({
+  variable: "--font-kanit",
+  subsets: ["latin", "thai"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 const geistMono = Geist_Mono({
@@ -19,8 +20,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "THARA // PORTFOLIO",
-  description: "Creative Coder Portfolio - Hacker Aesthetic",
+  title: "ธรณัส // พอร์ตโฟลิโอ",
+  description: "พอร์ตโฟลิโอของผู้สร้างสรรค์โค้ด - สไตล์แฮกเกอร์",
 };
 
 export default function RootLayout({
@@ -29,9 +30,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="th" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${kanit.variable} ${geistMono.variable} antialiased`}
       >
         <SettingsProvider>
           <AudioProvider>

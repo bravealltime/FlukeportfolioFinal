@@ -19,7 +19,7 @@ const MOCK_WEATHER: WeatherData = {
 const WeatherWidget = () => {
     const { isHuman } = useSettings();
     const [weather, setWeather] = useState<WeatherData | null>(null);
-    const [location, setLocation] = useState<string>("Detecting...");
+    const [location, setLocation] = useState<string>("กำลังระบุตำแหน่ง...");
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -91,12 +91,12 @@ const WeatherWidget = () => {
             ) : (
                 <>
                     <div className="flex items-center gap-2">
-                        <span>[ SENSOR::{location.toUpperCase()} ]</span>
+                        <span>[ เซ็นเซอร์::{location.toUpperCase()} ]</span>
                         {getWeatherIcon(displayWeather.weatherCode)}
                     </div>
                     <div className="flex gap-4">
-                        <span>TEMP: {displayWeather.temperature}°C</span>
-                        <span>WIND: {displayWeather.windSpeed}km/h</span>
+                        <span>อุณหภูมิ: {displayWeather.temperature}°C</span>
+                        <span>แรงลม: {displayWeather.windSpeed} กม./ชม.</span>
                     </div>
                 </>
             )}

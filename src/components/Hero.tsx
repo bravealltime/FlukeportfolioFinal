@@ -57,17 +57,18 @@ const Hero = () => {
                 >
                     {/* ปรับข้อความให้น่าสนใจ เป็นกันเอง */}
                     <motion.div variants={itemVariants} className="mb-6 inline-block px-4 py-1.5 rounded-full bg-slate-100 text-slate-600 text-sm font-medium">
-                        Computer & Tech Lover 💻
+                        คนรักคอมพิวเตอร์และเทคโนโลยี 💻
                     </motion.div>
 
                     <motion.h1 variants={itemVariants} className="text-5xl md:text-8xl font-bold text-slate-900 tracking-tight mb-6 leading-[1.1]">
-                        Tharanut <br />
+                        Tharanas <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-violet-600">Hiransrettawat</span>
                     </motion.h1>
 
                     <motion.p variants={itemVariants} className="text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-                        ผมชอบเรื่องคอมพิวเตอร์มากครับ โดยเฉพาะการประกอบคอมและศึกษาเรื่องอุปกรณ์ฮาร์ดแวร์ต่างๆ
-                        ผมติดตามข่าวสารวงการไอทีตลอดเวลา ชอบเรียนรู้เทคโนโลยีใหม่ๆ และสนุกทุกครั้งที่ได้อัปเดตความรู้ครับ
+                        ยินดีที่ได้รู้จักครับ! ผมเป็นคนที่คลั่งไคล้ในเทคโนโลยีมากครับ
+                        โดยเฉพาะการประกอบคอมพิวเตอร์และเจาะลึกเรื่องฮาร์ดแวร์ ผมชอบอัปเดตความรู้ใหม่ๆ อยู่เสมอ
+                        เพื่อให้ทันโลกไอทีที่หมุนไวแบบทุกวันนี้ครับ
                     </motion.p>
 
                     <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -76,9 +77,9 @@ const Hero = () => {
                             onMouseEnter={() => playHover()}
                             onClick={playKeyPress}
                             className="px-8 py-4 bg-slate-900 text-white rounded-lg font-semibold hover:bg-slate-800 transition-all flex items-center justify-center gap-2 shadow-lg shadow-slate-200 cursor-pointer"
-                            aria-label="View my projects"
+                            aria-label="ดูผลงานของฉัน"
                         >
-                            View Projects <ArrowRight size={18} />
+                            ดูผลงาน <ArrowRight size={18} />
                         </a>
                         <a
                             href="/resume-thara-official.txt"
@@ -86,9 +87,9 @@ const Hero = () => {
                             onMouseEnter={() => playHover()}
                             onClick={playKeyPress}
                             className="px-8 py-4 bg-white text-slate-700 border border-slate-200 rounded-lg font-semibold hover:bg-slate-50 transition-all flex items-center justify-center gap-2 cursor-pointer"
-                            aria-label="Download my CV"
+                            aria-label="ดาวน์โหลด CV"
                         >
-                            Download CV <Mail size={18} />
+                            ดาวน์โหลด CV <Mail size={18} />
                         </a>
                     </motion.div>
                 </motion.div>
@@ -123,16 +124,16 @@ const Hero = () => {
                     className="text-[#10b981] mb-2 text-xs md:text-base opacity-70 flex items-center gap-2"
                 >
                     <span className="w-8 h-[1px] bg-[#10b98144]" />
-                    <DecryptText text="INITIALIZING SYSTEM... DONE" />
+                    <DecryptText text="กำลังเริ่มระบบ... เรียบร้อย" />
                 </motion.p>
 
                 <motion.h1
                     variants={itemVariants}
                     className="text-3xl sm:text-4xl md:text-7xl font-bold mb-6 tracking-tighter text-[#10b981] leading-[1.1]"
                 >
-                    &lt;<DecryptText text="SYSTEM_ACCESS" /> /&gt; <br />
+                    &lt;<DecryptText text="เข้าสู่ระบบ_สำเร็จ" /> /&gt; <br />
                     <span className="text-white bg-[#10b981] px-2 inline-block mt-2">
-                        USER::<DecryptText text="THARANUT_H" delay={500} />
+                        ผู้ใช้::<DecryptText text="ธรณัส_ฮ" delay={500} />
                     </span>
                 </motion.h1>
 
@@ -145,11 +146,11 @@ const Hero = () => {
                         transition={{ repeat: Infinity, duration: 0.1 }}
                         className="text-[#10b981] text-[10px] md:text-sm leading-relaxed"
                     >
-                        IDENT_PROCESS: STARTING PORTFOLIO_V4.2 <br />
-                        SUBJECT: THARANUT HIRANSRETTAWAT <br />
-                        HOBBIES: [DIY_PC, HARDWARE, TECH_NEWS, GADGETS] <br />
-                        MISSION: &quot;<DecryptText text="อัปเดตเทรนด์ไอที และประกอบคอมคือความสุข" delay={800} />&quot; <br />
-                        STATUS: <span className="text-[#10b981] font-bold animate-pulse">LIVE UPDATE...</span>
+                        กระบวนการ_ตรวจสอบ: เริ่มต้น PORTFOLIO_V4.2 <br />
+                        เป้าหมาย: ธรณัส หิรัญเศรษฐวัฒน์ <br />
+                        ความสนใจ: [ประกอบคอมฯ, ฮาร์ดแวร์, ข่าวไอที, แกดเจ็ตล่าสุด] <br />
+                        ภารกิจ: &quot;<DecryptText text="ตามติดเทรนด์โลกไอที และมีความสุขกับการประกอบคอม" delay={800} />&quot; <br />
+                        สถานะ: <span className="text-[#10b981] font-bold animate-pulse">ออนไลน์_กำลังอัปเดต...</span>
                     </motion.p>
                 </motion.div>
 
@@ -160,9 +161,9 @@ const Hero = () => {
                         whileHover={{ scale: 1.02, backgroundColor: "#10b981", color: "#000" }}
                         whileTap={{ scale: 0.98 }}
                         className="px-8 py-3 bg-[#10b98111] border border-[#10b981] text-[#10b981] font-bold text-xs md:text-sm uppercase transition-all flex items-center justify-center gap-2"
-                        aria-label="Execute View Work"
+                        aria-label="เรียกใช้::ดูผลงาน"
                     >
-                        [ EXECUTE::VIEW_WORK ]
+                        [ สั่งรัน::ดูผลงาน ]
                     </motion.button>
                     <motion.button
                         onMouseEnter={playPing}
@@ -170,9 +171,9 @@ const Hero = () => {
                         whileHover={{ scale: 1.02, backgroundColor: "#10b98133" }}
                         whileTap={{ scale: 0.98 }}
                         className="px-8 py-3 border border-[#10b98155] text-[#10b981bb] font-bold text-xs md:text-sm uppercase transition-all flex items-center justify-center gap-2"
-                        aria-label="Download Profile"
+                        aria-label="ดาวน์โหลดข้อมูลส่วนตัว"
                     >
-                        [ DOWNLOAD::PROFILE ]
+                        [ ดาวน์โหลด::ประวัติส่วนตัว ]
                     </motion.button>
                 </motion.div>
             </motion.div>

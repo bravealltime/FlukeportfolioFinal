@@ -20,7 +20,7 @@ const Chatbot = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [input, setInput] = useState("");
     const [messages, setMessages] = useState<Message[]>([
-        { id: "intro", text: isHuman ? "Hello! How can I help you today?" : "SYSTEM_ONLINE. AWAITING_INPUT.", sender: "bot" }
+        { id: "intro", text: isHuman ? "สวัสดีครับ มีอะไรให้ผมช่วยไหมครับ?" : "ระบบ_ออนไลน์. กำลัง_รอ_รับ_ข้อมูล.", sender: "bot" }
     ]);
     const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -37,7 +37,7 @@ const Chatbot = () => {
             if (prev.length === 1 && prev[0].id === "intro") {
                 return [{
                     id: "intro",
-                    text: isHuman ? "Hello! How can I help you today?" : "SYSTEM_ONLINE. AWAITING_INPUT.",
+                    text: isHuman ? "สวัสดีครับ มีอะไรให้ผมช่วยไหมครับ?" : "ระบบ_ออนไลน์. กำลัง_รอ_รับ_ข้อมูล.",
                     sender: "bot"
                 }];
             }
@@ -76,7 +76,7 @@ const Chatbot = () => {
 
         // Show Loading/Thinking
         const loadingId = Date.now().toString() + "_loading";
-        setMessages(prev => [...prev, { id: loadingId, text: isHuman ? "Thinking..." : "PROCESSING...", sender: "bot" }]);
+        setMessages(prev => [...prev, { id: loadingId, text: isHuman ? "กำลังคิด..." : "กำลัง_ประมวลผล...", sender: "bot" }]);
 
         const lang = detectLanguage(userMsg.text);
         const mode = isHuman ? "human" : "hacker";
@@ -98,8 +98,8 @@ const Chatbot = () => {
 
                 if (!aiResponse || !aiResponse.trim()) {
                     finalResponse = isHuman
-                        ? "I'm thinking... but I couldn't find the words."
-                        : "SYSTEM_WARNING: EMPTY_RESPONSE_FROM_CORE. RETRY_INITIATED.";
+                        ? "ผมกำลังคิดอยู่ครับ... แต่ยังหาคำตอบไม่ได้เลย"
+                        : "คำเตือน_ระบบ: ไม่ได้รับ_ข้อมูล_จาก_คอร์หลัก. เริ่ม_ดำเนินการ_ใหม่.";
                 } else {
                     finalResponse = aiResponse;
                 }
@@ -107,8 +107,8 @@ const Chatbot = () => {
                 // Note: Hacker styling is now handled in the visual component loop
             } catch (error) {
                 finalResponse = isHuman
-                    ? "Sorry, I can't connect to the AI right now."
-                    : "ERROR: NEURAL_NET_UNREACHABLE. CHECK_CONNECTION.";
+                    ? "ขออภัยครับ ตอนนี้ผมไม่สามารถเชื่อมต่อกับ AI ได้"
+                    : "ผิดพลาด: ไม่สามารถ_เข้าถึง_โครงข่าย_ประสาท. ตรวจสอบ_การเชื่อมต่อ.";
             }
         }
 
@@ -153,7 +153,7 @@ const Chatbot = () => {
                             <div className="flex items-center gap-2">
                                 <Bot size={20} className={isHuman ? "text-blue-600" : "text-[#10b981]"} />
                                 <span className={`font-bold ${isHuman ? "text-slate-800" : "text-[#10b981]"}`}>
-                                    {isHuman ? "Support Bot" : "AI_ASSISTANT v2.0"}
+                                    {isHuman ? "บอทผู้ช่วย" : "ผู้ช่วย_AI v2.0"}
                                 </span>
                             </div>
                             <button onClick={() => setIsOpen(false)} className="hover:opacity-70">
@@ -174,7 +174,7 @@ const Chatbot = () => {
                                         {/* AI Indicator Icon for Bot Messages */}
                                         {msg.sender === "bot" && !isHuman && (
                                             <div className="text-[9px] opacity-50 mb-1 font-mono tracking-wider border-b border-[#10b98144] pb-1">
-                                                {msg.text.includes("ERROR") ? "SYSTEM_ALERT" : "AI_CORE_RESPONSE"}
+                                                {msg.text.includes("ผิดพลาด") ? "การแจ้งเตือน_ระบบ" : "การตอบกลับ_จาก_AI_คอร์"}
                                             </div>
                                         )}
                                         {msg.text}
@@ -190,7 +190,7 @@ const Chatbot = () => {
                                     value={input}
                                     onChange={(e) => setInput(e.target.value)}
                                     onKeyDown={(e) => e.key === "Enter" && handleSend()}
-                                    placeholder={isHuman ? "Type a message..." : "Execute command..."}
+                                    placeholder={isHuman ? "พิมพ์ข้อความ..." : "พิมพ์คำสั่งเพื่อรัน..."}
                                     className={`flex-1 p-2 bg-transparent outline-none text-sm ${isHuman ? "text-slate-800 placeholder-slate-400" : "text-[#10b981] placeholder-[#10b98144]"
                                         }`}
                                 />

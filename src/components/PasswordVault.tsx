@@ -36,13 +36,13 @@ const PasswordVault: React.FC<PasswordVaultProps> = ({ onUnlock, isOpen, onClose
     const handleSubmit = () => {
         if (input === PASSCODE) {
             playSuccess();
-            addToast("ACCESS GRANTED: SECRET PROJECT UNLOCKED", "success");
+            addToast("เข้าถึงสำเร็จ: ปลดล็อกโปรเจกต์ลับแล้ว", "success");
             onUnlock();
             setInput("");
             onClose();
         } else {
             playError();
-            addToast("ACCESS DENIED: INCORRECT PASSCODE", "error");
+            addToast("การเข้าถึงถูกปฏิเสธ: รหัสผ่านไม่ถูกต้อง", "error");
             setInput("");
         }
     };
@@ -61,8 +61,8 @@ const PasswordVault: React.FC<PasswordVaultProps> = ({ onUnlock, isOpen, onClose
                 initial={{ scale: 0.9, y: 50 }}
                 animate={{ scale: 1, y: 0 }}
                 className={`p-8 rounded-2xl w-full max-w-sm flex flex-col items-center ${isHuman
-                        ? "bg-white text-slate-900 border border-slate-200 shadow-2xl"
-                        : "bg-[#0a0a0a] text-[#10b981] border border-[#10b981] shadow-[0_0_50px_#10b98144]"
+                    ? "bg-white text-slate-900 border border-slate-200 shadow-2xl"
+                    : "bg-[#0a0a0a] text-[#10b981] border border-[#10b981] shadow-[0_0_50px_#10b98144]"
                     }`}
                 onClick={(e) => e.stopPropagation()}
             >
@@ -71,7 +71,7 @@ const PasswordVault: React.FC<PasswordVaultProps> = ({ onUnlock, isOpen, onClose
                 </div>
 
                 <h2 className="text-xl font-bold mb-4 tracking-widest uppercase">
-                    {isHuman ? "Enter Passcode" : "SECURITY CHECK"}
+                    {isHuman ? "กรอกรหัสผ่าน" : "ตรวจสอบ_ความปลอดภัย"}
                 </h2>
 
                 <div className={`w-full h-12 mb-6 rounded text-center text-3xl font-mono tracking-[1em] flex items-center justify-center ${isHuman ? "bg-slate-100" : "bg-black border border-[#10b98144]"
@@ -85,8 +85,8 @@ const PasswordVault: React.FC<PasswordVaultProps> = ({ onUnlock, isOpen, onClose
                             key={num}
                             onClick={() => handleInput(num.toString())}
                             className={`h-16 rounded-xl text-xl font-bold transition-all ${isHuman
-                                    ? "bg-slate-50 hover:bg-slate-200 active:scale-95 text-slate-700"
-                                    : "bg-black border border-[#10b98144] hover:bg-[#10b98122] active:scale-95 text-[#10b981]"
+                                ? "bg-slate-50 hover:bg-slate-200 active:scale-95 text-slate-700"
+                                : "bg-black border border-[#10b98144] hover:bg-[#10b98122] active:scale-95 text-[#10b981]"
                                 }`}
                         >
                             {num}
@@ -95,17 +95,17 @@ const PasswordVault: React.FC<PasswordVaultProps> = ({ onUnlock, isOpen, onClose
                     <button
                         onClick={handleClear}
                         className={`h-16 rounded-xl text-sm font-bold transition-all flex items-center justify-center ${isHuman
-                                ? "bg-red-50 hover:bg-red-100 text-red-500"
-                                : "bg-black border border-red-500/50 hover:bg-red-500/20 text-red-500"
+                            ? "bg-red-50 hover:bg-red-100 text-red-500"
+                            : "bg-black border border-red-500/50 hover:bg-red-500/20 text-red-500"
                             }`}
                     >
-                        CLR
+                        ล้าง
                     </button>
                     <button
                         onClick={() => handleInput("0")}
                         className={`h-16 rounded-xl text-xl font-bold transition-all ${isHuman
-                                ? "bg-slate-50 hover:bg-slate-200 active:scale-95 text-slate-700"
-                                : "bg-black border border-[#10b98144] hover:bg-[#10b98122] active:scale-95 text-[#10b981]"
+                            ? "bg-slate-50 hover:bg-slate-200 active:scale-95 text-slate-700"
+                            : "bg-black border border-[#10b98144] hover:bg-[#10b98122] active:scale-95 text-[#10b981]"
                             }`}
                     >
                         0
@@ -113,16 +113,16 @@ const PasswordVault: React.FC<PasswordVaultProps> = ({ onUnlock, isOpen, onClose
                     <button
                         onClick={handleSubmit}
                         className={`h-16 rounded-xl text-sm font-bold transition-all flex items-center justify-center ${isHuman
-                                ? "bg-blue-600 hover:bg-blue-700 text-white"
-                                : "bg-[#10b981] hover:bg-[#059669] text-black"
+                            ? "bg-blue-600 hover:bg-blue-700 text-white"
+                            : "bg-[#10b981] hover:bg-[#059669] text-black"
                             }`}
                     >
-                        ENT
+                        ตกลง
                     </button>
                 </div>
 
                 <div className={`text-[10px] uppercase tracking-widest ${isHuman ? "text-slate-400" : "text-[#10b98144]"}`}>
-                    Hint: Cyberpunk Year
+                    คำใบ้: ปีแห่งอนาคต (Cyberpunk)
                 </div>
             </motion.div>
         </motion.div>

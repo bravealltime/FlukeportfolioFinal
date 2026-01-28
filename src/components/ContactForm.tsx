@@ -31,7 +31,7 @@ const ContactForm = () => {
             // Simulation Mode
             setTimeout(() => {
                 setStatus("success");
-                addToast(isHuman ? "Message sent successfully!" : "PACKET_TRANSMISSION::COMPLETE", "success");
+                addToast(isHuman ? "ส่งข้อความสำเร็จแล้วครับ!" : "การ_ส่ง_ข้อมูล::เสร็จสิ้น", "success");
                 playSuccess();
                 if (form.current) form.current.reset();
                 setTimeout(() => setStatus("idle"), 3000);
@@ -44,14 +44,14 @@ const ContactForm = () => {
                 .then((result) => {
                     console.log(result.text);
                     setStatus("success");
-                    addToast(isHuman ? "Message sent successfully!" : "PACKET_TRANSMISSION::COMPLETE", "success");
+                    addToast(isHuman ? "ส่งข้อความสำเร็จแล้วครับ!" : "การ_ส่ง_ข้อมูล::เสร็จสิ้น", "success");
                     playSuccess();
                     if (form.current) form.current.reset();
                     setTimeout(() => setStatus("idle"), 3000);
                 }, (error) => {
                     console.log(error.text);
                     setStatus("error");
-                    addToast(isHuman ? "Failed to send message." : "TRANSMISSION_ERROR::RETRY", "error");
+                    addToast(isHuman ? "ส่งข้อความไม่สำเร็จ กรุณาลองใหม่ครับ" : "ข้อผิดพลาด_การส่ง::ลองใหม่", "error");
                     playError();
                     setTimeout(() => setStatus("idle"), 3000);
                 });
@@ -71,14 +71,14 @@ const ContactForm = () => {
                 >
                     <h2 className={`text-2xl font-bold mb-6 text-center uppercase tracking-wider ${isHuman ? "text-slate-800" : "text-[#10b981]"
                         }`}>
-                        {isHuman ? "Send me a message" : "[ ESTABLISH_UPLINK ]"}
+                        {isHuman ? "ส่งข้อความหาผม" : "[ สร้าง_การเชื่อมต่อ_ข้อมูล ]"}
                     </h2>
 
                     <form ref={form} onSubmit={sendEmail} className="space-y-4">
                         <div>
                             <label htmlFor="user_name" className={`block text-xs font-bold mb-1 uppercase ${isHuman ? "text-slate-500" : "text-[#10b981aa]"
                                 }`}>
-                                Name / Identity
+                                ชื่อของคุณ / ตัวตน
                             </label>
                             <input
                                 id="user_name"
@@ -89,14 +89,14 @@ const ContactForm = () => {
                                     ? "bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 text-slate-800"
                                     : "bg-black border border-[#10b98144] focus:border-[#10b981] text-[#10b981] placeholder-[#10b98144]"
                                     }`}
-                                placeholder={isHuman ? "John Doe" : "Enter Codex Name..."}
+                                placeholder={isHuman ? "กรอกชื่อของคุณ" : "ระบุ_รหัส_ตัวตน..."}
                             />
                         </div>
 
                         <div>
                             <label htmlFor="user_email" className={`block text-xs font-bold mb-1 uppercase ${isHuman ? "text-slate-500" : "text-[#10b981aa]"
                                 }`}>
-                                Email / Frequency
+                                อีเมล / ช่องทางติดต่อ
                             </label>
                             <input
                                 id="user_email"
@@ -107,14 +107,14 @@ const ContactForm = () => {
                                     ? "bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 text-slate-800"
                                     : "bg-black border border-[#10b98144] focus:border-[#10b981] text-[#10b981] placeholder-[#10b98144]"
                                     }`}
-                                placeholder={isHuman ? "john@example.com" : "encrypted@mesh.net"}
+                                placeholder={isHuman ? "email@example.com" : "encrypted@mesh.net"}
                             />
                         </div>
 
                         <div>
                             <label htmlFor="message" className={`block text-xs font-bold mb-1 uppercase ${isHuman ? "text-slate-500" : "text-[#10b981aa]"
                                 }`}>
-                                Message / Payload
+                                ข้อความ / ข้อมูล
                             </label>
                             <textarea
                                 id="message"
@@ -125,7 +125,7 @@ const ContactForm = () => {
                                     ? "bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 text-slate-800"
                                     : "bg-black border border-[#10b98144] focus:border-[#10b981] text-[#10b981] placeholder-[#10b98144]"
                                     }`}
-                                placeholder={isHuman ? "Hello there..." : "Injecting payload..."}
+                                placeholder={isHuman ? "พิมพ์ข้อความที่นี่..." : "กำลัง_เขียน_ชุดข้อมูล..."}
                             />
                         </div>
 
@@ -142,18 +142,18 @@ const ContactForm = () => {
                         >
                             {status === "idle" && (
                                 <>
-                                    {isHuman ? "Send Message" : "TRANSMIT_DATA"} <Send size={18} />
+                                    {isHuman ? "ส่งข้อความ" : "เริ่ม_ส่ง_ข้อมูล"} <Send size={18} />
                                 </>
                             )}
-                            {status === "sending" && "TRANSMITTING..."}
+                            {status === "sending" && (isHuman ? "กำลังส่ง..." : "กำลัง_ดำเนินการ...")}
                             {status === "success" && (
                                 <>
-                                    SENT <Check size={18} />
+                                    {isHuman ? "ส่งสำเร็จแล้ว" : "สำเร็จ"} <Check size={18} />
                                 </>
                             )}
                             {status === "error" && (
                                 <>
-                                    FAILED <AlertTriangle size={18} />
+                                    {isHuman ? "เกิดข้อผิดพลาด" : "ผิดพลาด"} <AlertTriangle size={18} />
                                 </>
                             )}
                         </button>
