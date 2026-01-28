@@ -1,11 +1,10 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
-import * as tf from "@tensorflow/tfjs";
-import * as mobilenet from "@tensorflow-models/mobilenet";
-import { X, RefreshCw, Trophy, Eraser } from "lucide-react";
+import { X, Trophy, Eraser, BrainCircuit, Loader2 } from "lucide-react";
 import { useSettings } from "./SettingsProvider";
 import { useAudio } from "./AudioProvider";
+import { guessDoodle } from "@/app/actions";
 
 interface DoodleGameProps {
     isOpen: boolean;
@@ -16,35 +15,13 @@ const DoodleGame: React.FC<DoodleGameProps> = ({ isOpen, onClose }) => {
     const { isHuman } = useSettings();
     const { playPing, playSuccess, playError } = useAudio();
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const [model, setModel] = useState<mobilenet.MobileNet | null>(null);
     const [prediction, setPrediction] = useState<string>("");
-    const [confidence, setConfidence] = useState<number>(0);
     const [isDrawing, setIsDrawing] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false); // Used for Gemini Loading
 
-    // Initial load
+    // Setup canvas on open
     useEffect(() => {
         if (!isOpen) return;
-
-        const loadModel = async () => {
-            try {
-                // Ensure backend is set (WebGL usually best)
-                await tf.setBackend("webgl");
-                const loadedModel = await mobilenet.load({
-                    version: 2,
-                    alpha: 1.0
-                });
-                setModel(loadedModel);
-                setIsLoading(false);
-            } catch (err) {
-                console.error("Failed to load model:", err);
-                setIsLoading(false);
-            }
-        };
-
-        loadModel();
-
-        // Setup canvas
         const canvas = canvasRef.current;
         if (canvas) {
             const ctx = canvas.getContext('2d');
@@ -53,12 +30,14 @@ const DoodleGame: React.FC<DoodleGameProps> = ({ isOpen, onClose }) => {
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
             }
         }
-
+        setPrediction("");
     }, [isOpen]);
 
     const startDrawing = (e: React.MouseEvent | React.TouchEvent) => {
         setIsDrawing(true);
         draw(e);
+        // Reset prediction when starting to draw new things ?? Maybe keep it.
+        // setPrediction(""); 
     };
 
     const stopDrawing = () => {
@@ -67,7 +46,6 @@ const DoodleGame: React.FC<DoodleGameProps> = ({ isOpen, onClose }) => {
         if (canvas) {
             const ctx = canvas.getContext("2d");
             ctx?.beginPath(); // Reset path
-            predict();
         }
     };
 
@@ -93,7 +71,7 @@ const DoodleGame: React.FC<DoodleGameProps> = ({ isOpen, onClose }) => {
         const x = clientX - rect.left;
         const y = clientY - rect.top;
 
-        ctx.lineWidth = 15;
+        ctx.lineWidth = isHuman ? 5 : 3;
         ctx.lineCap = "round";
         ctx.strokeStyle = "black";
 
@@ -111,24 +89,36 @@ const DoodleGame: React.FC<DoodleGameProps> = ({ isOpen, onClose }) => {
                 ctx.fillStyle = "white";
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 setPrediction("");
-                setConfidence(0);
             }
         }
+        playPing();
     };
 
-    const predict = async () => {
-        if (!model || !canvasRef.current) return;
+    const handleGuess = async () => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
 
-        // Ensure we are doing valid prediction
-        const predictions = await model.classify(canvasRef.current);
-        if (predictions && predictions.length > 0) {
-            setPrediction(predictions[0].className);
-            setConfidence(Math.round(predictions[0].probability * 100));
-            playPing();
+        setIsLoading(true);
+        setPrediction(""); // Clear previous prediction
+        playPing();
 
-            if (predictions[0].probability > 0.6) {
+        try {
+            const base64Image = canvas.toDataURL("image/png");
+            const result = await guessDoodle(base64Image);
+
+            if (result) {
+                setPrediction(result);
                 playSuccess();
+            } else {
+                setPrediction("ไม่แน่ใจครับ...");
+                playError();
             }
+        } catch (error) {
+            console.error("Error guessing doodle:", error);
+            setPrediction("เกิดข้อผิดพลาดในการทาย");
+            playError();
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -144,7 +134,7 @@ const DoodleGame: React.FC<DoodleGameProps> = ({ isOpen, onClose }) => {
                     }`}>
                     <h2 className={`font-bold flex items-center gap-2 ${isHuman ? "text-slate-800" : "text-[#10b981]"
                         }`}>
-                        <Trophy size={20} /> ทายภาพวาด AI
+                        <BrainCircuit size={20} /> AI ทายภาพ (Powered by Gemini)
                     </h2>
                     <button onClick={onClose} className="hover:opacity-70">
                         <X size={24} className={isHuman ? "text-slate-500" : "text-[#10b981]"} />
@@ -152,15 +142,7 @@ const DoodleGame: React.FC<DoodleGameProps> = ({ isOpen, onClose }) => {
                 </div>
 
                 {/* Canvas Area */}
-                <div className="flex-1 bg-gray-50 p-4 flex flex-col items-center justify-center relative">
-
-                    {isLoading && (
-                        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-white/80">
-                            <div className="animate-spin text-4xl mb-2">⏳</div>
-                            <p className="font-bold text-slate-500">กำลังโหลดสมองกล...</p>
-                        </div>
-                    )}
-
+                <div className="flex-1 bg-gray-50 p-4 flex flex-col items-center justify-center relative min-h-[350px]">
                     <canvas
                         ref={canvasRef}
                         width={300}
@@ -172,41 +154,56 @@ const DoodleGame: React.FC<DoodleGameProps> = ({ isOpen, onClose }) => {
                         onTouchStart={startDrawing}
                         onTouchEnd={stopDrawing}
                         onTouchMove={draw}
-                        className="bg-white shadow-lg border-2 border-dashed border-gray-300 rounded-lg cursor-crosshair touch-none"
+                        className={`bg-white shadow-lg border-2 ${isHuman ? "border-dashed border-gray-300" : "border-[#10b981]"} rounded-lg cursor-crosshair touch-none`}
                     />
 
-                    <p className="mt-2 text-xs text-gray-400">ลองวาดอะไรง่ายๆ ดูครับ (เช่น แล็ปท็อป, แมว, แก้วน้ำ)</p>
+                    <p className="mt-2 text-xs text-gray-400">วาดอะไรก็ได้ที่อยากให้ AI ทาย...</p>
                 </div>
 
                 {/* Controls & Result */}
-                <div className={`p-4 flex flex-col gap-4 ${isHuman ? "bg-slate-50" : "bg-black text-[#10b981]"
+                <div className={`p-4 flex flex-col gap-4 ${isHuman ? "bg-slate-50" : "bg-[#050505] border-t border-[#10b98144]"
                     }`}>
-                    <div className="flex justify-between items-center">
+                    <div className="flex items-center gap-4">
                         <div className="flex-1">
-                            {prediction ? (
+                            {isLoading ? (
+                                <div className="flex items-center gap-2 text-sm text-slate-500 animate-pulse">
+                                    <Loader2 size={16} className="animate-spin" />
+                                    กำลังวิเคราะห์...
+                                </div>
+                            ) : prediction ? (
                                 <div>
-                                    <p className="text-xs opacity-70">ผมคิดว่ามันคือ...</p>
-                                    <h3 className="text-2xl font-bold uppercase">{prediction}</h3>
-                                    <div className="w-full bg-gray-200 h-2 rounded-full mt-1 overflow-hidden">
-                                        <div
-                                            className={`h-full ${confidence > 60 ? "bg-green-500" : "bg-yellow-500"}`}
-                                            style={{ width: `${confidence}%` }}
-                                        />
-                                    </div>
-                                    <p className="text-right text-xs mt-1">ความมั่นใจ {confidence}%</p>
+                                    <p className={`text-xs opacity-70 ${isHuman ? "text-slate-500" : "text-[#10b981aa]"}`}>ผมคิดว่าคือ...</p>
+                                    <h3 className={`text-xl font-bold ${isHuman ? "text-slate-800" : "text-[#10b981]"}`}>{prediction}</h3>
                                 </div>
                             ) : (
-                                <p className="opacity-50 italic">ลองวาดรูปด้านบนได้เลยครับ...</p>
+                                <p className={`text-sm opacity-50 italic ${isHuman ? "text-slate-400" : "text-[#10b98144]"}`}>
+                                    วาดเสร็จแล้วกดปุ่ม "ทายซิ"
+                                </p>
                             )}
                         </div>
 
-                        <button
-                            onClick={clearCanvas}
-                            className={`p-4 rounded-full shadow-lg transition-transform hover:scale-110 active:scale-95 ${isHuman ? "bg-red-500 text-white" : "bg-[#10b981] text-black"
-                                }`}
-                        >
-                            <Eraser size={24} />
-                        </button>
+                        <div className="flex gap-2">
+                            <button
+                                onClick={clearCanvas}
+                                className={`p-3 rounded-full shadow-md transition-transform hover:scale-105 active:scale-95 ${isHuman ? "bg-white text-slate-500 border border-slate-200 hover:bg-slate-50" : "bg-black text-[#10b981] border border-[#10b981] hover:bg-[#10b98111]"
+                                    }`}
+                                title="ลบกระดาน"
+                            >
+                                <Eraser size={20} />
+                            </button>
+
+                            <button
+                                onClick={handleGuess}
+                                disabled={isLoading}
+                                className={`px-6 py-2 rounded-full font-bold shadow-lg transition-all hover:scale-105 active:scale-95 flex items-center gap-2 ${isHuman
+                                    ? "bg-indigo-600 text-white hover:bg-indigo-700 hover:shadow-indigo-200"
+                                    : "bg-[#10b981] text-black hover:bg-[#34d399] hover:shadow-[0_0_15px_#10b981]"
+                                    } ${isLoading ? "opacity-70 cursor-not-allowed" : ""}`}
+                            >
+                                {isLoading ? <Loader2 size={20} className="animate-spin" /> : <BrainCircuit size={20} />}
+                                ทายซิ!
+                            </button>
+                        </div>
                     </div>
                 </div>
 
