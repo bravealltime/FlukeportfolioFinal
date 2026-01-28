@@ -5,10 +5,6 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
-import MatrixRain from "@/components/MatrixRain";
-import CodeShowcase from "@/components/CodeShowcase";
-import InteractiveTerminal from "@/components/InteractiveTerminal";
-import SystemStatus from "@/components/SystemStatus";
 import PCSpecs from "@/components/PCSpecs";
 import GitHubActivity from "@/components/GitHubActivity";
 import GlitchOverlay from "@/components/GlitchOverlay";
@@ -21,15 +17,20 @@ import ContactForm from "@/components/ContactForm";
 import { useSettings } from "@/components/SettingsProvider";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-
-
-import RolldiceDemo from "@/components/RolldiceDemo";
-import SnakeGame from "@/components/SnakeGame";
+import dynamic from "next/dynamic";
 import QuickNav from "@/components/QuickNav";
-import GravityFall from "@/components/GravityFall";
-import GenerativeArt from "@/components/GenerativeArt";
 import Guestbook from "@/components/Guestbook";
-import LiveCodingStatus from "@/components/LiveCodingStatus";
+
+// Dynamic Imports for Heavy/Interactive Components
+const MatrixRain = dynamic(() => import("@/components/MatrixRain"), { ssr: false });
+const CodeShowcase = dynamic(() => import("@/components/CodeShowcase"), { ssr: false });
+const InteractiveTerminal = dynamic(() => import("@/components/InteractiveTerminal"), { ssr: false });
+const SystemStatus = dynamic(() => import("@/components/SystemStatus"), { ssr: false });
+const RolldiceDemo = dynamic(() => import("@/components/RolldiceDemo"), { ssr: false });
+const SnakeGame = dynamic(() => import("@/components/SnakeGame"), { ssr: false });
+const GravityFall = dynamic(() => import("@/components/GravityFall"), { ssr: false });
+const GenerativeArt = dynamic(() => import("@/components/GenerativeArt"), { ssr: false });
+const LiveCodingStatus = dynamic(() => import("@/components/LiveCodingStatus"), { ssr: false });
 
 export default function Home() {
   const [matrixFullscreen, setMatrixFullscreen] = useState(false);
