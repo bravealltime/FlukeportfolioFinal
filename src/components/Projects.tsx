@@ -143,36 +143,37 @@ const Projects = () => {
                                 )}
                             </div>
 
-                            <div className="p-6 relative z-10 flex-1 flex flex-col">
-                                <div className="flex justify-between items-start mb-6">
-                                    <div className={`${isHuman ? "text-slate-400 font-sans font-bold text-sm" : "text-[#10b981] opacity-50 text-xs"}`}>
-                                        {isHuman ? `ชิ้นที่ ${index + 1}` : `ไฟล์_${index + 1} // DATA.SYS`}
+                            <div className="p-5 flex flex-col flex-1 h-full relative z-10">
+                                <div className="flex justify-between items-center mb-3">
+                                    <div className={`${isHuman ? "text-slate-500 font-sans font-bold text-xs" : "text-[#10b981] opacity-70 text-[10px]"}`}>
+                                        {isHuman ? `PROJECT 0${index + 1}` : `0${index + 1} // SYS.LOG`}
                                     </div>
-                                    <div className="flex gap-4">
+                                    <div className="flex gap-3">
                                         <a
                                             href={project.github}
-                                            className={`${isHuman ? "text-slate-400 hover:text-slate-900" : "text-[#10b981] hover:glow-sm"} transition-all`}
-                                            aria-label={`ดูรหัสต้นฉบับ ${project.title} บน GitHub`}
+                                            className={`${isHuman ? "text-slate-400 hover:text-slate-900" : "text-[#10b981] hover:text-white hover:glow-sm"} transition-all`}
+                                            aria-label={`GitHub: ${project.title}`}
                                         >
-                                            <Github size={isHuman ? 20 : 18} />
+                                            <Github size={isHuman ? 18 : 16} />
                                         </a>
                                     </div>
                                 </div>
 
-                                <h3 className={`text-xl font-bold mb-4 uppercase ${isHuman ? "text-slate-800" : "text-[#10b981]"}`}>
+                                <h3 className={`text-lg md:text-xl font-bold mb-2 uppercase tracking-tight ${isHuman ? "text-slate-800" : "text-[#10b981]"}`}>
                                     {project.title}
                                 </h3>
-                                <p className={`text-xs mb-8 leading-relaxed h-16 overflow-hidden ${isHuman ? "text-slate-600 font-sans text-sm" : "text-[#10b981bb]"}`}>
+
+                                <p className={`text-xs mb-4 leading-relaxed line-clamp-3 ${isHuman ? "text-slate-600 font-sans" : "text-[#10b981bb]"}`}>
                                     {project.description}
                                 </p>
 
-                                <div className="flex flex-wrap gap-2 mb-8">
+                                <div className="flex flex-wrap gap-2 mb-6">
                                     {project.tech.map((t) => (
                                         <span
                                             key={t}
-                                            className={`text-[10px] px-2 py-0.5 uppercase ${isHuman
-                                                ? "bg-slate-100 text-slate-600 rounded-full font-sans font-semibold border-none"
-                                                : "border border-[#10b98133] text-[#10b981cc]"
+                                            className={`text-[10px] px-2 py-1 uppercase tracking-wide ${isHuman
+                                                ? "bg-slate-100 text-slate-600 rounded-md font-sans font-bold mix-blend-multiply"
+                                                : "border border-[#10b98133] text-[#10b981cc] bg-[#10b98105]"
                                                 }`}
                                         >
                                             {t}
@@ -180,21 +181,25 @@ const Projects = () => {
                                     ))}
                                 </div>
 
-                                <motion.a
-                                    href={project.link}
-                                    className={`inline-flex items-center gap-2 text-xs font-bold hover:underline ${isHuman ? "text-blue-600 font-sans text-sm" : "text-[#10b981]"}`}
-                                >
-                                    {isHuman ? "เข้าชมโปรเจกต์" : "[ เข้าถึง_ทรัพยากร ]"}
-                                    <ExternalLink size={12} />
-                                </motion.a>
+                                {/* Footer Actions - Pushed to bottom */}
+                                <div className="mt-auto flex items-center gap-4 pt-4 border-t border-inherit border-opacity-10">
+                                    <motion.a
+                                        href={project.link}
+                                        whileHover={{ x: 2 }}
+                                        className={`inline-flex items-center gap-1.5 text-xs font-bold transition-colors ${isHuman ? "text-blue-600 hover:text-blue-700 font-sans" : "text-[#10b981] hover:text-white"}`}
+                                    >
+                                        {isHuman ? "เข้าชมเว็บ" : "[ RUN ]"}
+                                        <ExternalLink size={11} />
+                                    </motion.a>
 
-                                <button
-                                    onClick={() => setSelectedStudy(project)}
-                                    className={`ml-4 inline-flex items-center gap-2 text-xs font-bold hover:underline ${isHuman ? "text-slate-500" : "text-[#10b981aa]"}`}
-                                >
-                                    <BookOpen size={12} />
-                                    {isHuman ? "อ่านกรณีศึกษา" : "ถอดรหัส_บันทึก"}
-                                </button>
+                                    <button
+                                        onClick={() => setSelectedStudy(project)}
+                                        className={`inline-flex items-center gap-1.5 text-xs font-semibold transition-colors ${isHuman ? "text-slate-500 hover:text-slate-900" : "text-[#10b981aa] hover:text-[#10b981]"}`}
+                                    >
+                                        <BookOpen size={11} />
+                                        {isHuman ? "อ่านเพิ่มเติม" : "INFO"}
+                                    </button>
+                                </div>
                             </div>
                         </motion.div>
                     ))}
