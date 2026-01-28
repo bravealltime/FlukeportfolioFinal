@@ -19,6 +19,7 @@ interface Project {
     tech: string[];
     link: string;
     github: string;
+    image?: string;
 }
 
 const projects = [
@@ -28,6 +29,7 @@ const projects = [
         tech: ["Next.js", "TypeScript", "Firebase", "Real-time DB"],
         link: "https://github.com/bravealltime/raoteebaan",
         github: "https://github.com/bravealltime/raoteebaan",
+        image: "/projects/teerao.jpg",
     },
     {
         title: "Heartopia Piano Bot Pro",
@@ -35,6 +37,7 @@ const projects = [
         tech: ["Python", "Mido", "Automation", "Algorithm"],
         link: "https://github.com/bravealltime/heartopia-piano",
         github: "https://github.com/bravealltime/heartopia-piano",
+        image: "/projects/heartopia.jpg",
     },
     {
         title: "Rolldice - RedM Script",
@@ -42,6 +45,7 @@ const projects = [
         tech: ["Lua", "HTML/CSS", "JavaScript", "RedM API"],
         link: "https://github.com/bravealltime/Rolldice",
         github: "https://github.com/bravealltime/Rolldice",
+        image: "/projects/rolldice.jpg",
     },
     {
         title: "JokPed v3 (BTFT)",
@@ -49,6 +53,7 @@ const projects = [
         tech: ["Python", "OpenCV", "Tesseract OCR", "Discord.py"],
         link: "https://github.com/bravealltime/BTFT-Bot",
         github: "https://github.com/bravealltime/BTFT-Bot",
+        image: "/projects/jokped.jpg",
     },
 ];
 
@@ -106,11 +111,39 @@ const Projects = () => {
                             transition={{ delay: index * 0.1 }}
                             whileHover={{ scale: 1.02 }}
                             className={`${isHuman
-                                ? "bg-white border border-slate-200 shadow-md hover:shadow-xl rounded-2xl p-6 transition-all"
-                                : "bg-[#0a0a0a] border border-[#10b98144] p-6 group relative overflow-hidden transition-all hover:border-[#10b981] hover:shadow-[0_0_20px_#10b98122]"
-                                }`}
+                                ? "bg-white border border-slate-200 shadow-md hover:shadow-xl rounded-2xl overflow-hidden transition-all"
+                                : "bg-[#0a0a0a] border border-[#10b98144] group relative overflow-hidden transition-all hover:border-[#10b981] hover:shadow-[0_0_20px_#10b98122]"
+                                } flex flex-col`}
                         >
-                            <div className="relative z-10">
+                            {/* Project Preview Image */}
+                            <div className="relative aspect-video overflow-hidden border-b border-inherit">
+                                {project.image ? (
+                                    <img
+                                        src={project.image}
+                                        alt={project.title}
+                                        loading="lazy"
+                                        className={`w-full h-full object-cover transition-all duration-500 ${isHuman
+                                            ? "group-hover:scale-110"
+                                            : "grayscale group-hover:grayscale-0 group-hover:scale-105 opacity-60 group-hover:opacity-100"
+                                            }`}
+                                        onError={(e) => {
+                                            // Fallback for missing images
+                                            e.currentTarget.src = "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000&auto=format&fit=crop";
+                                        }}
+                                    />
+                                ) : (
+                                    <div className={`w-full h-full flex items-center justify-center ${isHuman ? "bg-slate-100" : "bg-[#10b98105]"}`}>
+                                        <Trophy size={40} className={isHuman ? "text-slate-200" : "text-[#10b98122]"} />
+                                    </div>
+                                )}
+
+                                {/* Hacker Overlay */}
+                                {!isHuman && (
+                                    <div className="absolute inset-0 pointer-events-none z-10 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%)] bg-[length:100%_2px]" />
+                                )}
+                            </div>
+
+                            <div className="p-6 relative z-10 flex-1 flex flex-col">
                                 <div className="flex justify-between items-start mb-6">
                                     <div className={`${isHuman ? "text-slate-400 font-sans font-bold text-sm" : "text-[#10b981] opacity-50 text-xs"}`}>
                                         {isHuman ? `ชิ้นที่ ${index + 1}` : `ไฟล์_${index + 1} // DATA.SYS`}
