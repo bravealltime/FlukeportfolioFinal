@@ -53,7 +53,7 @@ const projects = [
         tech: ["Python", "OpenCV", "Tesseract OCR", "Discord.py"],
         link: "https://github.com/bravealltime/BTFT-Bot",
         github: "https://github.com/bravealltime/BTFT-Bot",
-        image: "/projects/jokped.jpg",
+        image: "/projects/jokped.png",
     },
 ];
 
