@@ -27,7 +27,7 @@ const GitHubActivity = () => {
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    className={`p-6 rounded-xl ${isHuman ? "bg-white border border-slate-200 shadow-md" : "bg-[#0a0a0a]/40 border border-[#10b98144]"}`}
+                    className={`p-6 rounded-xl min-h-[180px] flex items-center justify-center ${isHuman ? "bg-white border border-slate-200 shadow-md" : "bg-[#0a0a0a]/40 border border-[#10b98144]"}`}
                 >
                     <GitHubCalendar
                         username="bravealltime"

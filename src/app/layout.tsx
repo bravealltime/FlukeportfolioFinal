@@ -6,10 +6,12 @@ import { SettingsProvider } from "@/components/SettingsProvider";
 
 import { ToastProvider } from "@/components/ToastProvider";
 import ScrollProgress from "@/components/ScrollProgress";
-import IncognitoDetector from "@/components/IncognitoDetector";
-import KonamiCode from "@/components/KonamiCode";
-import Chatbot from "@/components/Chatbot";
-import LiveCursors from "@/components/LiveCursors";
+import dynamic from "next/dynamic";
+
+const Chatbot = dynamic(() => import("@/components/Chatbot"), { ssr: false });
+const LiveCursors = dynamic(() => import("@/components/LiveCursors"), { ssr: false });
+const IncognitoDetector = dynamic(() => import("@/components/IncognitoDetector"), { ssr: false });
+const KonamiCode = dynamic(() => import("@/components/KonamiCode"), { ssr: false });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

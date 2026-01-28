@@ -96,6 +96,7 @@ const Navbar = () => {
                 onMouseEnter={() => !isHuman && playPing()}
                 className={cn("transition-colors p-2 rounded-full", isHuman ? "text-slate-500 hover:bg-slate-100 text-slate-900" : "text-[#10b98188] hover:text-[#10b981]")}
                 title={isHuman ? "Switch to Hacker Mode" : "Switch to Readability Mode"}
+                aria-label={isHuman ? "Switch to Hacker Mode" : "Switch to Human Mode"}
               >
                 {isHuman ? <Terminal size={20} /> : <Eye size={16} />}
               </button>

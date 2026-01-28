@@ -4,9 +4,13 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import { useAudio } from "./AudioProvider";
-import PasswordVault from "./PasswordVault";
-import SecretProjectModal from "./SecretProjectModal";
-import ProjectCaseStudy from "./ProjectCaseStudy";
+import dynamic from "next/dynamic";
+
+const PasswordVault = dynamic(() => import("./PasswordVault"), { ssr: false });
+const SecretProjectModal = dynamic(() => import("./SecretProjectModal"), { ssr: false });
+const ProjectCaseStudy = dynamic(() => import("./ProjectCaseStudy"), { ssr: false });
+const DoodleGame = dynamic(() => import("./DoodleGame"), { ssr: false });
+
 import { Lock, BookOpen } from "lucide-react";
 
 interface Project {
@@ -49,7 +53,6 @@ import { useSettings } from "./SettingsProvider";
  * รองรับการแสดงผล 2 โหมด: Human (การ์ดขาว) และ Hacker (Terminal Style)
  */
 import TypewriterText from "./TypewriterText";
-import DoodleGame from "./DoodleGame";
 import { Trophy } from "lucide-react";
 
 const Projects = () => {
