@@ -62,6 +62,30 @@ const Guestbook = () => {
 
     const MASTER_KEY = "115322";
 
+    // Helper to transform common media links to direct links
+    const transformMediaUrl = (url: string) => {
+        if (!url) return "";
+        let transformed = url.trim();
+
+        // Tenor View -> Direct GIF
+        // https://tenor.com/view/xxx-gif-12345678
+        const tenorMatch = transformed.match(/tenor\.com\/view\/.*-gif-(\d+)/);
+        if (tenorMatch) {
+            return `https://media.tenor.com/${tenorMatch[1]}/tenor.gif`;
+        }
+
+        // Giphy View -> Direct GIF
+        // https://giphy.com/gifs/xxx-ID
+        const giphyMatch = transformed.match(/giphy\.com\/gifs\/.*-([a-zA-Z0-9]+)$/) || transformed.match(/giphy\.com\/gifs\/([a-zA-Z0-9]+)$/);
+        if (giphyMatch) {
+            return `https://media.giphy.com/media/${giphyMatch[1]}/giphy.gif`;
+        }
+
+        return transformed;
+    };
+
+    const previewUrl = transformMediaUrl(imageUrl);
+
     // Fetch initial blocks from Firestore
     useEffect(() => {
         const q = query(collection(db, "guestbook"), orderBy("index", "desc"), limit(BATCH_SIZE));
@@ -192,10 +216,11 @@ const Guestbook = () => {
         setIsMining(true);
         playPing();
 
+        const finalImageUrl = transformMediaUrl(imageUrl);
         const prevBlock = blocks[0]; // blocks is sorted desc by index
         const index = (prevBlock?.index ?? -1) + 1;
         const timestamp = new Date().toISOString();
-        const data = name + msg + imageUrl;
+        const data = name + msg + finalImageUrl;
         let nonce = 0;
         let hash = "";
 
@@ -237,7 +262,7 @@ const Guestbook = () => {
                     timestamp,
                     sender: name,
                     message: msg,
-                    imageUrl: imageUrl.trim() || null,
+                    imageUrl: finalImageUrl.trim() || null,
                     prevHash: prevBlock?.hash || "0000",
                     hash,
                     nonce,
@@ -333,6 +358,19 @@ const Guestbook = () => {
                                         }`}
                                     placeholder={isHuman ? "https://example.com/image.gif" : "HTTPS://MEDIA_SOURCE"}
                                 />
+                                {previewUrl && (
+                                    <div className={`mt-2 rounded-lg overflow-hidden border p-1 ${isHuman ? "bg-white border-slate-100" : "bg-black border-[#10b98133]"}`}>
+                                        <img
+                                            src={previewUrl}
+                                            alt="Preview"
+                                            className="max-w-full max-h-32 object-contain mx-auto"
+                                            onError={(e) => (e.currentTarget.style.display = 'none')}
+                                        />
+                                        <p className="text-[8px] text-center mt-1 opacity-50 font-mono">
+                                            {isHuman ? "Media Preview" : "PREVIEW_READY"}
+                                        </p>
+                                    </div>
+                                )}
                             </div>
                             <button
                                 disabled={isMining || !name || !msg || hasSigned}
