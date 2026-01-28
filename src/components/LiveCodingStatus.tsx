@@ -34,9 +34,9 @@ const LiveCodingStatus = () => {
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
-                    className={`fixed top-24 right-6 z-40 px-3 py-1.5 rounded-full flex items-center gap-2 shadow-lg backdrop-blur-md cursor-help ${isHuman
-                            ? "bg-white/80 text-red-500 border border-red-100"
-                            : "bg-black/80 text-[#ef4444] border border-[#ef4444]/50"
+                    className={`fixed top-36 right-6 md:top-24 z-40 px-3 py-1.5 rounded-full flex items-center gap-2 shadow-lg backdrop-blur-md cursor-help ${isHuman
+                        ? "bg-white/80 text-red-500 border border-red-100"
+                        : "bg-black/80 text-[#ef4444] border border-[#ef4444]/50"
                         }`}
                     title="Thara is currently coding!"
                 >

@@ -127,7 +127,7 @@ const Chatbot = () => {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setIsOpen(true)}
-                className={`fixed bottom-8 right-28 z-50 p-4 rounded-full shadow-xl transition-all ${isHuman
+                className={`fixed bottom-8 right-24 md:right-32 z-50 p-4 rounded-full shadow-xl transition-all ${isHuman
                     ? "bg-blue-600 text-white hover:bg-blue-700"
                     : "bg-[#0a0a0a] border border-[#10b981] text-[#10b981] shadow-[0_0_20px_#10b98144]"
                     } ${isOpen ? "hidden" : "flex"}`}
@@ -142,7 +142,7 @@ const Chatbot = () => {
                         initial={{ opacity: 0, y: 50, scale: 0.9 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 50, scale: 0.9 }}
-                        className={`fixed bottom-24 right-4 md:bottom-28 md:right-8 z-[100] w-[90vw] md:w-[450px] rounded-2xl overflow-hidden shadow-2xl border flex flex-col ${isHuman
+                        className={`fixed bottom-24 right-4 md:bottom-28 md:right-8 z-[100] w-[calc(100vw-2rem)] md:w-[450px] rounded-2xl overflow-hidden shadow-2xl border flex flex-col ${isHuman
                             ? "bg-white border-slate-200 h-[500px]"
                             : "bg-[#0a0a0a] border-[#10b981] h-[600px]"
                             }`}

@@ -7,28 +7,22 @@ import { motion } from "framer-motion";
 
 const timelineData = [
     {
-        year: "2024",
-        title: "Creative Coder",
-        company: "Tech Company",
-        desc: "Leading frontend team, utilizing Next.js and Cloud architecture.",
+        year: "2021",
+        title: "BorntoDev",
+        company: "Certification",
+        desc: "สำเร็จหลักสูตร UX/UI Design ยกระดับทักษะการออกแบบหน้าเว็บและประสบการณ์ผู้ใช้ให้ดียิ่งขึ้น",
     },
     {
-        year: "2022",
-        title: "Full Stack Developer",
-        company: "Software House",
-        desc: "Developed scalable web applications and RESTful APIs.",
+        year: "2016-2021",
+        title: "Thai-Nichi Institute of Technology",
+        company: "Bachelor's Degree",
+        desc: "เทคโนโลยีสารสนเทศ (IT) เน้นการพัฒนาซอฟต์แวร์และเรียนรู้วัฒนธรรมการทำงานแบบญี่ปุ่น",
     },
     {
-        year: "2020",
-        title: "Junior Developer",
-        company: "Startup Co.",
-        desc: "Started journey with React and Node.js. Learned agile methodologies.",
-    },
-    {
-        year: "2018",
-        title: "Computer Science Degree",
-        company: "University",
-        desc: "Graduated with honors. Focused on algorithms and data structures.",
+        year: "2009-2016",
+        title: "Saint Dominic School",
+        company: "High School",
+        desc: "สายวิทย์-คณิต พื้นฐานแน่นทั้งด้านตรรกะและการคำนวณ",
     },
 ];
 
@@ -47,7 +41,7 @@ const Timeline = () => {
                 >
                     <h2 className={`text-3xl md:text-5xl font-bold mb-4 uppercase tracking-tighter ${isHuman ? "text-slate-900" : "text-[#10b981]"
                         }`}>
-                        {isHuman ? "Career Journey" : "[ EXECUTION_LOG ]"}
+                        {isHuman ? "Education History" : "[ EDUCATION_LOG ]"}
                     </h2>
                 </motion.div>
 
