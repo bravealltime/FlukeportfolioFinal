@@ -7,17 +7,22 @@ import { motion, AnimatePresence } from "framer-motion";
 const GlitchOverlay = () => {
     const { isHuman } = useSettings();
     const [isActive, setIsActive] = useState(false);
+    const [isFirstMount, setIsFirstMount] = useState(true);
 
     useEffect(() => {
+        if (isFirstMount) {
+            setIsFirstMount(false);
+            return;
+        }
+
         // Trigger animation immediately when isHuman changes
-        const trigger = setTimeout(() => setIsActive(true), 0);
+        setIsActive(true);
         // Reset after animation duration
         const timer = setTimeout(() => setIsActive(false), 2000);
         return () => {
-            clearTimeout(trigger);
             clearTimeout(timer);
         };
-    }, [isHuman]);
+    }, [isHuman, isFirstMount]);
 
     return (
         <AnimatePresence>

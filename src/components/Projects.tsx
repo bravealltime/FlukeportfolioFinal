@@ -106,7 +106,11 @@ const Projects = () => {
                                         {isHuman ? `0${index + 1}` : `0${index + 1} // FILE.SYS`}
                                     </div>
                                     <div className="flex gap-4">
-                                        <a href={project.github} className={`${isHuman ? "text-slate-400 hover:text-slate-900" : "text-[#10b981] hover:glow-sm"} transition-all`}>
+                                        <a
+                                            href={project.github}
+                                            className={`${isHuman ? "text-slate-400 hover:text-slate-900" : "text-[#10b981] hover:glow-sm"} transition-all`}
+                                            aria-label={`View ${project.title} on GitHub`}
+                                        >
                                             <Github size={isHuman ? 20 : 18} />
                                         </a>
                                     </div>

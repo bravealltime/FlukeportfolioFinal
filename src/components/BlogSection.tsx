@@ -57,6 +57,8 @@ const BlogSection = () => {
                     {posts.map((post, index) => (
                         <motion.div
                             key={post.id}
+                            role="button"
+                            aria-label={`Read article: ${post.title}`}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.1 }}
@@ -123,6 +125,7 @@ const BlogSection = () => {
                                 onMouseEnter={() => playHover()}
                                 className={`absolute top-4 right-4 p-2 rounded-full transition-colors ${isHuman ? "hover:bg-slate-100" : "hover:bg-[#10b98122]"
                                     }`}
+                                aria-label="Close article"
                             >
                                 <X size={24} />
                             </button>

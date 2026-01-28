@@ -107,6 +107,7 @@ const Navbar = () => {
                 }}
                 onMouseEnter={() => !isHuman && playPing()}
                 className={cn("transition-colors p-2 rounded-full", isHuman ? "text-slate-500 hover:bg-slate-100 text-slate-900" : "text-[#10b98188] hover:text-[#10b981]")}
+                aria-label={isEnabled ? "Mute sound" : "Unmute sound"}
               >
                 {isEnabled ? <Volume2 size={isHuman ? 20 : 16} /> : <VolumeX size={isHuman ? 20 : 16} />}
               </button>
@@ -117,6 +118,7 @@ const Navbar = () => {
                   setIsOpen(!isOpen);
                   if (!isHuman) playPing();
                 }}
+                aria-label={isOpen ? "Close menu" : "Open menu"}
               >
                 {isOpen
                   ? <X size={20} className={isHuman ? "text-slate-900" : "text-[#10b981]"} />

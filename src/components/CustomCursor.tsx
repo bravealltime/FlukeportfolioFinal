@@ -18,6 +18,13 @@ const CustomCursor = () => {
     const springY = useSpring(mouseY, springConfig);
 
     useEffect(() => {
+        // Only enable custom cursor on desktop (non-touch) devices
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        if (isTouchDevice) {
+            setIsVisible(false);
+            return;
+        }
+
         const moveMouse = (e: MouseEvent) => {
             mouseX.set(e.clientX);
             mouseY.set(e.clientY);

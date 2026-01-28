@@ -76,11 +76,12 @@ const ContactForm = () => {
 
                     <form ref={form} onSubmit={sendEmail} className="space-y-4">
                         <div>
-                            <label className={`block text-xs font-bold mb-1 uppercase ${isHuman ? "text-slate-500" : "text-[#10b981aa]"
+                            <label htmlFor="user_name" className={`block text-xs font-bold mb-1 uppercase ${isHuman ? "text-slate-500" : "text-[#10b981aa]"
                                 }`}>
                                 Name / Identity
                             </label>
                             <input
+                                id="user_name"
                                 type="text"
                                 name="user_name"
                                 required
@@ -93,11 +94,12 @@ const ContactForm = () => {
                         </div>
 
                         <div>
-                            <label className={`block text-xs font-bold mb-1 uppercase ${isHuman ? "text-slate-500" : "text-[#10b981aa]"
+                            <label htmlFor="user_email" className={`block text-xs font-bold mb-1 uppercase ${isHuman ? "text-slate-500" : "text-[#10b981aa]"
                                 }`}>
                                 Email / Frequency
                             </label>
                             <input
+                                id="user_email"
                                 type="email"
                                 name="user_email"
                                 required
@@ -110,11 +112,12 @@ const ContactForm = () => {
                         </div>
 
                         <div>
-                            <label className={`block text-xs font-bold mb-1 uppercase ${isHuman ? "text-slate-500" : "text-[#10b981aa]"
+                            <label htmlFor="message" className={`block text-xs font-bold mb-1 uppercase ${isHuman ? "text-slate-500" : "text-[#10b981aa]"
                                 }`}>
                                 Message / Payload
                             </label>
                             <textarea
+                                id="message"
                                 name="message"
                                 required
                                 rows={4}

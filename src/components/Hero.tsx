@@ -76,6 +76,7 @@ const Hero = () => {
                             onMouseEnter={() => playHover()}
                             onClick={playKeyPress}
                             className="px-8 py-4 bg-slate-900 text-white rounded-lg font-semibold hover:bg-slate-800 transition-all flex items-center justify-center gap-2 shadow-lg shadow-slate-200 cursor-pointer"
+                            aria-label="View my projects"
                         >
                             View Projects <ArrowRight size={18} />
                         </a>
@@ -85,6 +86,7 @@ const Hero = () => {
                             onMouseEnter={() => playHover()}
                             onClick={playKeyPress}
                             className="px-8 py-4 bg-white text-slate-700 border border-slate-200 rounded-lg font-semibold hover:bg-slate-50 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                            aria-label="Download my CV"
                         >
                             Download CV <Mail size={18} />
                         </a>
@@ -130,7 +132,7 @@ const Hero = () => {
                 >
                     &lt;<DecryptText text="SYSTEM_ACCESS" /> /&gt; <br />
                     <span className="text-white bg-[#10b981] px-2 inline-block mt-2">
-                        USER::<DecryptText text="THARANUT_H" delay={1000} />
+                        USER::<DecryptText text="THARANUT_H" delay={500} />
                     </span>
                 </motion.h1>
 
@@ -146,7 +148,7 @@ const Hero = () => {
                         IDENT_PROCESS: STARTING PORTFOLIO_V4.2 <br />
                         SUBJECT: THARANUT HIRANSRETTAWAT <br />
                         HOBBIES: [DIY_PC, HARDWARE, TECH_NEWS, GADGETS] <br />
-                        MISSION: &quot;<DecryptText text="อัปเดตเทรนด์ไอที และประกอบคอมคือความสุข" delay={1500} />&quot; <br />
+                        MISSION: &quot;<DecryptText text="อัปเดตเทรนด์ไอที และประกอบคอมคือความสุข" delay={800} />&quot; <br />
                         STATUS: <span className="text-[#10b981] font-bold animate-pulse">LIVE UPDATE...</span>
                     </motion.p>
                 </motion.div>
@@ -158,6 +160,7 @@ const Hero = () => {
                         whileHover={{ scale: 1.02, backgroundColor: "#10b981", color: "#000" }}
                         whileTap={{ scale: 0.98 }}
                         className="px-8 py-3 bg-[#10b98111] border border-[#10b981] text-[#10b981] font-bold text-xs md:text-sm uppercase transition-all flex items-center justify-center gap-2"
+                        aria-label="Execute View Work"
                     >
                         [ EXECUTE::VIEW_WORK ]
                     </motion.button>
@@ -167,6 +170,7 @@ const Hero = () => {
                         whileHover={{ scale: 1.02, backgroundColor: "#10b98133" }}
                         whileTap={{ scale: 0.98 }}
                         className="px-8 py-3 border border-[#10b98155] text-[#10b981bb] font-bold text-xs md:text-sm uppercase transition-all flex items-center justify-center gap-2"
+                        aria-label="Download Profile"
                     >
                         [ DOWNLOAD::PROFILE ]
                     </motion.button>
