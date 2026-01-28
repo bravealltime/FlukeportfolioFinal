@@ -98,27 +98,43 @@ export async function guessDoodle(base64Image: string) {
     }
 
     try {
-        // Use gemini-1.5-flash for vision capabilities
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        // Try multiple models for robustness (Vision capable models)
+        const modelsToTry = ["gemini-1.5-flash", "gemini-1.5-flash-latest", "gemini-1.5-pro", "gemini-pro-vision"];
 
-        // Clean base64 string. Handle cases where prefix might be missing just in case, though toDataURL always has it.
-        const base64Data = base64Image.includes(",") ? base64Image.split(",")[1] : base64Image;
+        let lastError;
 
-        const imageParts = [
-            {
-                inlineData: {
-                    data: base64Data,
-                    mimeType: "image/png",
-                },
-            },
-        ];
+        for (const modelName of modelsToTry) {
+            try {
+                const model = genAI.getGenerativeModel({ model: modelName });
 
-        const prompt = "This is a simple doodle drawn by a user. Please guess what it is in 1-2 words. Identify the main object. Reply in Thai. ตอบเป็นภาษาไทยสั้นๆ ว่าคือรูปอะไร";
+                // Clean base64 string
+                const base64Data = base64Image.includes(",") ? base64Image.split(",")[1] : base64Image;
 
-        const result = await model.generateContent([prompt, ...imageParts]);
-        const response = await result.response;
-        const text = response.text();
-        return text;
+                const imageParts = [
+                    {
+                        inlineData: {
+                            data: base64Data,
+                            mimeType: "image/png",
+                        },
+                    },
+                ];
+
+                const prompt = "This is a simple doodle drawn by a user. Please guess what it is in 1-2 words. Identify the main object. Reply in Thai. ตอบเป็นภาษาไทยสั้นๆ ว่าคือรูปอะไร";
+
+                const result = await model.generateContent([prompt, ...imageParts]);
+                const response = await result.response;
+                const text = response.text();
+                return text;
+            } catch (error: any) {
+                console.warn(`Model ${modelName} failed:`, error.message);
+                lastError = error;
+                continue; // Try next model
+            }
+        }
+
+        // If all failed
+        throw lastError || new Error("All models failed");
+
     } catch (error: any) {
         console.error("Gemini Vision Error:", error);
         return `Error: ${error.message || "Unknown error during guessing."}`;
