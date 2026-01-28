@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion, Variants } from "framer-motion";
 
 import { useAudio } from "./AudioProvider";
@@ -16,9 +16,9 @@ import { ArrowRight, Mail } from "lucide-react";
 const Hero = () => {
     const { playPing, playKeyPress, playHover } = useAudio();
     const { isHuman } = useSettings();
-    const [isMounted, setIsMounted] = React.useState(false);
+    const [isMounted, setIsMounted] = useState(false);
 
-    React.useEffect(() => {
+    useEffect(() => {
         setIsMounted(true);
     }, []);
 
