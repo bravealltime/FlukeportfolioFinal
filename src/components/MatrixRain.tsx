@@ -27,36 +27,53 @@ const MatrixRain: React.FC<MatrixProps> = ({ isVisible, isIntense }) => {
         const columns = Math.floor(canvas.width / fontSize);
         const drops: number[] = new Array(columns).fill(0);
 
-        const draw = () => {
-            ctx.fillStyle = isIntense ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.05)";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        let animationFrameId: number;
+        let lastTime = 0;
+        const fps = isIntense ? 50 : 30;
+        const interval = 1000 / fps;
 
-            ctx.fillStyle = "#10b981";
-            ctx.font = `${fontSize}px monospace`;
+        const animate = (time: number) => {
+            const deltaTime = time - lastTime;
 
-            for (let i = 0; i < drops.length; i++) {
-                const text = characters.charAt(Math.floor(Math.random() * characters.length));
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+            if (deltaTime > interval) {
+                lastTime = time - (deltaTime % interval);
 
-                if (drops[i] * fontSize > canvas.height && Math.random() > (isIntense ? 0.95 : 0.975)) {
-                    drops[i] = 0;
+                ctx.fillStyle = isIntense ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.05)";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                ctx.fillStyle = "#10b981";
+                ctx.font = `${fontSize}px monospace`;
+
+                for (let i = 0; i < drops.length; i++) {
+                    const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                    if (drops[i] * fontSize > canvas.height && Math.random() > (isIntense ? 0.95 : 0.975)) {
+                        drops[i] = 0;
+                    }
+                    drops[i]++;
                 }
-                drops[i]++;
             }
+            animationFrameId = requestAnimationFrame(animate);
         };
 
-        const interval = setInterval(draw, isIntense ? 20 : 33);
-
+        animationFrameId = requestAnimationFrame(animate);
 
         const handleResize = () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
+            // Recalculate drops on resize to avoid layout issues
+            const newColumns = Math.floor(canvas.width / fontSize);
+            if (newColumns > drops.length) {
+                const additionalDrops = new Array(newColumns - drops.length).fill(0);
+                drops.push(...additionalDrops);
+            }
         };
 
         window.addEventListener("resize", handleResize);
 
         return () => {
-            clearInterval(interval);
+            cancelAnimationFrame(animationFrameId);
             window.removeEventListener("resize", handleResize);
         };
     }, [isVisible, isIntense]);

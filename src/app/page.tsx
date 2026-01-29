@@ -27,33 +27,36 @@ const SystemStatus = dynamic(() => import("@/components/SystemStatus"), { ssr: f
 const RolldiceDemo = dynamic(() => import("@/components/RolldiceDemo"), { ssr: false });
 const SnakeGame = dynamic(() => import("@/components/SnakeGame"), { ssr: false });
 const GravityFall = dynamic(() => import("@/components/GravityFall"), { ssr: false });
-const GenerativeArt = dynamic(() => import("@/components/GenerativeArt"), { ssr: false });
 
 export default function Home() {
   const [matrixFullscreen, setMatrixFullscreen] = useState(false);
   const [showRolldice, setShowRolldice] = useState(false);
   const [showSnake, setShowSnake] = useState(false);
-
   const { isHuman } = useSettings();
-  const [shouldShowEffects, setShouldShowEffects] = useState(false);
-
+  const [stage, setStage] = useState(0);
 
   useEffect(() => {
-    // Delay heavy background effects
-    const timer = setTimeout(() => {
-      setShouldShowEffects(true);
-    }, 1500);
+    // Stage 1: Basic UI ornaments (Weather, etc.)
+    const timer1 = setTimeout(() => setStage(1), 800);
+    // Stage 2: Heavy background effects
+    const timer2 = setTimeout(() => setStage(2), 2000);
+    // Stage 3: Main Dynamic Content
+    const timer3 = setTimeout(() => setStage(3), 3200);
+    // Stage 4: Final footer-area components
+    const timer4 = setTimeout(() => setStage(4), 4500);
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Simple hidden command listener
       if (e.key === "m") {
-        // Checking for "matrix" could be more complex, but this is a start
+        setMatrixFullscreen(prev => !prev);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
-      clearTimeout(timer);
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      clearTimeout(timer3);
+      clearTimeout(timer4);
     };
   }, []);
 
@@ -62,13 +65,12 @@ export default function Home() {
     <main className={`min-h-screen ${isHuman ? "bg-white selection:bg-slate-200 selection:text-black" : "bg-[#0a0a0a] selection:bg-[#10b981] selection:text-black"} relative overflow-x-hidden font-mono transition-colors duration-500`}>
       <CustomCursor />
       <GlitchOverlay />
-      <WeatherWidget />
+      {stage >= 1 && <WeatherWidget />}
       <ScrollProgress />
       <QuickNav />
-      {shouldShowEffects && (
+      {stage >= 2 && (
         <>
           <GravityFall />
-          <GenerativeArt />
           {!isHuman && <MatrixRain isVisible={matrixFullscreen} isIntense={matrixFullscreen} />}
         </>
       )}
@@ -121,14 +123,23 @@ export default function Home() {
           </>
         )}
 
-        <Projects />
-        <Skills />
-        <PCSpecs />
-        <Timeline />
-        <BlogSection />
-        <GitHubActivity />
-        <Guestbook />
-        <ContactForm />
+        {stage >= 3 && (
+          <>
+            <Projects />
+            <Skills />
+            <PCSpecs />
+            <Timeline />
+          </>
+        )}
+
+        {stage >= 4 && (
+          <>
+            <BlogSection />
+            <GitHubActivity />
+            <Guestbook />
+            <ContactForm />
+          </>
+        )}
       </div>
     </main>
   );
