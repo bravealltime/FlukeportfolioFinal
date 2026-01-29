@@ -15,7 +15,7 @@ export default function ClientSideComponents() {
         // Delay non-critical components to improve TBT during initial load
         const timer = setTimeout(() => {
             setShouldRender(true);
-        }, 2500);
+        }, 3500);
         return () => clearTimeout(timer);
     }, []);
 

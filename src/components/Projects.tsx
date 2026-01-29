@@ -168,9 +168,9 @@ const Projects = () => {
 
             <div className="max-w-6xl mx-auto">
                 <motion.div
-                    // Animation: เลื่อนเข้ามาจากซ้ายเมื่อ Scroll ถึง
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    // Animation: Fade with subtle scale instead of shift
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     className="mb-16 text-center md:text-left"
                 >
@@ -188,8 +188,8 @@ const Projects = () => {
                         <motion.div
                             key={index}
                             onMouseEnter={() => !isHuman && playPing()}
-                            initial={{ opacity: 0, y: 10 }}
-                            whileInView={{ opacity: 1, y: 0 }}
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
                             whileHover={{ scale: 1.02 }}

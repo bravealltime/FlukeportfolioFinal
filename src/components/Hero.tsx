@@ -36,15 +36,13 @@ const Hero = () => {
     };
 
     // กำหนด Animation Variants สำหรับ items ภายใน
-    // ปรับการเคลื่อนไหวตามโหมด (Human: ขึ้นจากล่าง, Hacker: มาจากซ้าย)
+    // ปรับการเคลื่อนไหวตามโหมด โดยเน้นความเสถียรของ Layout (CLS = 0)
     const itemVariants: Variants = {
-        hidden: { x: isHuman ? 0 : -5, y: isHuman ? 5 : 0, opacity: 0 },
+        hidden: { opacity: 0 },
         visible: {
-            x: 0,
-            y: 0,
             opacity: 1,
             transition: {
-                duration: 0.3,
+                duration: 0.4,
                 ease: "easeOut",
             },
         },
