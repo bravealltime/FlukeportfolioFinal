@@ -25,6 +25,14 @@ interface Project {
 
 const projects = [
     {
+        title: "RStatement - อ่าน Statement ง่ายขึ้น",
+        description: "เว็บแอปฯ สำหรับแปลงไฟล์ PDF รายการเดินบัญชี (KBank, KTB) ให้เป็นตารางที่อ่านง่าย เหมาะสำหรับผู้สูงอายุ แยกรับ-จ่ายชัดเจน ประมวลผลบนเครื่องผู้ใช้ปลอดภัย 100%",
+        tech: ["Next.js", "TypeScript", "PDF.js", "Client-Side"],
+        link: "https://r-statement.vercel.app/",
+        github: "https://github.com/bravealltime/RStatement",
+        image: "", // Fallback to icon
+    },
+    {
         title: "TeeRao - ระบบจัดการหอพัก",
         description: "เว็บแอปฯ จัดการหอพักครบวงจร คำนวณค่าน้ำ-ไฟอัตโนมัติ ออกบิล PDF และสร้าง QR PromptPay ได้ทันที ช่วยให้เจ้าของหอทำงานง่ายขึ้น 100%",
         tech: ["Next.js", "TypeScript", "Firebase", "Real-time DB"],
