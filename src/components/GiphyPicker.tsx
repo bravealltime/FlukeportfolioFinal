@@ -101,6 +101,7 @@ const GiphyPicker: React.FC<GiphyPickerProps> = ({ isOpen, onClose, onSelect }) 
                             onMouseEnter={() => playHover()}
                             className={`p-2 rounded-full transition-colors ${isHuman ? "hover:bg-slate-200 text-slate-500" : "hover:bg-[#10b98122] text-[#10b981]"
                                 }`}
+                            aria-label={isHuman ? "ปิดค้นหา GIF" : "สิ้นสุด_การค้นหา_มีเดีย"}
                         >
                             <X size={20} />
                         </button>

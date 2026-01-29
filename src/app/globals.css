@@ -140,8 +140,16 @@ body {
 /* Specific overrides for muted text to be readable gray */
 .human-mode .text-\[\#10b98188\],
 .human-mode .text-\[\#10b98166\] {
-  color: #525252 !important;
-  /* Neutral 600 */
+  color: #404040 !important;
+  /* Neutral 700 */
+}
+
+/* Hacker Mode Contrast Enhancement */
+.hacker-mode .text-\[\#10b98188\],
+.hacker-mode .text-\[\#10b98166\] {
+  color: #10b981 !important;
+  opacity: 0.75;
+  /* Increased from ~0.4-0.5 for better contrast */
 }
 
 /* Highlight text in human mode */

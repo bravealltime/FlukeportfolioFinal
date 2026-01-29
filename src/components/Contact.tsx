@@ -62,6 +62,7 @@ const Contact = () => {
                                 className={`p-4 border transition-all ${isHuman
                                     ? "bg-white text-slate-700 border-slate-200 rounded-lg shadow-sm hover:border-slate-300 hover:text-blue-600"
                                     : "border-[#10b98144] text-[#10b981] hover:border-[#10b981]"}`}
+                                aria-label={isHuman ? "แชท" : "เริ่ม_การสื่อสาร"}
                             >
                                 <MessageCircle size={isHuman ? 20 : 18} />
                             </motion.button>
@@ -73,6 +74,7 @@ const Contact = () => {
                                 className={`p-4 border transition-all ${isHuman
                                     ? "bg-white text-slate-700 border-slate-200 rounded-lg shadow-sm hover:border-slate-300 hover:text-blue-600"
                                     : "border-[#10b98144] text-[#10b981] hover:border-[#10b981]"}`}
+                                aria-label={isHuman ? "ส่งอีเมล" : "เริ่ม_การส่ง_ข้อมูล"}
                             >
                                 <Send size={isHuman ? 20 : 18} />
                             </motion.button>

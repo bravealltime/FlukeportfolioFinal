@@ -131,6 +131,7 @@ const Chatbot = () => {
                     ? "bg-blue-600 text-white hover:bg-blue-700"
                     : "bg-[#0a0a0a] border border-[#10b981] text-[#10b981] shadow-[0_0_20px_#10b98144]"
                     } ${isOpen ? "hidden" : "flex"}`}
+                aria-label={isHuman ? "เปิดแชทผู้ช่วย" : "รัน_ระบบ_ผู้ช่วย_AI"}
             >
                 <MessageSquare size={24} />
             </motion.button>
@@ -156,7 +157,11 @@ const Chatbot = () => {
                                     {isHuman ? "บอทผู้ช่วย" : "ผู้ช่วย_AI v2.0"}
                                 </span>
                             </div>
-                            <button onClick={() => setIsOpen(false)} className="hover:opacity-70">
+                            <button
+                                onClick={() => setIsOpen(false)}
+                                className="hover:opacity-70"
+                                aria-label={isHuman ? "ปิดแชท" : "สิ้นสุด_เซสชัน_ผู้ช่วย"}
+                            >
                                 <X size={20} className={isHuman ? "text-slate-500" : "text-[#10b981]"} />
                             </button>
                         </div>
@@ -198,6 +203,7 @@ const Chatbot = () => {
                                     onClick={handleSend}
                                     className={`p-2 rounded-lg transition-colors ${isHuman ? "bg-blue-50 text-blue-600 hover:bg-blue-100" : "bg-[#10b98122] text-[#10b981] hover:bg-[#10b98144]"
                                         }`}
+                                    aria-label={isHuman ? "ส่งข้อความ" : "ดำเนินการ_ส่ง_คำสั่ง"}
                                 >
                                     <Send size={18} />
                                 </button>

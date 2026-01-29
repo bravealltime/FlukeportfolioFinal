@@ -65,9 +65,9 @@ const Timeline = () => {
                                 ? "bg-blue-500 ring-blue-200"
                                 : "bg-[#0a0a0a] ring-[#10b981] shadow-[0_0_10px_#10b981]"
                                 } shadow-xl`}>
-                                <h1 className="mx-auto font-semibold text-lg text-white">
+                                <div className="mx-auto font-semibold text-lg text-white">
                                     {isHuman ? "" : ""}
-                                </h1>
+                                </div>
                             </div>
 
                             <motion.div

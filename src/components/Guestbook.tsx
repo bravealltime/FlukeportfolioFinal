@@ -622,6 +622,7 @@ const Guestbook = () => {
                                                                     ? "text-red-500"
                                                                     : isHuman ? "text-slate-300 hover:text-red-400" : "text-[#10b98122] hover:text-red-500"
                                                                     } ${likedIds.includes(block.id) ? "cursor-default" : "cursor-pointer"}`}
+                                                                aria-label={isHuman ? `ถูกใจข้อความจาก ${block.sender}` : `ให้_ความพึงพอใจ::${block.sender}`}
                                                             >
                                                                 <Heart size={16} fill={likedIds.includes(block.id) || (block.likes || 0) > 0 ? "currentColor" : "none"} />
                                                                 <span className="text-[10px] font-bold font-mono">{(block.likes || 0)}</span>
@@ -636,6 +637,7 @@ const Guestbook = () => {
                                                     onClick={() => deleteBlock(block.id!)}
                                                     className="absolute top-1 left-1 opacity-0 group-hover:opacity-100 text-red-500 hover:text-red-700 p-1 transition-all"
                                                     title="ลบบล็อก"
+                                                    aria-label={isHuman ? "ลบข้อความ" : "ลบ_เซกเตอร์_ข้อมูล_X"}
                                                 >
                                                     <Trash2 size={12} />
                                                 </button>

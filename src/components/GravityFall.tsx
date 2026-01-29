@@ -133,6 +133,7 @@ const GravityFall = () => {
                     ? "bg-red-500 text-white"
                     : isHuman ? "bg-white text-slate-800 border border-slate-200" : "bg-black text-[#10b981] border border-[#10b981]"
                     }`}
+                aria-label={isActive ? (isHuman ? "รีเซ็ตฟิสิกส์" : "รีเซ็ต_ระบบ_ฟิสิกส์") : (isHuman ? "อย่ากดปุ่มนี้" : "คำเตือน::ห้าม_กด_รัน_ฟิสิกส์")}
             >
                 {isActive ? "RESET UNIVERSE" : "⚠ DO NOT PRESS"}
             </button>
