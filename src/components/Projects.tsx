@@ -161,6 +161,8 @@ const Projects = () => {
                                     <div className="flex gap-3">
                                         <a
                                             href={project.github}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
                                             className={`${isHuman ? "text-slate-400 hover:text-slate-900" : "text-[#10b981] hover:text-white hover:glow-sm"} transition-all`}
                                             aria-label={`GitHub: ${project.title}`}
                                         >
@@ -195,6 +197,8 @@ const Projects = () => {
                                 <div className="mt-auto flex items-center gap-4 pt-4 border-t border-inherit border-opacity-10">
                                     <motion.a
                                         href={project.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                         whileHover={{ x: 2 }}
                                         className={`inline-flex items-center gap-1.5 text-xs font-bold transition-colors ${isHuman ? "text-blue-600 hover:text-blue-700 font-sans" : "text-[#10b981] hover:text-white"}`}
                                     >
