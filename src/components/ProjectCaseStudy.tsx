@@ -11,6 +11,18 @@ interface Project {
     tech: string[];
     link: string;
     github: string;
+    caseStudy?: {
+        challenge: string;
+        solution: {
+            architecture: string;
+            ux: string;
+        };
+        metrics: {
+            perf: string;
+            error: string;
+        };
+        testimonial: string;
+    };
 }
 
 interface ProjectCaseStudyProps {
@@ -56,7 +68,7 @@ const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ isOpen, onClose, pr
                     <section>
                         <h3 className="text-xl font-bold mb-4 opacity-70 uppercase tracking-widest">01 // โจทย์และความท้าทาย</h3>
                         <p className="text-lg leading-relaxed opacity-90">
-                            {project.description} ลูกค้าต้องการระบบที่รองรับผู้ใช้งานพร้อมกันจำนวนมากโดยที่เว็บต้องไม่ล่ม และต้องมีการตอบสนองที่ไวมาก (Low Latency) ปัญหาเดิมคือระบบเก่ามักจะค้างเวลาคนเข้าเยอะๆ
+                            {project.caseStudy?.challenge || project.description}
                         </p>
                     </section>
 
@@ -71,7 +83,7 @@ const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ isOpen, onClose, pr
                                     </div>
                                     <div>
                                         <strong className="block text-sm uppercase opacity-70">Architecture (โครงสร้างระบบ)</strong>
-                                        เปลี่ยนมาใช้ Serverless Architecture (Next.js + Firebase) เพื่อให้รองรับคนได้ไม่อั้นโดยไม่ต้องมานั่งเพิ่ม Server เอง
+                                        {project.caseStudy?.solution.architecture || "Optimized system architecture for scale."}
                                     </div>
                                 </li>
                                 <li className="flex items-start gap-3">
@@ -80,7 +92,7 @@ const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ isOpen, onClose, pr
                                     </div>
                                     <div>
                                         <strong className="block text-sm uppercase opacity-70">UX / UI (ประสบการณ์ผู้ใช้)</strong>
-                                        ออกแบบ Flow การใช้งานใหม่ ลดขั้นตอนที่ยุ่งยาก ทำให้คนกดซื้อหรือใช้งานง่ายขึ้น 40%
+                                        {project.caseStudy?.solution.ux || "Improved user experience design."}
                                     </div>
                                 </li>
                             </ul>
@@ -90,8 +102,8 @@ const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ isOpen, onClose, pr
                             <div className="space-y-4">
                                 <div>
                                     <div className="flex justify-between text-sm mb-1">
-                                        <span>ความเร็ว (Performance)</span>
-                                        <span>+300%</span>
+                                        <span>Performance / Result</span>
+                                        <span>{project.caseStudy?.metrics.perf || "100%"}</span>
                                     </div>
                                     <div className="h-2 bg-black/10 rounded-full overflow-hidden">
                                         <div className="h-full bg-green-500 w-3/4" />
@@ -99,8 +111,8 @@ const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ isOpen, onClose, pr
                                 </div>
                                 <div>
                                     <div className="flex justify-between text-sm mb-1">
-                                        <span>ข้อผิดพลาด (Error Rate)</span>
-                                        <span>-99%</span>
+                                        <span>Value / Impact</span>
+                                        <span>{project.caseStudy?.metrics.error || "High"}</span>
                                     </div>
                                     <div className="h-2 bg-black/10 rounded-full overflow-hidden">
                                         <div className="h-full bg-blue-500 w-full" />
@@ -116,8 +128,8 @@ const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ isOpen, onClose, pr
                             < Trophy size={32} />
                         </div>
                         <h3 className="text-xl font-bold mb-2">บทสรุปความสำเร็จ</h3>
-                        <p className="opacity-70 max-w-xl mx-auto">
-                            &quot;ระบบใหม่ช่วยให้การทำงานลื่นไหลขึ้นมาก ลูกค้าแฮปปี้ ยอดขายโตขึ้นแบบไม่ต้องกังวลเรื่องเว็บล่มอีกเลย&quot; - Feedback จากลูกค้า
+                        <p className="opacity-70 max-w-xl mx-auto italic">
+                            &quot;{project.caseStudy?.testimonial || "Project completed successfully."}&quot;
                         </p>
                     </section>
                 </div>

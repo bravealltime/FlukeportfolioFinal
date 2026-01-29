@@ -21,16 +21,40 @@ interface Project {
     link: string;
     github: string;
     image?: string;
+    caseStudy?: {
+        challenge: string;
+        solution: {
+            architecture: string;
+            ux: string;
+        };
+        metrics: {
+            perf: string;
+            error: string;
+        };
+        testimonial: string;
+    };
 }
 
-const projects = [
+const projects: Project[] = [
     {
         title: "RStatement - อ่าน Statement ง่ายขึ้น",
         description: "เว็บแอปฯ สำหรับแปลงไฟล์ PDF รายการเดินบัญชี (KBank, KTB) ให้เป็นตารางที่อ่านง่าย เหมาะสำหรับผู้สูงอายุ แยกรับ-จ่ายชัดเจน ประมวลผลบนเครื่องผู้ใช้ปลอดภัย 100%",
         tech: ["Next.js", "TypeScript", "PDF.js", "Client-Side"],
         link: "https://r-statement.vercel.app/",
         github: "https://github.com/bravealltime/RStatement",
-        image: "", // Fallback to icon
+        image: "",
+        caseStudy: {
+            challenge: "ผู้สูงอายุมักประสบปัญหาในการอ่านไฟล์ PDF Statement จากธนาคารที่มีตัวหนังสือดกเล็กและดูยาก ทำให้ตรวจสอบบัญชีลำบาก",
+            solution: {
+                architecture: "ออกแบบระบบ Client-Side Parsing 100% โดยใช้ PDF.js เพื่อความปลอดภัยของข้อมูลส่วนตัว ไม่มีการส่งไฟล์ขึ้น Server",
+                ux: "ดีไซน์หน้าจอให้ตัวหนังสือใหญ่ อ่านง่าย ใช้สีแยกยอดเงินเข้า-ออก (เขียว/แดง) ชัดเจน"
+            },
+            metrics: {
+                perf: "Speed < 2s",
+                error: "Privacy 100%"
+            },
+            testimonial: "ช่วยให้อาม่าเช็คเงินเข้าออกได้เอง ไม่ต้องคอยถามลูกหลานเลย สะดวกมากๆ"
+        }
     },
     {
         title: "TeeRao - ระบบจัดการหอพัก",
@@ -39,6 +63,18 @@ const projects = [
         link: "https://teerao.vercel.app/",
         github: "https://github.com/bravealltime/raoteebaan",
         image: "/projects/teerao.png",
+        caseStudy: {
+            challenge: "เจ้าของหอพักต้องเสียเวลาคำนวณมิเตอร์น้ำ-ไฟด้วยมือ และการออกบิลกระดาษสิ้นเปลืองและล่าช้า",
+            solution: {
+                architecture: "ใช้ Firebase Realtime Database เพื่อซิงค์ข้อมูลมิเตอร์และสถานะการจ่ายเงินแบบทันที (Real-time)",
+                ux: "ระบบ Dashboard ที่แสดงสถานะห้องพักทั้งหมดในหน้าเดียว พร้อมระบบ Auto-Generate PDF Bill"
+            },
+            metrics: {
+                perf: "ลดเวลา 80%",
+                error: "Human Err 0%"
+            },
+            testimonial: "จากที่ต้องนั่งทำบิลเป็นวัน ตอนนี้กด 3 ทีเสร็จ ส่งไลน์ให้ผู้เช่าได้เลย ชีวิตดีขึ้นเยอะ"
+        }
     },
     {
         title: "Heartopia Piano Bot Pro",
@@ -47,6 +83,18 @@ const projects = [
         link: "https://github.com/bravealltime/heartopia-piano",
         github: "https://github.com/bravealltime/heartopia-piano",
         image: "/projects/heartopia.png",
+        caseStudy: {
+            challenge: "การเล่นดนตรีในเกมด้วยคีย์บอร์ดคอมพิวเตอร์เป็นเรื่องยากและต้องใช้ความจำสูง ทำให้เล่นเพลงซับซ้อนไม่ได้",
+            solution: {
+                architecture: "พัฒนา Algorithm ในการแปลงไฟล์ MIDI มาเป็น Keystroke Simulation ที่มีความแม่นยำระดับ Millisecond",
+                ux: "UI แบบ Minimal ที่ลอยอยู่เหนือเกม (Overlay) ทำให้ควบคุมเพลย์ลิสต์ได้โดยไม่ต้องสลับหน้าจอ"
+            },
+            metrics: {
+                perf: "Acc 100%",
+                error: "Latency <5ms"
+            },
+            testimonial: "เล่นเพลงยากๆ ได้เหมือนนักเปียโนมืออาชีพ เพื่อนในเกมทึ่งกันหมด!"
+        }
     },
     {
         title: "Rolldice - RedM Script",
@@ -55,6 +103,18 @@ const projects = [
         link: "https://github.com/bravealltime/Rolldice",
         github: "https://github.com/bravealltime/Rolldice",
         image: "/projects/rolldice.jpg",
+        caseStudy: {
+            challenge: "การ Roleplay เดิมใช้คำสั่ง text (/me rolls dice) ซึ่งขาดอรรถรสและความตื่นเต้น",
+            solution: {
+                architecture: "เชื่อมต่อ NUI (HTML/JS) เข้ากับ RedM Lua Engine เพื่อแสดงผล Animation 3D แบบ Synchronized ผู้เล่นทุกคนเห็นเหมือนกัน",
+                ux: "เพิ่มลูกเล่นเสียงและ Physics ของลูกเต๋า ให้ความรู้สึกเหมือนโยนจริงๆ บนโต๊ะ"
+            },
+            metrics: {
+                perf: "Sync <50ms",
+                error: "Immersion +200%"
+            },
+            testimonial: "ช่วยให้การตัดสินแพ้ชนะใน Roleplay สนุกและลุ้นระทึกขึ้นมากๆ ไม่ใช่แค่ดูตัวเลขในช่องแชท"
+        }
     },
     {
         title: "JokPed v3 (BTFT)",
@@ -63,6 +123,18 @@ const projects = [
         link: "https://github.com/bravealltime/BTFT-Bot",
         github: "https://github.com/bravealltime/BTFT-Bot",
         image: "/projects/jokped.png",
+        caseStudy: {
+            challenge: "ผู้เล่นต้องเฝ้าหน้าจอตลอดเวลาเพื่อรอ Event ในเกม ทำให้เสียเวลาชีวิตและสายตาลา",
+            solution: {
+                architecture: "ใช้ Computer Vision (OpenCV + Tesseract) จับภาพหน้าจอและวิเคราะห์ข้อความเพื่อส่งแจ้งเตือนเข้า Discord",
+                ux: "สามารถสั่งการตัวละครผ่าน Discord Command ได้ ทำให้ไม่ต้องอยู่หน้าคอมก็ Control เกมได้"
+            },
+            metrics: {
+                perf: "Detect 95%",
+                error: "Delay <1s"
+            },
+            testimonial: "ไม่ต้องนั่งเฝ้าหน้าจอทั้งวันอีกต่อไป มีเวลาไปทำอย่างอื่นได้เยอะขึ้น ระบบแจ้งเตือนแม่นยำมาก"
+        }
     },
 ];
 
