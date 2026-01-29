@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+
 import { Kanit, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AudioProvider } from "@/components/AudioProvider";
@@ -21,6 +22,12 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+};
+
 export const metadata: Metadata = {
   title: "ธรณัส // พอร์ตโฟลิโอ",
   description: "พอร์ตโฟลิโอของผู้สร้างสรรค์โค้ด - สไตล์แฮกเกอร์",
@@ -29,11 +36,6 @@ export const metadata: Metadata = {
     capable: true,
     statusBarStyle: "black-translucent",
     title: "TharaPort",
-  },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
   },
   openGraph: {
     images: [{ url: '/api/og', width: 1200, height: 630 }],
