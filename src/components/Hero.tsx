@@ -7,6 +7,7 @@ import { useAudio } from "./AudioProvider";
 import DecryptText from "./DecryptText";
 import { useSettings } from "./SettingsProvider";
 import { ArrowRight, Mail } from "lucide-react";
+import Image from "next/image";
 
 /**
  * Component: Hero
@@ -37,13 +38,13 @@ const Hero = () => {
     // กำหนด Animation Variants สำหรับ items ภายใน
     // ปรับการเคลื่อนไหวตามโหมด (Human: ขึ้นจากล่าง, Hacker: มาจากซ้าย)
     const itemVariants: Variants = {
-        hidden: { x: isHuman ? 0 : -20, y: isHuman ? 20 : 0, opacity: 0 },
+        hidden: { x: isHuman ? 0 : -5, y: isHuman ? 5 : 0, opacity: 0 },
         visible: {
             x: 0,
             y: 0,
             opacity: 1,
             transition: {
-                duration: 0.5,
+                duration: 0.3,
                 ease: "easeOut",
             },
         },
@@ -67,10 +68,13 @@ const Hero = () => {
                     >
                         <div className="w-32 h-32 md:w-44 md:h-44 mx-auto relative cursor-pointer group">
                             <div className="absolute inset-0 bg-blue-500/20 rounded-full blur-2xl group-hover:bg-blue-500/30 transition-all duration-500" />
-                            <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white shadow-2xl transition-transform duration-500 group-hover:scale-105">
-                                <img
+                            <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white shadow-2xl transition-transform duration-500 group-hover:scale-105 bg-slate-200">
+                                <Image
                                     src="/profile.jpg"
-                                    alt="Tharanas Profile"
+                                    alt="Tharanut Profile"
+                                    width={176}
+                                    height={176}
+                                    priority
                                     className="w-full h-full object-cover"
                                 />
                             </div>
@@ -152,9 +156,12 @@ const Hero = () => {
                         {/* Scanline Effect Overlay */}
                         <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,118,0.06))] bg-[length:100%_2px,3px_100%] pointer-events-none z-10" />
 
-                        <img
+                        <Image
                             src="/profile.jpg"
-                            alt="Tharanas Profile"
+                            alt="Tharanut Profile"
+                            width={256}
+                            height={256}
+                            priority
                             className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 scale-110 group-hover:scale-100"
                         />
 

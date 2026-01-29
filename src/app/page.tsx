@@ -28,7 +28,6 @@ const RolldiceDemo = dynamic(() => import("@/components/RolldiceDemo"), { ssr: f
 const SnakeGame = dynamic(() => import("@/components/SnakeGame"), { ssr: false });
 const GravityFall = dynamic(() => import("@/components/GravityFall"), { ssr: false });
 const GenerativeArt = dynamic(() => import("@/components/GenerativeArt"), { ssr: false });
-const LiveCodingStatus = dynamic(() => import("@/components/LiveCodingStatus"), { ssr: false });
 
 export default function Home() {
   const [matrixFullscreen, setMatrixFullscreen] = useState(false);
@@ -70,7 +69,6 @@ export default function Home() {
         <>
           <GravityFall />
           <GenerativeArt />
-          <LiveCodingStatus />
           {!isHuman && <MatrixRain isVisible={matrixFullscreen} isIntense={matrixFullscreen} />}
         </>
       )}

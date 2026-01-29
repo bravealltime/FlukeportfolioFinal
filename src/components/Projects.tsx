@@ -12,7 +12,7 @@ const ProjectCaseStudy = dynamic(() => import("./ProjectCaseStudy"), { ssr: fals
 const DoodleGame = dynamic(() => import("./DoodleGame"), { ssr: false });
 const RolldiceDemo = dynamic(() => import("./RolldiceDemo"), { ssr: false });
 
-import { Lock, BookOpen } from "lucide-react";
+import { Lock, BookOpen, Trophy } from "lucide-react";
 
 interface Project {
     title: string;
@@ -146,7 +146,8 @@ import { useSettings } from "./SettingsProvider";
  * รองรับการแสดงผล 2 โหมด: Human (การ์ดขาว) และ Hacker (Terminal Style)
  */
 import TypewriterText from "./TypewriterText";
-import { Trophy } from "lucide-react";
+
+import NextImage from "next/image";
 
 const Projects = () => {
     const { playPing } = useAudio();
@@ -198,20 +199,17 @@ const Projects = () => {
                                 } flex flex-col`}
                         >
                             {/* Project Preview Image */}
-                            <div className="relative aspect-video overflow-hidden border-b border-inherit">
+                            <div className="relative aspect-video overflow-hidden border-b border-inherit bg-slate-200">
                                 {project.image ? (
-                                    <img
+                                    <NextImage
                                         src={project.image}
                                         alt={project.title}
-                                        loading="lazy"
+                                        width={600}
+                                        height={338}
                                         className={`w-full h-full object-cover transition-all duration-500 ${isHuman
                                             ? "group-hover:scale-110"
                                             : "grayscale group-hover:grayscale-0 group-hover:scale-105 opacity-60 group-hover:opacity-100"
                                             }`}
-                                        onError={(e) => {
-                                            // Fallback for missing images
-                                            e.currentTarget.src = "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000&auto=format&fit=crop";
-                                        }}
                                     />
                                 ) : (
                                     <div className={`w-full h-full flex items-center justify-center ${isHuman ? "bg-slate-100" : "bg-[#10b98105]"}`}>
