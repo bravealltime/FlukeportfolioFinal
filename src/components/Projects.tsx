@@ -42,7 +42,7 @@ const projects: Project[] = [
         tech: ["Next.js", "TypeScript", "PDF.js", "Client-Side"],
         link: "https://r-statement.vercel.app/",
         github: "https://github.com/bravealltime/RStatement",
-        image: "",
+        image: "/projects/rstatement.png",
         caseStudy: {
             challenge: "ผู้สูงอายุมักประสบปัญหาในการอ่านไฟล์ PDF Statement จากธนาคารที่มีตัวหนังสือดกเล็กและดูยาก ทำให้ตรวจสอบบัญชีลำบาก",
             solution: {
