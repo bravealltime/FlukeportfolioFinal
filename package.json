@@ -13,8 +13,6 @@
     "@google/generative-ai": "^0.24.1",
     "@liveblocks/client": "^3.13.3",
     "@liveblocks/react": "^3.13.3",
-    "@tensorflow-models/mobilenet": "^2.1.1",
-    "@tensorflow/tfjs": "^4.22.0",
     "@types/matter-js": "^0.20.2",
     "@types/react-syntax-highlighter": "^15.5.13",
     "clsx": "^2.1.1",

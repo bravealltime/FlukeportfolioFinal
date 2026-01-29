@@ -24,6 +24,24 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "ธรณัส // พอร์ตโฟลิโอ",
   description: "พอร์ตโฟลิโอของผู้สร้างสรรค์โค้ด - สไตล์แฮกเกอร์",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "TharaPort",
+  },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+  },
+  openGraph: {
+    images: [{ url: '/api/og', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: ['/api/og'],
+  },
 };
 
 export default function RootLayout({
